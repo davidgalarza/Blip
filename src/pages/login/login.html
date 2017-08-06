@@ -1,0 +1,30 @@
+<!--
+  Generated template for the LoginPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+  <ion-header>
+    <ion-toolbar>
+      <ion-title class="title">Verifica tu numero</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content padding>
+  
+  <p class="message">Blip te enviara un SMS para verificar tu numero de telefono. Introduce tu numero de telefono:</p>
+    <ion-item>
+    <ion-input min="10" type="number" placeholder="numero de tlf." [(ngModel)]="phoneNumber" name="phoneNumber"></ion-input>
+  </ion-item>
+
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    
+    
+      <button ion-button id="sign-in-button" (click)="signIn(phoneNumber)">SIG.</button>
+    <p class="tinfo">Asegurate de poder recivir el mensaje.</p>
+  </ion-toolbar>
+</ion-footer>

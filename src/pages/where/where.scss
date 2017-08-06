@@ -1,0 +1,38 @@
+page-where {
+
+    h4 {
+        font-family: 'Trueno' !important;
+    }
+    .scroll-content{
+        background-color: $main;
+    }
+    .question{
+        color: #FFFFFF;
+        width: 40%;
+        position: relative;
+        top: 20% !important;
+
+    }
+    .directionsC{
+        margin-top: 4em;
+    }
+    .button-md{
+        border-radius: 0px;
+        padding: 1.5em;
+        font-size: 1.3em;
+        width: 100%;
+        box-shadow: none;
+        border: 2px solid;
+    }
+    .other{
+        font-size: 1.5em;
+        color: #FFFFFF;
+        text-align: center;
+        text-decoration: underline;
+        bottom: 2em;
+    }
+    .grid{
+        margin-top: 20%;
+    }
+
+}

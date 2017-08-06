@@ -1,0 +1,27 @@
+page-login {
+     h2,h1{
+        font-family: 'Trueno' !important;
+    }
+    p, input{
+        font-family: 'Nexa' !important;
+    }
+    .toolbar-title-md{
+        color: $main;
+    }
+    .message{
+        text-align: center;
+        margin: auto;
+        display: block;
+        width: 85%;
+    }
+    .toolbar-md{
+        text-align: center;
+    }
+    .button-md{
+        padding: 1em 2em;
+    }
+    .tinfo{
+        font-size: 0.8em;
+        color: #948e8e;
+    }
+}

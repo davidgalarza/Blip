@@ -1,0 +1,51 @@
+page-welcome {
+    h2,h1{
+        font-family: 'Trueno' !important;
+    }
+    p{
+        font-family: 'Nexa' !important;
+    }
+    .scroll-content{
+        background: #ed5a5f;
+        background: -webkit-linear-gradient(to bottom, #ec7474, #ed5a5f);
+        background: linear-gradient(to bottom, #ec7474, #ed5a5f); 
+    }
+    .logo{
+        margin: auto;
+        width: 50%;
+        padding: 10px;
+        display: block;
+        margin-top: 30%
+    }
+    .subheading{
+        color: #FFFFFF;
+        margin: auto;
+        width: 50%;
+        padding: 10px;
+        display: block;
+        text-align: right
+    }
+    .button{
+        color: #FFFFFF;
+        margin: auto;
+        width: 80%;
+        padding: 10px;
+        display: block;
+    }
+
+    .button-md, .button-ios{
+        background-color: #00a083;
+        bottom: 2em;
+        margin: 0 1.5em;
+        position: absolute
+    }
+    .disclamer{
+        color: #ffffff;
+        font-size: 0.75em;
+        width: 90%;
+        text-align: center;
+        margin: auto;
+        bottom: 7em;
+        position: absolute;
+    }
+}

@@ -1,3 +1,7 @@
+/**
+ * Page to select the specific Location
+ * Author: Blip
+ */
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { Geolocation, Geoposition } from '@ionic-native/geolocation';
@@ -12,12 +16,7 @@ import {
  Geocoder
 } from '@ionic-native/google-maps';
 
-/**
- * Generated class for the MapPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
+
 
 @IonicPage()
 @Component({
@@ -35,8 +34,6 @@ export class MapPage {
     public googleMaps: GoogleMaps, public geocoder: Geocoder, public alert: AlertController) {
       this.address = this.navParams.get('address');
       this.reference = this.navParams.get('reference');
-      console.log(this.address);
-      console.log(this.reference);
   }
 
   ionViewDidLoad() {
@@ -57,12 +54,11 @@ export class MapPage {
     this.mLat = result[0].position.lat;
     this.mLng = result[0].position.lng;
     
-    // create a new map by passing HTMLElement
+    // create a new map and marker div by passing HTMLElement
     let element: HTMLElement = document.getElementById('map');
     let div: HTMLElement = document.createElement('div');
 
     this.map = this.googleMaps.create(element);
-
   
     // create LatLng object
     let myPosition: LatLng = new LatLng(this.mLat,this.mLng);
@@ -75,34 +71,29 @@ export class MapPage {
     };
 
     // move the map's camera to position
-
     this.map.moveCamera(position);
-    
 
-  
+    // Listen to Map events
     this.map.on(GoogleMapsEvent.MAP_READY).subscribe(()=>{
       element.appendChild(div).className = 'centerMarker';
-      var newPosition: LatLng ;
-      console.log('Map is ready!');
-
+      var newPosition: LatLng;
       this.map.addEventListener(GoogleMapsEvent.CAMERA_MOVE_END).subscribe(cameraPosition=>{
         newPosition = new LatLng(cameraPosition.target.lat, cameraPosition.target.lng); 
         this.geocoder.geocode({position: newPosition}).then(result=>{
-          console.log(result[0]);
           this.address = result[0].extra.featureName;
-        });
-        
+          this.mLat = result[0].position.lat;
+          this.mLng = result[0].position.lng;
+        }); 
       });
-      
-
-      });
-
-
+    });
 
     this.map.setClickable(true);
     this.map.trigger(GoogleMapsEvent.CAMERA_MOVE);
 
   }
 
+  save(){
+    
+  }
 
 }

@@ -1,12 +1,11 @@
+/**
+ * Page that Use autocomple Api of google maps, helping the user
+ * to write the correct adres.
+ */
+
 import { Component, NgZone, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 
-/**
- * Generated class for the AutocompletePage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
 
 @IonicPage()
 
@@ -18,7 +17,7 @@ export class AutocompletePage {
   @ViewChild('myInput') myInput;  
   autocompleteItems;
   autocomplete;
-  service = new (<any>window).google.maps.places.AutocompleteService();
+  service = new (<any>window).google.maps.places.AutocompleteService(); // Using Autocomplete Service of GoogleMapsPlugin
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private zone: NgZone, public viewCtrl: ViewController) {
     this.autocompleteItems = [];
@@ -54,9 +53,9 @@ export class AutocompletePage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad AutocompletePage');
     window.setTimeout(() => {
-      (<any>window).cordova.plugins.Keyboard.show();
       this.myInput.setFocus();
-    }, 600); //SET A LONG TIME IF YOUR ARE IN A MODAL/ALERT
+      (<any>window).cordova.plugins.Keyboard.show();
+    }, 600); //Autofcocos on Search 
   }
 
 }

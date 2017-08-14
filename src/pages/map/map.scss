@@ -1,0 +1,42 @@
+page-map {
+    #map{
+        display: block;
+        height: 100%;
+        width: 100%;
+      }
+      .centerMarker{
+        position:absolute;
+        /*url of the marker*/
+        background:url(https://firebasestorage.googleapis.com/v0/b/atiempo-5533e.appspot.com/o/pin.svg?alt=media&token=02d3f552-3f3c-4fdd-a1a3-e9f7e7134be9) no-repeat;
+        /*center the marker*/
+        top:50%;left:50%;
+      
+        z-index:1;
+        /*fix offset when needed*/
+        margin-left:-10px;
+        margin-top:-34px;
+        /*size of the image*/
+        height:68px;
+        width:40px;
+      
+        cursor:pointer;
+      }
+    #saveC{
+
+        position:absolute;
+        /*center the marker*/
+        top:90%;
+        margin-bottom: 2em;
+        z-index:1;
+        /*size of the image*/
+        width:100%;
+      
+        text-align: center
+    }
+    #saveC button {
+      width: 90%;
+      height: 3em;
+      border-radius: 0.4em;
+    }
+
+}

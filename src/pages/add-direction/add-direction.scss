@@ -1,3 +1,22 @@
 page-add-direction {
-
+    ion-header{
+        z-index: inherit;  // desapear the header shadown
+        text-align: center;
+    }
+    h2,h1{
+        font-family: 'Trueno' !important;
+    }
+    p, input{
+        font-family: 'Nexa' !important;
+    }
+    .button-md{
+        padding: 1em 2em;
+    }
+    .tinfo{
+        font-size: 0.8em;
+        color: #948e8e;
+    }
+    .toolbar-md{
+        text-align: center;
+    }
 }

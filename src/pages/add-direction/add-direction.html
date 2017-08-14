@@ -7,12 +7,28 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>addDirection</ion-title>
+    <ion-title>Agregar Direccion</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+  <ion-list>
+    <ion-item>
+        <ion-label color="primary" stacked>Direccion</ion-label>
+      <ion-input (focus)="showAddressModal()" [(ngModel)]="address.place" type="text" placeholder="Direccion de entrega" readonly></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label color="primary" stacked>Referencia</ion-label>
+        <ion-input #myInput [(ngModel)]="address.reference" type="text" placeholder="Ejm: Casa de dos pisos amarilla"></ion-input>
+      </ion-item>
+  </ion-list>
+  
 </ion-content>
+<ion-footer>
+    <ion-toolbar>
+        <button ion-button id="sign-in-button" (click)="locateAdress()">UBICAR</button>
+      <p class="tinfo">Te pediremos que ubiques la ubicaion exacta.</p>
+    </ion-toolbar>
+  </ion-footer>

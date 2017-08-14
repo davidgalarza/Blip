@@ -1,14 +1,12 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, NgZone } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
+import { AuthProvider } from '../providers/auth/auth';
 import { HomePage } from '../pages/home/home';
-import { LoginPage } from '../pages/login/login';
 import { WelcomePage } from '../pages/welcome/welcome';
 import { WherePage } from '../pages/where/where';
-import { DirectionsManagerPage } from '../pages/directions-manager/directions-manager';
-import { AddDirectionPageModule } from '../pages/add-direction/add-direction.module';
+import { AddDirectionPage } from '../pages/add-direction/add-direction';
 
 @Component({
   templateUrl: 'app.html'
@@ -16,13 +14,14 @@ import { AddDirectionPageModule } from '../pages/add-direction/add-direction.mod
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any =  AddDirectionPageModule;
-
+  //rootPage: any;
+  rootPage: any = AddDirectionPage;
+  zone:NgZone;
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private auth: AuthProvider) {
     this.initializeApp();
-
+    this.zone = new NgZone({});
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage },
@@ -31,6 +30,18 @@ export class MyApp {
   }
 
   initializeApp() {
+    // Listen to the auth state and toogling the root page.
+    /*const unsubscribe = this.auth.getAuth().onAuthStateChanged((user) => {
+      this.zone.run( () => {
+        if (!user) {
+          this.rootPage = WelcomePage;
+          unsubscribe();
+        } else { 
+          this.rootPage = WherePage;
+          unsubscribe();
+        }
+      });     
+      });*/
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.

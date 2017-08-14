@@ -30,7 +30,7 @@ export class LoginPage {
   }
   });  
   }
-
+/*
   signIn(phoneNumber: number){
 
     
@@ -70,7 +70,7 @@ export class LoginPage {
     .catch(function (error) {
       console.error("SMS not sent", error);
     });
-  }
+  }*/
   button(){
   
   }

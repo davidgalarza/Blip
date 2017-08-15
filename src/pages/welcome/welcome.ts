@@ -33,7 +33,7 @@ export class WelcomePage {
       // HTTP request to a Firebase Funtion, to generate a CustomToken
       this.http.get('https://us-central1-atiempo-5533e.cloudfunctions.net/getCustomToken?access_token='+info.token,{},{}).then((data)=>{
        this.auth.signinWithToken(data.data).then((ss)=>{
-          this.navCtrl.setRoot(WherePage);
+          this.navCtrl.popTo(WherePage);
         });
       }).catch((err)=>{
         console.log(err)

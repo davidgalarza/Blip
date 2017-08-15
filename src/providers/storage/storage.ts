@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Storage } from '@ionic/storage';
 
@@ -12,20 +11,39 @@ import { Storage } from '@ionic/storage';
 @Injectable()
 export class StorageProvider {
 
-  constructor(public http: Http, private storage: Storage) {
+  constructor(private storage: Storage) {
     console.log('Hello StorageProvider Provider');
   }
 
-  saveDirection(adress: string, lat:number, lng:number, reference:string){
-    let nDirections:string;
-    this.storage.length().then((length)=>{
-      nDirections = length.toString();
+  saveDirection(address: string, lat:number, lng:number, reference:string){
+    return this.storage.keys().then((keys)=>{
+      this.storage.set(address, {
+        address: address,
+        lat: lat,
+        lng: lng,
+        reference: reference
+      }).then(()=>{
+        this.storage.set("activeDirection", address).then(()=>{
+          let direction;
+          this.storage.get('activeDirection').then((activeDirection)=>{
+            console.log(activeDirection);
+            this.storage.get(activeDirection).then((res)=>{
+              console.log(res);
+            });
+          });
+        });
+      }); 
     });
-    this.storage.set("d"+nDirections, {
-      adress: adress,
-      lat: lat,
-      lng: lng,
-      reference: reference
-    });
+  }
+
+  getLocationsKeys():any{
+    let keysArray;
+    return this.storage.keys();
+  }
+  getByKey(key: string){
+    return this.storage.get(key);
+  }
+  setActiveLocation(key: string){
+    return this.storage.set("activeDirection", key);
   }
 }

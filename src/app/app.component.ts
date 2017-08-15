@@ -15,7 +15,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   //rootPage: any;
-  rootPage: any = AddDirectionPage;
+  rootPage: any;
   zone:NgZone;
   pages: Array<{title: string, component: any}>;
 
@@ -31,7 +31,7 @@ export class MyApp {
 
   initializeApp() {
     // Listen to the auth state and toogling the root page.
-    /*const unsubscribe = this.auth.getAuth().onAuthStateChanged((user) => {
+    const unsubscribe = this.auth.getAuth().onAuthStateChanged((user) => {
       this.zone.run( () => {
         if (!user) {
           this.rootPage = WelcomePage;
@@ -41,7 +41,7 @@ export class MyApp {
           unsubscribe();
         }
       });     
-      });*/
+      });
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.

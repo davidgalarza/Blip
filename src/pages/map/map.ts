@@ -5,6 +5,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { Geolocation, Geoposition } from '@ionic-native/geolocation';
+import { HomePage } from '../../pages/home/home';
 import {
  GoogleMaps,
  GoogleMap,
@@ -15,6 +16,7 @@ import {
  Marker,
  Geocoder
 } from '@ionic-native/google-maps';
+import { StorageProvider } from '../../providers/storage/storage';
 
 
 
@@ -31,7 +33,7 @@ export class MapPage {
   mLng: any;
   marker: Marker;
   constructor(public navCtrl: NavController, public navParams: NavParams,public geolocation: Geolocation,
-    public googleMaps: GoogleMaps, public geocoder: Geocoder, public alert: AlertController) {
+    public googleMaps: GoogleMaps, public geocoder: Geocoder, public alert: AlertController, public storage: StorageProvider) {
       this.address = this.navParams.get('address');
       this.reference = this.navParams.get('reference');
   }
@@ -93,7 +95,11 @@ export class MapPage {
   }
 
   save(){
-    
+    this.storage.saveDirection(this.address, this.mLat, this.mLng, this.reference).then(()=>{
+      this.storage.setActiveLocation(this.address).then(()=>{
+        this.navCtrl.push(HomePage);
+      });
+    });
   }
 
 }

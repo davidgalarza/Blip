@@ -14,12 +14,10 @@
 </ion-row>
 <ion-row>
 <div class="directionsC">
-  <button ion-button (click)="acept()">Gregorio Escobedo</button>
-  <button ion-button (click)="acept()">Av. Cevallos</button>
-  <button ion-button (click)="acept()">Bolivariana 3-2</button>
-  <button ion-button (click)="acept()">Gregorio Escobedo</button>
+  <button ion-button (click)="setCurrentLocation()">UBICACION ACTUAL</button>
+  <button ion-button (click)="setLocation(location.key)" *ngFor="let location of locations">{{location.address}}</button>
 </div>
 </ion-row>
 </ion-grid>
-<p class="other">Pedir a otra direaccion</p>
+<p class="other" (click)="pushAddDirectionPage()">Pedir a otra direaccion</p>
 </ion-content>

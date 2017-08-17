@@ -1,3 +1,38 @@
 page-home {
-    
+    ion-header{
+        z-index: inherit;  // desapear the header shadown
+        text-align: center;
+    }
+    .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before{
+        background-image: none;
+    }
+    .searchbar-md .searchbar-input{
+        background-color: #F6F6F6;
+        box-shadow: none !important;
+    }
+    .circle {
+        border-radius: 50%;
+        width: 6em;
+        height: 6em;
+        border-radius: 6em;
+        display: inline-block;
+        
+    }
+    .image {
+        width: 3em;
+        height: 3em;
+    position:initial;
+    margin:auto;
+    top:0;
+right: 0;margin-top: 1.5em;
+    }
+    ion-col{
+        text-align: center;
+      }
+    h2,h1{
+        font-family: 'Trueno' !important;
+    }
+    p, input{
+        font-family: 'Nexa' !important;
+    }
 }

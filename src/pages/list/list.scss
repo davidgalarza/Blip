@@ -1,0 +1,90 @@
+page-list {
+    ion-header{
+        z-index: inherit;  // desapear the header shadown
+        text-align: center;
+    }
+    .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before{
+        background-image: none;
+    }
+    .toolbar-title-md{
+        text-align: -webkit-right;
+        font-family: 'Nexa' !important;
+    }
+    h2,h1{
+        font-family: 'Trueno' !important;
+    }
+    p, input{
+        font-family: 'Nexa' !important;
+    }
+    .toolbar-background-md{
+        background-color: $main;
+    }
+    .searchbar-md {
+        background-color: $main;
+    }
+    .toolbar-title{
+        color: #FFFFFF;
+    }
+    .searchbar-md .searchbar-input{
+        background-color: #FFFFFF;
+        box-shadow: none !important;
+    }
+    .imgC{
+        width: 100%;
+        height: 12em;
+        border-radius: 0.5em;
+        background-size: cover !important;
+        -moz-background-size: cover !important;  /* Firefox 3.6 */
+        background-position: center !important;  
+    }
+    .commerce_name{
+        font-size: 1.3em;
+        margin: 0px;
+        position: absolute;
+        left: 1em;
+        bottom: 2em;
+        color: #FFFFFF;
+    }
+    .commerce_description{
+        margin: 0;
+        bottom: 1em;
+        position: absolute;
+        left: 1em;
+        color: #FFFFFF;
+        font-size: 1.1em;
+        white-space: nowrap;
+        font-size: 1.1em;
+        width: 90%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        
+    }
+    .price{
+        position: absolute;
+        right: 1em;
+        top: 1em;
+        background-color: $green;
+        padding: 0.4em;
+        color: #FFFFFF;
+        font-family: 'Nexa';
+        border-radius: 0.3em;
+    }
+    [col-12]{
+        padding: 0px;
+        margin-bottom: 0.8em;
+    }
+    .grid{
+        padding: 0px;
+    }
+    .closed{
+        position: absolute;
+        right: 1em;
+        top: 1em;
+        background-color: $main;
+        padding: 0.4em;
+        color: #FFFFFF;
+        font-family: 'Nexa';
+        border-radius: 0.3em;
+    }
+    
+}

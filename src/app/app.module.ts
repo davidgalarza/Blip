@@ -9,6 +9,7 @@ import { AutocompletePageModule } from '../pages/autocomplete/autocomplete.modul
 import { WherePageModule } from '../pages/where/where.module';
 import { AddDirectionPageModule } from '../pages/add-direction/add-direction.module';
 import { MapPageModule } from '../pages/map/map.module';
+import { ListPageModule } from '../pages/list/list.module';
 // Import AngularFire Library
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -23,10 +24,13 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import { Geocoder} from '@ionic-native/google-maps';
 import { HTTP } from '@ionic-native/http';
+import { HttpModule } from '@angular/http';
 
 //Poviders
 import { AuthProvider } from '../providers/auth/auth';
 import { StorageProvider } from '../providers/storage/storage';
+import { DatabaseProvider } from '../providers/database/database';
+import { HttpProvider } from '../providers/http/http';
 
 // Firebase credentials
 export const firebaseConfig = {
@@ -54,6 +58,8 @@ export const firebaseConfig = {
     AddDirectionPageModule,
     AutocompletePageModule,
     MapPageModule,
+    ListPageModule,
+    HttpModule,
     IonicStorageModule.forRoot({
       name: '__mydb',
          driverOrder: ['indexeddb', 'sqlite', 'websql']
@@ -74,7 +80,10 @@ export const firebaseConfig = {
     StorageProvider,
     Geolocation,
     GoogleMaps,
-    Geocoder
+    Geocoder,
+    DatabaseProvider,
+    HTTP,
+    HttpProvider,
   ]
 })
 export class AppModule {}

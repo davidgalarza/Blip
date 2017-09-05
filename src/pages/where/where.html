@@ -7,17 +7,20 @@
 
 
 
-<ion-content padding>
-<ion-grid>
+<ion-content >
+    <div class="orderInfo" *ngIf="hasActiveOrders" (click)="pushOrdersPage()">
+        <h4 class="nexa" style="color:#ffffff;"> <ion-icon ios="ios-eye" md="md-eye"></ion-icon>  Tienes pedidos en proceso</h4>
+      </div>
+<ion-grid padding>
 <ion-row>
-<h1 class="question">A donde quieres pedir hoy?</h1>
+<h1 class="question trueno">A donde quieres pedir hoy?</h1>
 </ion-row>
 <ion-row>
-<div class="directionsC">
+<div class="directionsC trueno">
   <button ion-button (click)="setCurrentLocation()">UBICACION ACTUAL</button>
   <button ion-button (click)="setLocation(location.key)" *ngFor="let location of locations">{{location.address}}</button>
 </div>
 </ion-row>
 </ion-grid>
-<p class="other" (click)="pushAddDirectionPage()">Pedir a otra direaccion</p>
+<p class="other nexa" (click)="pushAddDirectionPage()">Pedir a otra direaccion</p>
 </ion-content>

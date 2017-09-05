@@ -1,7 +1,22 @@
 page-where {
 
-    h4 {
+    .trueno {
         font-family: 'Trueno' !important;
+    }
+    .nexa{
+        font-family: 'Nexa' !important;
+    }
+    .orderInfo{
+        background-color: $green;
+        margin:0;
+        display:inline-block;
+        width:100%;
+        text-align: center;
+        height: 3em;
+        padding: 0px;
+    }
+    .orderInfo h4{
+        margin: 0.5em;
     }
     .scroll-content{
         background-color: $main;

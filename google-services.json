@@ -67,6 +67,99 @@
           "status": 2
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:212855483806:android:7141a1ae4e027801",
+        "android_client_info": {
+          "package_name": "shops.blipclub.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "212855483806-b9bejc1mml268ve2amf0sh9jtk8ic95r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXxcpNl9IGcP2AjBFPb9QxpsfGbjTj668"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:212855483806:android:c1189d859d3bcab0",
+        "android_client_info": {
+          "package_name": "com.blipclub.shops"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "212855483806-b9bejc1mml268ve2amf0sh9jtk8ic95r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXxcpNl9IGcP2AjBFPb9QxpsfGbjTj668"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:212855483806:android:3b6a43693839017b",
+        "android_client_info": {
+          "package_name": "com.blipclub.blip"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "212855483806-b9bejc1mml268ve2amf0sh9jtk8ic95r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXxcpNl9IGcP2AjBFPb9QxpsfGbjTj668"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
     }
   ],
   "configuration_version": "1"

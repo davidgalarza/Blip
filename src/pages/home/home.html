@@ -8,7 +8,10 @@
   [showCancelButton]="shouldShowCancel"
   (ionInput)="onInput($event)"
   (ionCancel)="onCancel($event)"
-  placeholder="¿Qué necesitas?">
+  placeholder="¿Qué necesitas?"
+  (click)="pushCategory('','', true)"
+  readonly>
+  
 </ion-searchbar>
   </ion-navbar>
 </ion-header>
@@ -17,12 +20,19 @@
   <h1>Categorias</h1>
   <ion-grid>
       <ion-row>
-        <ion-col *ngFor="let category of grid" (click)="pushCategory(category.category, category.display_name)" col-4>
+        <ion-col *ngFor="let category of grid" (click)="pushCategory(category.category, category.display_name, false)" col-4>
               <div  class="circle" [style.backgroundColor]="category.color">
                 <img [src]="category.img" alt="img" class="image">
               </div>
               <p>{{category.display_name}}</p>
         </ion-col> 
+        <ion-col col-12>
+          <div class="custom-div" (click)="pushCustomPage()">
+            <img src="assets/img/magic-wand.svg" class="wand" alt="wand">
+            <h2 class="customT">Lo que sea</h2>
+            <p class="customT paragraph">Pide de cualquier tuenda o restaurante de tu ciudad.</p>
+          </div>
+        </ion-col>
       </ion-row>
   </ion-grid>
         

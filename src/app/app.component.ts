@@ -6,6 +6,8 @@ import { AuthProvider } from '../providers/auth/auth';
 import { HomePage } from '../pages/home/home';
 import { WelcomePage } from '../pages/welcome/welcome';
 import { WherePage } from '../pages/where/where';
+import { ShopPage } from '../pages/shop/shop';
+import { OrdersPage } from '../pages/orders/orders';
 import { AddDirectionPage } from '../pages/add-direction/add-direction';
 
 @Component({
@@ -14,8 +16,8 @@ import { AddDirectionPage } from '../pages/add-direction/add-direction';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
+  //rootPage: any = WelcomePage;
   rootPage: any;
-  //rootPage: any = HomePage;
   zone:NgZone;
   pages: Array<{title: string, component: any}>;
 
@@ -24,7 +26,9 @@ export class MyApp {
     this.zone = new NgZone({});
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage },
+      { title: 'Inicio', component: HomePage },
+      { title: 'Pedidos Activos', component: OrdersPage },
+      {title: 'Cerrar sesión', component: null}
     ];
 
   }
@@ -52,8 +56,15 @@ export class MyApp {
   }
 
   openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+    if(page.component) {
+      this.nav.setRoot(page.component);
+  } else {
+      // Since the component is null, this is the logout option
+      // ...
+      this.auth.logout();
+      
+      // redirect to home
+      this.nav.setRoot(WelcomePage);
+  }
   }
 }

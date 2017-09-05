@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
+import { DatabaseProvider } from '../../providers/database/database';
 import { WherePage } from '../../pages/where/where';
 import { HTTP } from '@ionic-native/http';
 
@@ -16,7 +17,7 @@ import { HTTP } from '@ionic-native/http';
 })
 export class WelcomePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public auth: AuthProvider, private http: HTTP) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public auth: AuthProvider, private http: HTTP, public db: DatabaseProvider, public load: LoadingController) {
   }
 
   ionViewDidLoad() {
@@ -30,10 +31,24 @@ export class WelcomePage {
       facebookNotificationsEnabled: true,
       initialPhoneNumber: ["593", ""]
     }, (info)=>{
+      let loading = this.load.create({
+        content: 'Creando tu cuenta...'
+      });
+      loading.present();
       // HTTP request to a Firebase Funtion, to generate a CustomToken
       this.http.get('https://us-central1-atiempo-5533e.cloudfunctions.net/getCustomToken?access_token='+info.token,{},{}).then((data)=>{
        this.auth.signinWithToken(data.data).then((ss)=>{
-          this.navCtrl.popTo(WherePage);
+         (<any>window).AccountKitPlugin.getAccount(user=>{
+          this.db.createFirstUserData(ss.uid, user.phoneNumber).then(ss=>{
+            loading.dismiss().then(()=>{
+              this.navCtrl.setRoot(WherePage);
+              this.navCtrl.popToRoot();
+            });
+          });
+         }, err=>{
+          console.log(err);
+         });
+          
         });
       }).catch((err)=>{
         console.log(err)

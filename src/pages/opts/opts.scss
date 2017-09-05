@@ -1,0 +1,41 @@
+page-opts {
+    .question, h2{
+        font-family: 'Trueno' !important;
+    }
+    .options, p{
+        font-family: 'Nexa' !important;
+    }
+    ion-header{
+        z-index: inherit;  // desapear the header shadown
+        text-align: center;
+    }
+    .toolbar-background-md, .toolbar-background-ios {
+      background: $main;
+    }
+    .closeI{
+        font-size: 2em;
+        position: absolute;
+        margin-left: 10px;
+        margin-right: 10px;
+        color: #FFC301;
+    }
+    .pageTitle{
+        position: inherit;
+        margin-left: 25px;
+    }
+    .textF{
+        text-align: center;
+        font-family: 'Trueno' !important;
+    }
+    .toolbar-title-md{
+        color: white !important;
+    }
+    .question{
+        text-transform: uppercase;
+        color: black;
+        font-size: 1.2em;
+    }
+    .list-header-md{
+        border-top: none;
+    }
+}

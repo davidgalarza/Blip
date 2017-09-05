@@ -1,0 +1,106 @@
+<!--
+  Generated template for the TrakingPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Seguimiento</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <div class="timeline">
+    <ul>
+      <li *ngIf="order.status == 'pending'">
+        <div class="bullet orange"></div>
+        <div class="desc" >
+          <h3 >Esperando aprobacion de {{order.shopName}}</h3>
+        </div>
+      </li>
+      <li *ngIf="order.status == 'accepted' ||  order.status == 'assigned' || order.status == 'inShop' || order.status == 'arrived' || order.status == 'recived'" >
+        <div class="bullet green"></div>
+        <div class="desc" >
+          <h3 >{{order.shopName}} aprovo tu pepido</h3>
+        </div>
+      </li>
+      <li *ngIf="order.status != 'accepted' && order.status != 'assigned' && order.status != 'inShop' && order.status != 'arrived' && order.status != 'recived'">
+        <div class="bullet orange"></div>
+        <div class="desc" >
+          <h3 class="will">Te asignaremos un bliper</h3>
+        </div>
+      </li>
+      <li *ngIf="order.status == 'accepted'">
+        <div class="bullet orange"></div>
+        <div class="desc" >
+          <h3>Asignandote un Bliper</h3>
+        </div>
+      </li>
+      <li *ngIf="order.status == 'assigned' || order.status == 'inShop' || order.status == 'arrived' || order.status == 'recived'">
+        <div class="bullet green"></div>
+        <div class="desc" >
+          <h3>Tu bliper es {{bliperName}}</h3>
+        </div>
+      </li>
+      <li *ngIf="order.status != 'assigned'  && order.status != 'inShop' && order.status != 'arrived' && order.status != 'recived'">
+        <div class="bullet orange"></div>
+        <div class="desc" >
+          <h3 class="will">El bliper ira a la tienda</h3>
+        </div>
+      </li>
+      <li *ngIf="order.status == 'assigned'">
+        <div class="bullet orange"></div>
+        <div class="desc" >
+          <h3>El bliper va a la tienda</h3>
+        </div>
+      </li>
+      <li *ngIf="order.status == 'inShop' || order.status == 'arrived' || order.status == 'recived'">
+        <div class="bullet green"></div>
+        <div class="desc" >
+          <h3>El bliper llego a la tienda</h3>
+        </div>
+        
+      </li>
+      
+      <li *ngIf="order.status != 'inShop' && order.status != 'arrived' && order.status != 'recived'">
+        <div class="bullet orange"></div>
+        <div class="desc" >
+          <h3 class="will">El bliper ira a ala direccion de entrega</h3>
+        </div>
+      </li>
+      <li *ngIf="order.status == 'inShop'">
+        <div class="bullet orange"></div>
+        <div class="desc" >
+          <h3>El bliper corre a la direccion de entrega</h3>
+        </div>
+      </li>
+      <li *ngIf="order.status == 'arrived' || order.status == 'recived'">
+        <div class="bullet green"></div>
+        <div class="desc" >
+          <h3>El bliper ya esta afuera</h3>
+        </div>
+      </li>
+      <li *ngIf="order.status != 'recived'">
+        <div class="bullet orange"></div>
+        <div class="desc" >
+          <h3 class="will">Se entregara</h3>
+        </div>
+      </li>
+      <li *ngIf="order.status == 'recived'">
+        <div class="bullet green"></div>
+        <div class="desc" >
+          <h3>Entregado</h3>
+        </div>
+      </li>
+    </ul>
+  </div>  
+  
+  <div id="map" style="height:30%;">
+    
+  </div>      
+
+</ion-content>

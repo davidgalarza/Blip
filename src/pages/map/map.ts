@@ -97,7 +97,8 @@ export class MapPage {
   save(){
     this.storage.saveDirection(this.address, this.mLat, this.mLng, this.reference).then(()=>{
       this.storage.setActiveLocation(this.address).then(()=>{
-        this.navCtrl.push(HomePage);
+        this.navCtrl.setRoot(HomePage);
+        this.navCtrl.popToRoot();
       });
     });
   }

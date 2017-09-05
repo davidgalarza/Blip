@@ -1,0 +1,136 @@
+page-traking {
+    ion-header{
+        z-index: inherit;  // desapear the header shadown
+        text-align: center;
+    }
+    .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before{
+        background-image: none;
+    }
+    .toolbar-title-md{
+        text-align: -webkit-right;
+        font-family: 'Nexa' !important;
+    }
+    h3,h4,h2,h1{
+        font-family: 'Trueno' !important;
+    }
+    p, input{
+        font-family: 'Nexa' !important;
+    }
+    .toolbar-background-md{
+        background-color: $main;
+    }
+    .searchbar-md {
+        background-color: $main;
+    }
+    .toolbar-title{
+        color: #FFFFFF;
+    }
+
+
+    // Timeline
+    $black: #202020;
+    $white: #fff;
+    $dark-grey: #808080;
+    $light-grey: #d9d9d9;
+    $purple: #B97CFC;
+    $pink: #F93B69;
+    $green: #B0E8E2;
+    $orange: #EB8B6E;
+    
+    .timeline {
+      font-size: 1.2em;
+      ul {
+        padding: 1em 0 0 2em;
+        margin: 0;
+        list-style: none;
+        position: relative;
+        
+        &::before {
+          content: ' ';
+          height: 100%;
+          width: 1px;
+          background-color: $light-grey;
+          position: absolute;
+          top: 0;
+          left: 2.5em;
+          z-index: -1;
+        }
+      }
+      
+      li div{
+        display: inline-block;
+        margin: 1em 0;
+        vertical-align: top;
+      }
+      
+      .bullet {
+        width: 1em;
+        height: 1em;
+        box-sizing: border-box;
+        border-radius: 50%;
+        background: $white;
+        z-index: 1;
+        margin-right: 1em;
+        
+        &.pink {
+          border: 2px solid $pink;
+        }
+        
+        &.green {
+          border: 2px solid $green;
+        }
+        
+        &.orange {
+          border: 2px solid $orange;
+        }
+      }
+      
+      .time {
+        width: 20%;
+        font-size: 0.75em;
+        padding-top: 0.25em;
+      }
+      
+      .desc {
+        width: 50%;
+      }
+      
+      h3 {
+        font-size: 0.9em;
+        font-weight: 400;
+        margin: 0;
+      }
+      
+      h4 {
+        margin: 0;
+        font-size: 0.7em;
+        font-weight: 400;
+        color: $dark-grey;
+      }
+      
+      .people img{
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+      }
+    }
+    
+    .credits, .video{
+      position: absolute;
+      bottom:10px;
+      color: $dark-grey;
+      font-size: 100%;
+      text-decoration: underline;
+    }
+    
+    .credits {
+      left: 10px;
+    }
+    
+    .video{
+      right: 10px;
+    }
+    .will{
+      color: #A7A7A7;
+    }
+}

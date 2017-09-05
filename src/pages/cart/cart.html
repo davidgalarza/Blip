@@ -1,0 +1,92 @@
+<ion-header>
+    
+      <ion-navbar>
+        <ion-title>Comprar algo</ion-title>
+      </ion-navbar>
+    
+    </ion-header>
+    
+    
+    <ion-content>
+      <p class="section" *ngIf="!personalized">CARRITO DE COMPRA {{commerce.name}}</p>
+      <p class="section" *ngIf="personalized">CARRITO DE COMPRA </p>
+      <ng-container *ngIf="!personalized">
+        <ion-grid class="item" *ngFor="let product of products">
+          <ion-row >
+            <ion-col col-2><ion-badge item-right>x{{product.cant}}</ion-badge></ion-col>
+            <ion-col col-8><p class="title">{{product.name}}</p></ion-col>
+            <ion-col col-2><p class="price">${{product.price}}</p></ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-2> <ion-icon ios="ios-remove-circle" md="md-remove-circle" class="controls" (click)="decreaseCart(product.product)"></ion-icon></ion-col>
+            <ion-col col-8></ion-col>
+            <ion-col col-2> <ion-icon ios="ios-add-circle" md="md-add-circle" class="controls" (click)="increaseCart(product.product)"></ion-icon></ion-col>
+          </ion-row>
+        </ion-grid>
+      </ng-container>
+      <ion-grid class="item">
+        <ion-row>
+          <ion-col col-1><ion-icon style="color: #717171;" ios="ios-create" md="ios-create" class="controls inputContainer"></ion-icon></ion-col>
+          <ion-col col-11><ion-textarea [(ngModel)]="details"placeholder="Algún detalle? (Opcional)"></ion-textarea></ion-col>
+        </ion-row>
+      </ion-grid>
+      <p class="section">DATOS DE ENTREGA</p>
+      <ion-grid class="item">
+        <ion-row>
+          <ion-col col-1><ion-icon style="color: #717171;"  ios="md-pin" md="md-pin" class="controls inputContainer"></ion-icon></ion-col>
+          <ion-col col-11><ion-input type="text" [(ngModel)]="address.address" readonly placeholder="Direccion de entrega"  (click)="pushLocationPage()"></ion-input></ion-col>
+        </ion-row>
+      </ion-grid>
+       <ion-grid class="item ">
+        <ion-row>
+          <ion-col col-1><ion-icon style="color: #717171;" ios="md-phone-portrait" md="md-phone-portrait" class="controls inputContainer"></ion-icon></ion-col>
+          <ion-col col-11><ion-input type="text" [(ngModel)]="phone" placeholder="Número de contacto" readonly></ion-input></ion-col>
+        </ion-row>
+      </ion-grid>
+      <p class="section">FACTURACIÓN</p>
+      <ion-grid class="item ">
+        <ion-row>
+          <ion-col col-1><ion-icon style="color: #717171;" ios="ios-contact" md="ios-contact" class="controls inputContainer"></ion-icon></ion-col>
+          <ion-col col-11><ion-input [(ngModel)]="name" type="text" placeholder="Nombre del cliente"></ion-input></ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid class="item ">
+        <ion-row>
+          <ion-col col-1><ion-icon style="color: #717171;" ios="ios-contact" md="ios-contact" class="controls inputContainer"></ion-icon></ion-col>
+          <ion-col col-11><ion-input [(ngModel)]="ci" type="number" placeholder="CI/RUC"></ion-input></ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid class="item ">
+        <ion-row>
+          <ion-col col-1><ion-icon style="color: #717171;"  ios="md-pin" md="md-pin" class="controls inputContainer"></ion-icon></ion-col>
+          <ion-col col-11><ion-input type="text" [(ngModel)]="addressF" placeholder="Dirección de la factura"></ion-input></ion-col>
+        </ion-row>
+      </ion-grid>
+    
+     
+      <ion-grid class="">
+        <ion-row *ngIf="!personalized">
+          <ion-col col-3 class="tipe"><p>Productos</p></ion-col>
+          <ion-col col-9><p class="priceContent">${{total.toFixed(2)}}</p></ion-col>
+        </ion-row>
+        <ion-row *ngIf="!personalized">
+          <ion-col col-3 class="tipe"><p>Envío</p></ion-col>
+          <ion-col col-9><p class="priceContent">${{deliveryPrice.toFixed(2)}}</p></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-3 class="tipe" style="font-size:1.2em"><p>TOTAL</p></ion-col>
+          <ion-col col-9><p class="priceContent" style="font-size:1.2em">${{totalT.toFixed(2)}}</p></ion-col>
+        </ion-row>
+        <ion-row *ngIf="personalized">
+          <ion-col col-12 class="tipe" style="font-size:1em"><p>El precio de los productos no esta incluido.</p></ion-col>
+           <ion-col col-12 class="tipe" style="font-size:1em"><p>Pedidos  con una distancia hasta 3km tienen un precio de envio de $2.</p></ion-col>
+        </ion-row>
+      </ion-grid>
+    
+    
+    </ion-content>
+    <ion-footer  class="cart" (click)="createOrder()">
+    
+        <ion-icon name="md-cart"></ion-icon>
+        <span>COMPLETAR ORDEN</span>
+    </ion-footer>

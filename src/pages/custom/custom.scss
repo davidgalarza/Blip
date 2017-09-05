@@ -1,0 +1,48 @@
+page-custom{
+    ion-header{
+        z-index: inherit;  // desapear the header shadown
+    }
+    .toolbar-title-md{
+        text-align: -webkit-right;
+        font-family: 'Trueno' !important;
+        color: #FFFFFF;
+    }
+    .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before{
+        background-image: none;
+    }
+    .toolbar-background-md, .toolbar-background-ios {
+      background: $main;
+  }
+  .content-md, .content-ios {
+      color: #000;
+      background-color: $main;
+  }
+  .textArea{
+      background-color: #ffffff;
+      border-radius: 0.7em;
+      padding: 1em;
+      height: 95%;
+      display: table;
+  }
+  .footer{
+      text-align: center;
+      height: 3.5em;
+  }
+  .button{
+      height: 2em;
+      padding: 0.5em;
+      background-color: $green;
+      color: #ffffff;
+      font-size: 1.2em;
+      border-radius: 1em;
+      font-family: 'Trueno' !important;
+  }
+  .scroll-content{
+      padding-bottom: 0px !important;
+  }
+.text-input-md, .text-input-md {
+    height: inherit;
+  }
+  
+
+}

@@ -10,6 +10,12 @@ import { WherePageModule } from '../pages/where/where.module';
 import { AddDirectionPageModule } from '../pages/add-direction/add-direction.module';
 import { MapPageModule } from '../pages/map/map.module';
 import { ListPageModule } from '../pages/list/list.module';
+import { ShopPageModule } from '../pages/shop/shop.module';
+import { OptsPageModule } from '../pages/opts/opts.module';
+import { CartPageModule } from '../pages/cart/cart.module';
+import { CustomPageModule } from '../pages/custom/custom.module';
+import { TrakingPageModule } from '../pages/traking/traking.module';
+import { OrdersPageModule } from '../pages/orders/orders.module';
 // Import AngularFire Library
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -26,13 +32,21 @@ import { Geocoder} from '@ionic-native/google-maps';
 import { HTTP } from '@ionic-native/http';
 import { HttpModule } from '@angular/http';
 
+
+
 //Poviders
 import { AuthProvider } from '../providers/auth/auth';
 import { StorageProvider } from '../providers/storage/storage';
 import { DatabaseProvider } from '../providers/database/database';
 import { HttpProvider } from '../providers/http/http';
+import { ShopFunctionsProvider } from '../providers/shop-functions/shop-functions';
+import { GeofireProvider } from '../providers/geofire/geofire';
+import { AlgoliaProvider } from '../providers/algolia/algolia';
 
-// Firebase credentials
+
+// Components
+
+// Firebase credentials      
 export const firebaseConfig = {
     apiKey: "AIzaSyD5-GtfArEanLasYBxACCsKZCAwX_lQp3I",
     authDomain: "atiempo-5533e.firebaseapp.com",
@@ -53,12 +67,19 @@ export const firebaseConfig = {
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
+    AngularFireDatabaseModule,
     WelcomePageModule,
     WherePageModule,
     AddDirectionPageModule,
     AutocompletePageModule,
     MapPageModule,
     ListPageModule,
+    ShopPageModule,
+    OptsPageModule,
+    CartPageModule,
+    CustomPageModule,
+    TrakingPageModule,
+    OrdersPageModule,
     HttpModule,
     IonicStorageModule.forRoot({
       name: '__mydb',
@@ -84,6 +105,9 @@ export const firebaseConfig = {
     DatabaseProvider,
     HTTP,
     HttpProvider,
+    ShopFunctionsProvider,
+    GeofireProvider,
+    AlgoliaProvider,
   ]
 })
 export class AppModule {}

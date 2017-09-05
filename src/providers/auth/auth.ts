@@ -7,10 +7,12 @@ import { AngularFireAuth } from 'angularfire2/auth';
 
 @Injectable()
 export class AuthProvider {
-
+  user:any;
   constructor(private auth: AngularFireAuth) {
     console.log('Hello AuthProvider Provider');
-    this.auth.auth.onAuthStateChanged
+    this.auth.authState.subscribe((user) => {
+      this.user = user;
+    });
   }
 
   signinWithToken(token:string){
@@ -19,5 +21,10 @@ export class AuthProvider {
   getAuth(){
     return this.auth.auth;
   }
- 
+  getUser(){
+    return this.user;
+  }
+  logout(){
+    this.auth.auth.signOut();
+  }
 }

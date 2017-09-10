@@ -25,7 +25,7 @@ export class ShopPage {
   shop;
   results:Array<any> = []; 
   menus = [];
-  products:Array<any>;
+  products:Array<any> = [];
   menu;
   cart: Array<any> = [];
   total = 0;
@@ -34,6 +34,8 @@ export class ShopPage {
   isOpen: boolean;
   shopName: string;
   text:string = '';
+  prueba = [ {$key: "-Ko912LubYCtwp4sVF29",commerceId: "HXNrxb1G1fYjx0dh6nQAoPzpEkg2",description: "Chaulafán especial, Chancho con tamarindo, Tallarín especial.",imageUrl: "https://firebasestorage.googleapis.com/v0/b/atiempo-5533e.appspot.com/o/uploads%2FHXNrxb1G1fYjx0dh6nQAoPzpEkg2%2Fproducts%2FEspecial%20(1).jpg?alt=media&token=e3a9d22d-32ec-4a02-896d-7515cdb07f32",menu: "platos especiales - special dishes",price: 8.4,product: "Bandeja Especial #1"}]
+
   constructor(private _sanitizer: DomSanitizer,public navCtrl: NavController, public navParams: NavParams, public db: DatabaseProvider, public modalCtrl: ModalController, public alert:AlertController, public algolia:AlgoliaProvider, public shopF: ShopFunctionsProvider) {
     this.shopId = this.navParams.get('shopId');
     this.isOpen = this.navParams.get('isOpen');
@@ -56,7 +58,13 @@ export class ShopPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ShopPage');
+    console.log('ionViewDidLoad:', this.products);
+  }
+  ionViewWillEnter(){
+    console.log('ionViewWillEnter', this.products)
+  }
+  ionViewDidEnter(){
+    console.log('ionViewDidEnter', this.products)
   }
   getBackground(imageUrl){
     return this._sanitizer.bypassSecurityTrustStyle(`radial-gradient( rgba(29, 29, 29, 0.8), rgba(16, 16, 23, 0.8)), url(${imageUrl})`);

@@ -24,7 +24,7 @@ export class OrdersPage {
     this.db.getMyOrders(this.auth.getUser().uid).subscribe(orders=>{
       this.myOrders = [];
       orders.forEach(order=>{
-        if(order.status != 'recived'){
+        if(order.status != 'rated'){
           this.myOrders.push(order);
         }
       });

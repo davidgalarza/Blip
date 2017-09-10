@@ -25,6 +25,9 @@ export class ShopFunctionsProvider {
     return new Promise((resolve,reject)=>{
       let aux ={};
       let last;
+      console.log("Ctegoria funciones:", category);
+      console.log("Ctegoria funciones:", isSearch);
+      console.log('Categoria val', commerce.val().category);
       if(commerce.val().category == category || isSearch){
         this.isOpen(commerce.val()).then(op =>{
           this.getDeliveryPrice(distance).then(price=>{
@@ -69,10 +72,16 @@ export class ShopFunctionsProvider {
     console.log(distance);
     return new Promise((resolve, reject)=>{
       let price;
-      if(distance <= 3){
+      if(distance <= 3.5){
         price = 2.00;
       }else{
-        price = 2  + (distance - 3) * 0.30;
+        if(distance <= 4.5){
+          price = 2.50;
+        }else{
+          if(distance <= 5.5){
+            price = 3.00;
+          }
+        }
       }
       resolve(price)
     });

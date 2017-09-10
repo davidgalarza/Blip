@@ -13,14 +13,14 @@
       </div>
 <ion-grid padding>
 <ion-row>
-<h1 class="question trueno">A donde quieres pedir hoy?</h1>
+<h1 class="question trueno">¿A dónde quieres pedir hoy?</h1>
 </ion-row>
 <ion-row>
 <div class="directionsC trueno">
-  <button ion-button (click)="setCurrentLocation()">UBICACION ACTUAL</button>
+  <button ion-button (click)="setCurrentLocation()">UBICACIÓN ACTUAL</button>
   <button ion-button (click)="setLocation(location.key)" *ngFor="let location of locations">{{location.address}}</button>
 </div>
 </ion-row>
 </ion-grid>
-<p class="other nexa" (click)="pushAddDirectionPage()">Pedir a otra direaccion</p>
+<p class="other nexa" (click)="pushAddDirectionPage()">Pedir a otra dirección</p>
 </ion-content>

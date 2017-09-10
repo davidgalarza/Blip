@@ -32,6 +32,7 @@ import { Geocoder} from '@ionic-native/google-maps';
 import { HTTP } from '@ionic-native/http';
 import { HttpModule } from '@angular/http';
 
+// Import ionic2-rating module
 
 
 //Poviders

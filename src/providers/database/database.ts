@@ -73,4 +73,13 @@ export class DatabaseProvider {
       }
     })
   }
+  setOrderStatus(id, status){
+    return this.db.database.ref('orders/'+ id+'/status').set(status)
+  }
+  setOrderRate(id, rate){
+    return this.db.database.ref('orders/'+ id+'/rate').set(rate);
+  }
+  getCategories(){
+    return this.db.list('/categories');
+  }
 }

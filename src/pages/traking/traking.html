@@ -19,16 +19,16 @@
       <li *ngIf="order.status == 'pending'">
         <div class="bullet orange"></div>
         <div class="desc" >
-          <h3 >Esperando aprobacion de {{order.shopName}}</h3>
+          <h3 >Esperando aprobación de {{order.shopName}}</h3>
         </div>
       </li>
-      <li *ngIf="order.status == 'accepted' ||  order.status == 'assigned' || order.status == 'inShop' || order.status == 'arrived' || order.status == 'recived'" >
+      <li *ngIf="order.status == 'accepted' ||  order.status == 'assigned' || order.status == 'inShop' || order.status == 'arrived' || order.status == 'recived'  ||  order.status == 'rated'" >
         <div class="bullet green"></div>
         <div class="desc" >
-          <h3 >{{order.shopName}} aprovo tu pepido</h3>
+          <h3 >{{order.shopName}} aprobó tu pedido</h3>
         </div>
       </li>
-      <li *ngIf="order.status != 'accepted' && order.status != 'assigned' && order.status != 'inShop' && order.status != 'arrived' && order.status != 'recived'">
+      <li *ngIf="order.status != 'accepted' && order.status != 'assigned' && order.status != 'inShop' && order.status != 'arrived' && order.status != 'recived' && order.status != 'rated'">
         <div class="bullet orange"></div>
         <div class="desc" >
           <h3 class="will">Te asignaremos un bliper</h3>
@@ -40,67 +40,73 @@
           <h3>Asignandote un Bliper</h3>
         </div>
       </li>
-      <li *ngIf="order.status == 'assigned' || order.status == 'inShop' || order.status == 'arrived' || order.status == 'recived'">
+      <li *ngIf="order.status == 'assigned' || order.status == 'inShop' || order.status == 'arrived' || order.status == 'recived' ||  order.status == 'rated'" >
         <div class="bullet green"></div>
         <div class="desc" >
           <h3>Tu bliper es {{bliperName}}</h3>
         </div>
       </li>
-      <li *ngIf="order.status != 'assigned'  && order.status != 'inShop' && order.status != 'arrived' && order.status != 'recived'">
+      <li *ngIf="order.status != 'assigned'  && order.status != 'inShop' && order.status != 'arrived' && order.status != 'recived' && order.status != 'rated'">
         <div class="bullet orange"></div>
         <div class="desc" >
-          <h3 class="will">El bliper ira a la tienda</h3>
+          <h3 class="will">Tu bliper ira a la tienda</h3>
         </div>
       </li>
       <li *ngIf="order.status == 'assigned'">
         <div class="bullet orange"></div>
         <div class="desc" >
-          <h3>El bliper va a la tienda</h3>
+          <h3>Tu bliper va a la tienda</h3>
         </div>
       </li>
-      <li *ngIf="order.status == 'inShop' || order.status == 'arrived' || order.status == 'recived'">
+      <li *ngIf="order.status == 'inShop' || order.status == 'arrived' || order.status == 'recived' ||  order.status == 'rated'">
         <div class="bullet green"></div>
         <div class="desc" >
-          <h3>El bliper llego a la tienda</h3>
+          <h3>Tu bliper llego a la tienda</h3>
         </div>
         
       </li>
       
-      <li *ngIf="order.status != 'inShop' && order.status != 'arrived' && order.status != 'recived'">
+      <li *ngIf="order.status != 'inShop' && order.status != 'arrived' && order.status != 'recived' && order.status != 'rated'">
         <div class="bullet orange"></div>
         <div class="desc" >
-          <h3 class="will">El bliper ira a ala direccion de entrega</h3>
+          <h3 class="will">Tu bliper irá a la dirección de entrega</h3>
         </div>
       </li>
       <li *ngIf="order.status == 'inShop'">
         <div class="bullet orange"></div>
         <div class="desc" >
-          <h3>El bliper corre a la direccion de entrega</h3>
+          <h3>Tu bliper va a la dirección de entrega</h3>
         </div>
       </li>
-      <li *ngIf="order.status == 'arrived' || order.status == 'recived'">
+      <li *ngIf="order.status == 'arrived' || order.status == 'recived' ||  order.status == 'rated'">
         <div class="bullet green"></div>
         <div class="desc" >
-          <h3>El bliper ya esta afuera</h3>
+          <h3>Tu bliper ya esta afuera</h3>
         </div>
       </li>
-      <li *ngIf="order.status != 'recived'">
+      <li *ngIf="order.status != 'recived' && order.status != 'rated'">
         <div class="bullet orange"></div>
         <div class="desc" >
-          <h3 class="will">Se entregara</h3>
+          <h3 class="will">Se entregará</h3>
         </div>
       </li>
-      <li *ngIf="order.status == 'recived'">
+      <li *ngIf="order.status == 'recived' ||  order.status == 'rated'">
         <div class="bullet green"></div>
         <div class="desc" >
-          <h3>Entregado</h3>
+          <h3>Califica a tu bliper</h3>
         </div>
       </li>
     </ul>
   </div>  
+  <div class="rateC" *ngIf="order.status == 'recived' ||  order.status == 'rated'">
+    <rating [(ngModel)]="rate" 
+    (ngModelChange)="onModelChange($event)"> 
+      </rating>
+  </div>
   
   <div id="map" style="height:30%;">
     
   </div>      
+  
 
 </ion-content>

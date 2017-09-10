@@ -25,7 +25,7 @@ export class WherePage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage: StorageProvider, public geolocation: Geolocation, public geocoder: Geocoder, public db: DatabaseProvider, public auth: AuthProvider) {
     this.db.getMyOrders(this.auth.getUser().uid).subscribe((orders)=>{
       orders.forEach(order=>{
-        if(order.status != 'recived'){
+        if(order.status != 'rated'){
           this.hasActiveOrders = true;
         }
       });

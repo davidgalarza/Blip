@@ -46,17 +46,20 @@ export class ShopPage {
       console.log(ss)
       this.shop = ss.val();
       this.shopName = ss.val().name;
-    });
-    this.db.getProducts(this.shopId).subscribe(snap=>{
-      this.products = snap;
-      console.log("Productos", snap);
-      this.db.getCommerceMenus(this.shopId).subscribe(menus=>{
-        this.menus = menus;
-        console.log("Menus", menus);
+      this.db.getProducts(this.shopId).subscribe(snap=>{
+        this.products = snap;
+        console.log("Productos", snap);
+        this.db.getCommerceMenus(this.shopId).subscribe(menus=>{
+          this.menus = menus;
+          console.log("Menus", menus);
+        });
       });
     });
+    
   }
-
+  ngOnInit() {
+    
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad:', this.products);
   }
@@ -220,4 +223,18 @@ export class ShopPage {
       this.results = ss.hits;
     })
   }
+  myHeaderFn(record, recordIndex, records) {
+      console.log(recordIndex);
+
+      if(recordIndex == 0){
+        return records[recordIndex].menu;
+      }else{
+        if (records[recordIndex].menu != records[recordIndex-1].menu) {
+          return records[recordIndex].menu
+        }
+        return null;
+      }
+
+  
+}
 }

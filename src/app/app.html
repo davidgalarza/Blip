@@ -7,9 +7,10 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-content>
+  <ion-content class="sidemenuC">
     <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)" class="itemSide">
+        <ion-icon item-left [name]="p.icon"></ion-icon>
         {{p.title}}
       </button>
     </ion-list>

@@ -54,6 +54,9 @@ export class TrakingPage {
          this.navCtrl.popToRoot();
       }
     }
+    this.platform.registerBackButtonAction(() => {
+      this.navCtrl.popToRoot();
+    });
   }
 
   ngAfterViewInit() {

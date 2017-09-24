@@ -4,12 +4,12 @@ page-cart {
   }
   ion-header{
     z-index: inherit;  // desapear the header shadown
-    text-align: center;
+    text-align: right;
     font-family: 'Trueno' !important;
 }
 .toolbar-title-md{
     color: #FFFFFF;
-    text-align: -webkit-auto;
+    text-align: right;
 }
 h2,h1{
     font-family: 'Trueno' !important;
@@ -63,6 +63,9 @@ p, input{
     background-color: #FFFFFF;
     border-bottom: 1px solid $background;
     font-size: 1.3em;
+  }
+  .item ion-input{
+    font-size: 0.98em;
   }
   .text-input-md{
     margin: 0px;

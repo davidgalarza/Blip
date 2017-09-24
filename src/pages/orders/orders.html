@@ -14,6 +14,11 @@
 
 
 <ion-content padding>
+  <div class="emptyC" *ngIf="myOrders.length == 0">
+      <img src="assets/img/ghost.svg" alt="img" class="image">
+      <p>No pides nada aún</p>
+  </div>
+    
     <ion-list>
         <ion-item style="color: #485465;" *ngFor="let order of myOrders" (click)="pushOrder(order.$key)">
           <ion-grid>

@@ -1,4 +1,66 @@
 page-shop {
+    ion-header{
+        transition:all 0.5s ease 0s;
+        background:rgba($main,0);
+        &:after{
+            content:none !important;
+        }
+        .toolbar-background{
+            background:rgba($main,0) !important;
+            border:none !important;
+        }
+        
+        .searchbar-input-container{
+            background: #ffffff !important;
+            border-radius: 50px !important;
+            overflow: hidden !important;
+            .searchbar-input{
+                background: #ffffff !important;
+            }
+        }
+        ion-title{
+            padding:5px 0px 10px 5px !important;
+        }
+    }
+    .scroll-content{
+        margin-top: 0px !important;
+        padding-top: 0px !important;
+    }
+    .page-header{
+        margin-left: -16px;
+        margin-right: -16px;
+        transition:all 0.2s ease 0s;
+        
+    }
+    .header-bg{
+        height:250px;
+        width:100%;
+        background-size:100%;
+        background-position:  center center;
+    }
+    .ph-card-box{
+        text-align: center;
+        margin-top:-70px;
+        position: relative;
+        z-index:2;
+        height:120px;
+        ion-card{
+            border-radius:10px;
+        }
+        .price-box{
+            position:relative;
+            &:after{
+                content: "";
+                border: 1px;
+                height: 22px;
+                background: #ccc;
+                position: absolute;
+                right: -7px;
+                width: 1px;
+                top:0;
+            }
+        }
+    }
     h4,h3, h2,h1{
         font-family: 'Trueno' !important;
     }
@@ -10,6 +72,7 @@ page-shop {
         text-align: center;
         color: black !important;
     }
+    
     .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before{
         background-image: none;
     }
@@ -183,5 +246,8 @@ page-shop {
           margin-left: 40%;
           margin-right: 40%;
 
+      }
+      ion-card-title{
+          font-family: 'Trueno' !important;
       }
 }

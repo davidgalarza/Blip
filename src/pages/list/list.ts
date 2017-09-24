@@ -8,6 +8,8 @@ import { DatabaseProvider } from '../../providers/database/database';
 import { AlgoliaProvider } from '../../providers/algolia/algolia';
 import { GeofireProvider } from '../../providers/geofire/geofire';
 import { ShopFunctionsProvider } from '../../providers/shop-functions/shop-functions';
+import { Content, Platform } from 'ionic-angular';
+import { Firebase } from '@ionic-native/firebase';
 /**
  * Generated class for the ListPage page.
  *
@@ -21,6 +23,7 @@ import { ShopFunctionsProvider } from '../../providers/shop-functions/shop-funct
   templateUrl: 'list.html',
 })
 export class ListPage {
+  @ViewChild(Content) content: Content;
   searchText: string = '';
   category: string;
   location: any = {};
@@ -33,36 +36,38 @@ export class ListPage {
   shopIds: any = [];
   isSearch: boolean = false;
   @ViewChild('myInput') myInput;  
-  constructor(private _sanitizer: DomSanitizer, public navCtrl: NavController, public navParams: NavParams, public storage: StorageProvider ,public db: DatabaseProvider, public geofire: GeofireProvider, public http: HttpProvider, public shopF: ShopFunctionsProvider, public algolia: AlgoliaProvider) {
+  constructor(private _sanitizer: DomSanitizer, public navCtrl: NavController, public navParams: NavParams, public storage: StorageProvider ,public db: DatabaseProvider, public geofire: GeofireProvider, public http: HttpProvider, public shopF: ShopFunctionsProvider, public algolia: AlgoliaProvider, private firebase: Firebase) {
     this.category = this.navParams.get('category');
+    console.log(this.category);
     this.display_name = this.navParams.get('display_name');
     this.isSearch = this.navParams.get('search');
     console.log('Ctegotia Header', this.category);
     this.storage.getByKey('activeDirection').then(key =>{
       this.storage.getByKey(key).then(location=>{
-        console.log(location);
         this.location = location;
         this.geofire.getNearShopIds(location.lat, location.lng).then(shopIds=>{
           console.log(shopIds);
           this.shopIds =shopIds;
           this.shopIds.forEach(shopId => {
-            console.log(shopId);
-              this.db.getCommerById(shopId).on('value', shop=>{
+              this.db.getCommerById(shopId).once('value', shop=>{
+                console.log(shop);
                 let shopA : any = shop;
                 if(shop.val() != null){
-                  this.geofire.distanceBetwen(shopA.val().lat, shopA.val().lng, location.lat, location.lng).then(distance=>{
-                    this.shopF.createCommerceData(shopA, this.category, distance, shopId, false).then(shopData=>{
-                      let shop: any = shopData
-                      console.log('Shop:', shopData);
-                      if(shop.name !="" && shop.commerceId !=undefined){
-                        if(shop.isOpen){
-                          this.openShops.push(shop);
-                        }else{
-                          this.closeShops.push(shop);
+                  if(!shop.val().disabled){
+                    this.geofire.distanceBetwen(shopA.val().lat, shopA.val().lng, location.lat, location.lng).then(distance=>{
+                      this.shopF.createCommerceData(shopA, this.category, distance, shopId, false).then(shopData=>{
+                        let shop: any = shopData
+                        console.log('Shop:', shopData);
+                        if(shop.name !="" && shop.commerceId !=undefined){
+                          if(shop.isOpen){
+                            this.openShops.unshift(shop);
+                          }else{
+                            this.closeShops.unshift(shop);
+                          }
                         }
-                      }
+                      });
                     });
-                  });
+                  }
                 }
               });
             });
@@ -80,6 +85,14 @@ export class ListPage {
       (<any>window).cordova.plugins.Keyboard.show();
     }, 600); //Autofcocos on Search 
   }
+  }
+  ionViewWillEnter(){
+    this.firebase.setScreenName('list');
+    this.firebase.logEvent('page_view', {page: "list",
+                                          category: this.category})
+    .then((res: any) => console.log(res))
+    .catch((error: any) => console.error(error));
+
   }
   getBackground(imageUrl){
     return this._sanitizer.bypassSecurityTrustStyle(`radial-gradient( rgba(29, 29, 29, 0), rgba(16, 16, 23, 0.8)), url(${imageUrl})`);
@@ -107,13 +120,14 @@ export class ListPage {
         console.log('Results', results);
         this.getInfoResulst();
       });
-      
+      this.content.scrollToTop();
 
   }
 
   getInfoResulst(){
     this.resultIds.forEach(shopId => {
       this.db.getCommerById(shopId.objectID).on('value', shop=>{
+        if(!shop.val().disabled){
         let shopA : any = shop;
         console.log("ShopV", shopA.val())
         this.geofire.distanceBetwen(shopA.val().lat, shopA.val().lng, this.location.lat, this.location.lng).then(distance=>{
@@ -130,7 +144,17 @@ export class ListPage {
             }
           });
         });
+      }
       });
+    });
+  }
+  orderCommerces(arrayA:Array<any>){
+    return arrayA.sort((a,b)=>{
+      if (a.distance < b.distance)
+        return -1;
+      if (a.distance > b.distance)
+        return 1;
+      return 0;
     });
   }
 

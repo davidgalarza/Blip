@@ -4,6 +4,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { DatabaseProvider } from '../../providers/database/database';
 import { WherePage } from '../../pages/where/where';
 import { HTTP } from '@ionic-native/http';
+import { Firebase } from '@ionic-native/firebase';
 
 /**
  * WELCOME-PAGE
@@ -17,7 +18,7 @@ import { HTTP } from '@ionic-native/http';
 })
 export class WelcomePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public auth: AuthProvider, private http: HTTP, public db: DatabaseProvider, public load: LoadingController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public auth: AuthProvider, private http: HTTP, public db: DatabaseProvider, public load: LoadingController,  private firebase: Firebase) {
   }
 
   ionViewDidLoad() {
@@ -40,9 +41,12 @@ export class WelcomePage {
        this.auth.signinWithToken(data.data).then((ss)=>{
          (<any>window).AccountKitPlugin.getAccount(user=>{
           this.db.createFirstUserData(ss.uid, user.phoneNumber).then(ss=>{
-            loading.dismiss().then(()=>{
-              this.navCtrl.setRoot(WherePage);
-              this.navCtrl.popToRoot();
+            this.firebase.setUserId(this.auth.getUser().uid).then(user=>{
+              console.log(user);
+              loading.dismiss().then(()=>{
+                this.navCtrl.setRoot(WherePage);
+                this.navCtrl.popToRoot();
+              });
             });
           });
          }, err=>{

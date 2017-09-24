@@ -79,7 +79,7 @@ export class DatabaseProvider {
   setOrderRate(id, rate){
     return this.db.database.ref('orders/'+ id+'/rate').set(rate);
   }
-  getCategories(){
-    return this.db.list('/categories');
+  getCategories(city: string){
+    return this.db.list('/cities/'+city+'/categories');
   }
 }

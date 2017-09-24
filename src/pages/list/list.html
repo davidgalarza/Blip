@@ -22,6 +22,7 @@
 
 
 <ion-content padding>
+   
   <h1 *ngIf="searchText.length > 0">Resultados para "{{searchText}}"</h1>
   <ion-grid *ngIf="searchText.length > 0">
       <p *ngIf="resultShopsOpen.length == 0 && resultShopsClose.length == 0">Lo sentmos no encontramos resultado para tu busqueda :(</p>
@@ -44,16 +45,21 @@
   </ion-grid>
 
   <h1>{{display_name}}</h1>
+  <div class="emptyC" *ngIf="resultShopsOpen.length == 0 && resultShopsClose == 0 && openShops == 0 && closeShops == 0">
+        <img src="assets/img/friendly-ghost.svg" alt="img" class="image">
+        <p>Nada disponible</p>
+        <p>Prueba otra categoria</p>
+    </div>  
   <ion-grid>
       <ion-row>
-        <ion-col *ngFor="let shop of openShops" (click)="pushCommerce(shop.commerceId, shop.isOpen, shop.name)" col-12>
+        <ion-col *ngFor="let shop of orderCommerces(openShops)" (click)="pushCommerce(shop.commerceId, shop.isOpen, shop.name)" col-12>
               <div  class="imgC" [style.background]="getBackground(shop.bannerUrl)">
                   <span class="price">$ {{shop.delivery_price.toFixed(2)}}</span>
                   <h2 class="commerce_name">{{shop.name}}</h2>
                   <p class="commerce_description">{{shop.description}}</p>
               </div>
         </ion-col> 
-        <ion-col *ngFor="let shop of closeShops" (click)="pushCommerce(shop.commerceId)" col-12>
+        <ion-col *ngFor="let shop of orderCommerces(closeShops)" (click)="pushCommerce(shop.commerceId)" col-12>
             <div  class="imgC" [style.background]="getClosedBackground(shop.bannerUrl)">
                 <span class="closed">CERRADO</span>
                 <h2 class="commerce_name">{{shop.name}}</h2>

@@ -40,9 +40,26 @@ ion-header{
   }
   .logoH{
     display: inline-block;
-    width: 7em;
+    width: 8em;
   }
   .toolbar-background-md{
     background-color: $main;
   }
+  .scroll-content {
+    overflow-y: auto !important;
+ }
+ .sidemenuC{
+ 
+    background-color: $main;
+}
+.itemSide{
+    background-color: $main;
+    color: #FFFFFF;
+    border-bottom: none;
+    font-weight: bold;
+    font-family: 'Trueno';
+}
+.list-md .item-block .item-inner {
+    border-bottom: none;
+    }
 

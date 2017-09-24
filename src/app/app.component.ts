@@ -19,17 +19,18 @@ export class MyApp {
   //rootPage: any = WelcomePage;
   rootPage: any;
   zone:NgZone;
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{title: string, component: any, icon: any}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private auth: AuthProvider) {
     this.initializeApp();
     this.zone = new NgZone({});
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Inicio', component: HomePage },
-      { title: 'Pedidos Activos', component: OrdersPage },
-      {title: 'Cerrar sesión', component: null}
+      { title: 'Inicio', component: HomePage, icon:'md-planet' },
+      { title: 'Pedidos activos', component: OrdersPage, icon:'md-list' },
+      {title: 'Cerrar sesión', component: null, icon:'md-log-out'}
     ];
+    this.platform.ready().then(() => { this.splashScreen.hide() });
 
   }
 
@@ -52,6 +53,7 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+   
     });
   }
 

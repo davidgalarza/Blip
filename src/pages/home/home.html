@@ -16,21 +16,20 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h1>Categorías</h1>
-  <ion-grid>
-      <ion-row>
-        <ion-col *ngFor="let category of grid" (click)="pushCategory(category.category, category.display_name, false)" col-4>
-              <div  class="circle" [style.backgroundColor]="category.color">
-                <img [src]="category.img" alt="img" class="image">
+<ion-content no-bounce>
+  <ion-grid class="heightFull">
+      <ion-row class="heightFull">
+        <ion-col *ngFor="let category of grid" (click)="pushCategory(category.name, category.display_name, false)"  class="containerC" col-6>
+              <div  class="categoryC" [style.backgroundColor]="category.color">
+                  <img [src]="category.img" alt="img" class="image">
+                  <p class="categoryT">{{category.display_name}}</p>
               </div>
-              <p>{{category.display_name}}</p>
         </ion-col> 
-        <ion-col (click)="pushCustomPage()" col-4>
-            <div  class="circle" style="background-color:#FFCAB1">
-              <img src="assets/img/medicine.png" alt="img" class="image">
+        <ion-col (click)="pushCustomPage()" class="containerC"  col-6>
+            <div  class="categoryC" style="background-color:#FFCAB1">
+              <img src="assets/img/pharmacy.png" alt="img" class="image">
+              <p class="categoryT">Farmacia</p>
             </div>
-            <p>Farmacia</p>
       </ion-col> 
         <ion-col col-12>
           <div class="custom-div" (click)="pushCustomPage()">

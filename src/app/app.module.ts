@@ -29,6 +29,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { Geolocation } from '@ionic-native/geolocation';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import { Geocoder} from '@ionic-native/google-maps';
+import { NativeGeocoder } from '@ionic-native/native-geocoder';
 import { HTTP } from '@ionic-native/http';
 import { HttpModule } from '@angular/http';
 
@@ -102,6 +103,7 @@ export const firebaseConfig = {
     StorageProvider,
     Geolocation,
     GoogleMaps,
+    NativeGeocoder,
     Geocoder,
     DatabaseProvider,
     HTTP,

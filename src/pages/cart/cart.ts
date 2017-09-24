@@ -6,6 +6,7 @@ import { HttpProvider } from '../../providers/http/http';
 import { StorageProvider } from '../../providers/storage/storage';
 import { ShopFunctionsProvider } from '../../providers/shop-functions/shop-functions';
 import { TrakingPage } from '../../pages/traking/traking';
+import { Firebase } from '@ionic-native/firebase';
 /**
  * Generated class for the CartPage page.
  *
@@ -37,7 +38,7 @@ export class CartPage {
   text: string;
   disabled: boolean = false;
   userId;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseProvider, public geofire: GeofireProvider, public storage: StorageProvider, public shop: ShopFunctionsProvider, public alertCtrl: AlertController, public http: HttpProvider, public loader: LoadingController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseProvider, public geofire: GeofireProvider, public storage: StorageProvider, public shop: ShopFunctionsProvider, public alertCtrl: AlertController, public http: HttpProvider, public loader: LoadingController, private firebase: Firebase) {
     this.products = this.navParams.get('cart');
     console.log(this.products);
     this.shopId = this.navParams.get('commerce');
@@ -84,6 +85,15 @@ export class CartPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CartPage');
+  }
+  ionViewWillEnter(){
+    this.firebase.setScreenName('cart');
+    this.firebase.logEvent('page_view', {page: "cart",
+                                              nProducts: this.products.length,
+                                            price: this.total})
+    .then((res: any) => console.log(res))
+    .catch((error: any) => console.error(error));
+
   }
 
   increaseCart(productKey: string){

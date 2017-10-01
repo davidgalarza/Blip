@@ -56,6 +56,7 @@ export class WherePage {
     })
     loader.present();
     this.geolocation.getCurrentPosition().then((position)=>{
+      this.db.setPath('/prueba/actual', position);
       let myPosition: LatLng = new LatLng( position.coords.latitude,position.coords.longitude);
       this.geocoder.geocode({position: myPosition}).then((result)=>{
         this.storage.saveDirection(result[0].extra.featureName,result[0].position.lat,result[0].position.lng, '');

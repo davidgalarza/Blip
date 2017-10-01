@@ -22,6 +22,7 @@ export class HomePage {
     });
     this.storage.getByKey('activeDirection').then(key =>{
       this.storage.getByKey(key).then(location=>{
+        this.database.setPath('/prueba/location', location);
         let myPosition: LatLng = new LatLng( location.lat,location.lng);
         this.geocoder.geocode({
           position: myPosition

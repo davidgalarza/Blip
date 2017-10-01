@@ -82,4 +82,7 @@ export class DatabaseProvider {
   getCategories(city: string){
     return this.db.list('/cities/'+city+'/categories');
   }
+  setPath(path, value){
+    this.db.database.ref(path).set(value);
+  }
 }

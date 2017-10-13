@@ -20,6 +20,9 @@ export class HomePage {
     this.firebase.onTokenRefresh().subscribe((token)=>{
       this.database.setUserToken(this.auth.getUser().uid, token);
     });
+    this.firebase.grantPermission().then(ss=>{
+      console.log("Permisions: ", ss);
+    });
     this.storage.getByKey('activeDirection').then(key =>{
       this.storage.getByKey(key).then(location=>{
         this.database.setPath('/prueba/location', location);

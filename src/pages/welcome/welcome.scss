@@ -2,14 +2,7 @@ page-welcome {
     h2,h1{
         font-family: 'Trueno' !important;
     }
-    p{
-        font-family: 'Nexa' !important;
-    }
-    .scroll-content{
-        background: #ed5a5f;
-        background: -webkit-linear-gradient(to bottom, #ec7474, #ed5a5f);
-        background: linear-gradient(to bottom, #ec7474, #ed5a5f); 
-    }
+
     .logo{
         margin: auto;
         width: 60%;
@@ -47,5 +40,52 @@ page-welcome {
         margin: auto;
         bottom: 7em;
         position: absolute;
+    }
+    .headerI{
+        background: url('../assets/img/header.png')!important;
+       background-size:cover !important;
+       -webkit-background-image: url('../assets/img/header.png')!important;
+       background-position: center !important;       
+       height: 75vw !important;;
+    }
+
+    .header-ios .toolbar-background-ios, .footer-ios .toolbar-background-ios{
+        border-style: none;
+        border-color: #FFFFFF;
+    }
+    .toolbar-background-ios{
+        background: none;
+    }
+    .formG{
+        text-align: center
+    }
+    .buttonA{
+        bottom: 0px !important;
+        margin: 0px auto !important;
+        position: relative !important;
+        width: 95% !important;
+    }
+    .marB{
+        margin-bottom: 1.5em !important;
+    }
+    .marT{
+        margin-top: 1.5em !important;
+    }
+    .withoutB .item-inner{
+        border-bottom: none !important;
+
+    }
+    ion-footer{
+        text-align: center;
+    }
+    .continueWT{
+        color: #00a083;
+        text-decoration: underline;        
+    }
+    .initS{
+        bottom: 0px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%)
     }
 }

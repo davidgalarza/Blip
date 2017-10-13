@@ -17,7 +17,7 @@ import { Firebase } from '@ionic-native/firebase';
   templateUrl: 'welcome.html',
 })
 export class WelcomePage {
-
+  acceptedTerms: boolean = true;
   constructor(public navCtrl: NavController, public navParams: NavParams, public auth: AuthProvider, private http: HTTP, public db: DatabaseProvider, public load: LoadingController,  private firebase: Firebase) {
   }
 

@@ -1,5 +1,5 @@
 import { Component, ViewChild, NgZone  } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, AlertController, ToastController } from 'ionic-angular';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Content, Platform } from 'ionic-angular';
 import { DatabaseProvider } from '../../providers/database/database';
@@ -41,8 +41,10 @@ export class ShopPage {
   distance: number = 0;
   price: number = 0;
   prueba = [ {$key: "-Ko912LubYCtwp4sVF29",commerceId: "HXNrxb1G1fYjx0dh6nQAoPzpEkg2",description: "Chaulafán especial, Chancho con tamarindo, Tallarín especial.",imageUrl: "https://firebasestorage.googleapis.com/v0/b/atiempo-5533e.appspot.com/o/uploads%2FHXNrxb1G1fYjx0dh6nQAoPzpEkg2%2Fproducts%2FEspecial%20(1).jpg?alt=media&token=e3a9d22d-32ec-4a02-896d-7515cdb07f32",menu: "platos especiales - special dishes",price: 8.4,product: "Bandeja Especial #1"}]
+  holders = [1,2,3,4,5,6];
+  showHolders = true;
  public scrollAmount = 0;
-  constructor(private _sanitizer: DomSanitizer,public navCtrl: NavController, public navParams: NavParams, public db: DatabaseProvider, public modalCtrl: ModalController, public alert:AlertController, public algolia:AlgoliaProvider, public shopF: ShopFunctionsProvider, public storage: StorageProvider, public platform:Platform, private firebase: Firebase) {
+  constructor(private _sanitizer: DomSanitizer,public navCtrl: NavController, public navParams: NavParams, public db: DatabaseProvider, public modalCtrl: ModalController, public alert:AlertController, public algolia:AlgoliaProvider, public shopF: ShopFunctionsProvider, public storage: StorageProvider, public platform:Platform, private firebase: Firebase, public toastCtrl: ToastController) {
     this.zone = new NgZone({enableLongStackTrace: false});
     
     this.shopId = this.navParams.get('shopId');
@@ -71,6 +73,7 @@ export class ShopPage {
         this.products = snap;
         console.log("Productos", snap);
         this.db.getCommerceMenus(this.shopId).subscribe(menus=>{
+          this.showHolders = false;
           this.menus = menus;
           console.log("Menus", menus);
         });
@@ -231,12 +234,18 @@ export class ShopPage {
       }
       this.isEmpty();
     }else{
-      let alert = this.alert.create({
-        title: this.shopName + ' esta cerrado',
-        subTitle: 'Puedes intentarlo en otro momento.',
-        buttons: ['OK']
+      const toast1 = this.toastCtrl.create({
+        message: this.shopName + ' esta cerrado',
+        duration: 3000,
+        position: 'top',
+        cssClass: "infoWin"
       });
-      alert.present();
+    
+      toast1.onDidDismiss(() => {
+        console.log('Dismissed toast');
+      });
+    
+      toast1.present();
     }
   }
   removeToCart(productKey: string){

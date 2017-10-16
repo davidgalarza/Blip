@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, ToastController, MenuController } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 import { DatabaseProvider } from '../../providers/database/database';
 import { WherePage } from '../../pages/where/where';
@@ -18,11 +18,18 @@ import { Firebase } from '@ionic-native/firebase';
 })
 export class WelcomePage {
   acceptedTerms: boolean = true;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public auth: AuthProvider, private http: HTTP, public db: DatabaseProvider, public load: LoadingController,  private firebase: Firebase) {
+  name: string = "";
+  constructor(public navCtrl: NavController, public navParams: NavParams, public auth: AuthProvider, private http: HTTP, public db: DatabaseProvider, public load: LoadingController,  private firebase: Firebase,  public toastCtrl: ToastController, public menu: MenuController) {
+    this.menu.enable(false);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad WelcomePage');
+  }
+  pushWherePage(){
+    console.log("click");
+    this.navCtrl.setRoot(WherePage);
+    this.navCtrl.popToRoot();
   }
   acept(){
     // Use AccountKitPlugin to login the user.
@@ -62,4 +69,39 @@ export class WelcomePage {
       console.log(err)
     });
   }
+  loginPhone(){
+    if(this.name.length == 0){
+      const toast1 = this.toastCtrl.create({
+        message: 'Dinos tu nombre para conocerte mejor',
+        duration: 3000,
+        position: 'top',
+        cssClass: "infoWin"
+      });
+    
+      toast1.onDidDismiss(() => {
+        console.log('Dismissed toast');
+      });
+    
+      toast1.present();
+    }else{
+      if(!this.acceptedTerms){
+        const toast = this.toastCtrl.create({
+          message: 'Debes acetar los Términos y condiciones',
+          duration: 3000,
+          position: 'top',
+          cssClass: "infoWin"
+        });
+      
+        toast.onDidDismiss(() => {
+          console.log('Dismissed toast');
+        });
+      
+        toast.present();
+      }else{
+        this.acept();
+      }
+    }
+    
+  }
+
 }

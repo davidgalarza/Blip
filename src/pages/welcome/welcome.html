@@ -7,9 +7,9 @@
   <div class="formG">
       <ion-item class="marB">
           <ion-label color="primary" floating>Nombre</ion-label>
-          <ion-input></ion-input>
+          <ion-input [(ngModel)]="name"></ion-input>
         </ion-item>
-    <button ion-button full  large icon-start class="buttonA">
+    <button ion-button full  large icon-start class="buttonA" (click)="loginPhone()">
         <ion-icon name="phone-portrait"></ion-icon>
         Ingresa con tu Celular
     </button>
@@ -23,6 +23,6 @@
 <ion-footer>
     <ion-toolbar>
       <p>¿Quieres iniciar sesión despues?</p>
-      <p class="continueWT">Haz click aqui</p>
+      <p class="continueWT" (click)="pushWherePage()">Haz click aqui</p>
     </ion-toolbar>
   </ion-footer>

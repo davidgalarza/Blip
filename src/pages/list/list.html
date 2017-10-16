@@ -6,66 +6,80 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>  <ion-icon ios="ios-pin-outline" md="ios-pin-outline" style="color: #00a083;"></ion-icon>   {{location.address}}</ion-title>
-  </ion-navbar>
-  <ion-searchbar
-  [(ngModel)]="searchText"
-  [showCancelButton]="shouldShowCancel"
-  (ionInput)="onInput($event)"
-  (ionCancel)="onCancel($event)"
-  placeholder="Buscar {{display_name}}"
-  #myInput>
-</ion-searchbar>
+    <ion-navbar>
+        <ion-title>
+            <ion-icon ios="ios-pin-outline" md="ios-pin-outline" style="color: #FFFFFF;"></ion-icon> {{location.address}}</ion-title>
+    </ion-navbar>
+    <ion-searchbar [(ngModel)]="searchText" [showCancelButton]="shouldShowCancel" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)"
+        placeholder="Buscar {{display_name}}" #myInput>
+    </ion-searchbar>
 
 </ion-header>
 
 
 <ion-content padding>
-   
-  <h1 *ngIf="searchText.length > 0">Resultados para "{{searchText}}"</h1>
-  <ion-grid *ngIf="searchText.length > 0">
-      <p *ngIf="resultShopsOpen.length == 0 && resultShopsClose.length == 0">Lo sentmos no encontramos resultado para tu busqueda :(</p>
-      <ion-row>
-          <ion-col *ngFor="let shop of resultShopsOpen" (click)="pushCommerce(shop.commerceId, shop.isOpen, shop.name)" col-12>
-                <div  class="imgC" [style.background]="getBackground(shop.bannerUrl)">
+
+    <h1 *ngIf="searchText.length > 0">Resultados para "{{searchText}}"</h1>
+    <ion-grid *ngIf="searchText.length > 0">
+        <p *ngIf="resultShopsOpen.length == 0 && resultShopsClose.length == 0">Lo sentmos no encontramos resultado para tu busqueda :(</p>
+        <ion-row>
+            <ion-col *ngFor="let shop of resultShopsOpen" (click)="pushCommerce(shop.commerceId, shop.isOpen, shop.name)" col-12>
+                <div class="imgC" [style.background]="getBackground(shop.bannerUrl)">
                     <span class="price">$ {{shop.delivery_price.toFixed(2)}}</span>
                     <h2 class="commerce_name">{{shop.name}}</h2>
                     <p class="commerce_description">{{shop.description}}</p>
                 </div>
-          </ion-col> 
-          <ion-col *ngFor="let shop of resultShopsClose" (click)="pushCommerce(shop.commerceId, shop.isOpen, shop.name)" col-12>
-              <div  class="imgC" [style.background]="getClosedBackground(shop.bannerUrl)">
-                  <span class="closed">CERRADO</span>
-                  <h2 class="commerce_name">{{shop.name}}</h2>
-                  <p class="commerce_description">{{shop.description}}</p>
-              </div>
-        </ion-col> 
-      </ion-row>
-  </ion-grid>
+            </ion-col>
+            <ion-col *ngFor="let shop of resultShopsClose" (click)="pushCommerce(shop.commerceId, shop.isOpen, shop.name)" col-12>
+                <div class="imgC" [style.background]="getClosedBackground(shop.bannerUrl)">
+                    <span class="closed">CERRADO</span>
+                    <h2 class="commerce_name">{{shop.name}}</h2>
+                    <p class="commerce_description">{{shop.description}}</p>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 
-  <h1>{{display_name}}</h1>
-  <div class="emptyC" *ngIf="resultShopsOpen.length == 0 && resultShopsClose == 0 && openShops == 0 && closeShops == 0">
+    <h1>{{display_name}}</h1>
+    <div *ngIf="showHolders">
+        <div class="timeline-wrapper" *ngFor="let hold of holders">
+            <div class="timeline-item">
+                <div class="animated-background priceLoader">
+                </div>
+                <div class="animated-background">
+                    <div class="background-masker header-top"></div>
+                    <div class="background-masker header-left"></div>
+                    <div class="background-masker header-right"></div>
+                    <div class="background-masker header-bottom"></div>
+                    <div class="background-masker subheader-left"></div>
+                    <div class="background-masker subheader-right"></div>
+                    <div class="background-masker subheader-bottom"></div>
+                    <div class="background-masker content-top"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="emptyC" *ngIf="resultShopsOpen.length == 0 && resultShopsClose == 0 && openShops == 0 && closeShops == 0 && !showHolders">
         <img src="assets/img/friendly-ghost.svg" alt="img" class="image">
         <p>Nada disponible</p>
         <p>Prueba otra categoria</p>
-    </div>  
-  <ion-grid>
-      <ion-row>
-        <ion-col *ngFor="let shop of orderCommerces(openShops)" (click)="pushCommerce(shop.commerceId, shop.isOpen, shop.name)" col-12>
-              <div  class="imgC" [style.background]="getBackground(shop.bannerUrl)">
-                  <span class="price">$ {{shop.delivery_price.toFixed(2)}}</span>
-                  <h2 class="commerce_name">{{shop.name}}</h2>
-                  <p class="commerce_description">{{shop.description}}</p>
-              </div>
-        </ion-col> 
-        <ion-col *ngFor="let shop of orderCommerces(closeShops)" (click)="pushCommerce(shop.commerceId)" col-12>
-            <div  class="imgC" [style.background]="getClosedBackground(shop.bannerUrl)">
-                <span class="closed">CERRADO</span>
-                <h2 class="commerce_name">{{shop.name}}</h2>
-                <p class="commerce_description">{{shop.description}}</p>
-            </div>
-      </ion-col> 
-      </ion-row>
-  </ion-grid>
+    </div>
+    <ion-grid *ngIf="!showHolders">
+        <ion-row>
+            <ion-col *ngFor="let shop of orderCommerces(openShops)" (click)="pushCommerce(shop.commerceId, shop.isOpen, shop.name\)" col-12>
+                <div class="imgC" [style.background]="getBackground(shop.bannerUrl)">
+                    <span class="price">$ {{shop.delivery_price.toFixed(2)}}</span>
+                    <h2 class="commerce_name">{{shop.name}}</h2>
+                    <p class="commerce_description">{{shop.description}}</p>
+                </div>
+            </ion-col>
+            <ion-col *ngFor="let shop of orderCommerces(closeShops)" (click)="pushCommerce(shop.commerceId)" col-12>
+                <div class="imgC" [style.background]="getClosedBackground(shop.bannerUrl)">
+                    <span class="closed">CERRADO</span>
+                    <h2 class="commerce_name">{{shop.name}}</h2>
+                    <p class="commerce_description">{{shop.description}}</p>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-content>

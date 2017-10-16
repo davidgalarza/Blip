@@ -97,8 +97,6 @@
     <allow-navigation href="http://192.168.1.8:8100" />
     <allow-navigation href="http://10.2.21.2:8100" />
     <allow-navigation href="http://192.168.1.11:8100" />
-    <engine name="android" spec="~6.1.2" />
-    <engine name="ios" spec="~4.5.1" />
     <plugin name="cordova-plugin-whitelist" spec="1.3.1" />
     <plugin name="cordova-plugin-statusbar" spec="2.2.2" />
     <plugin name="cordova-plugin-device" spec="1.1.4" />
@@ -114,8 +112,11 @@
         <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="The app need the geolocation" />
     </plugin>
     <plugin name="cordova-plugin-firebase" spec="~0.1.23" />
+    <engine name="ios" spec="~4.3.1" />
     <plugin name="cordova-plugin-googlemaps" spec="https://github.com/mapsplugin/cordova-plugin-googlemaps#multiple_maps">
         <variable name="API_KEY_FOR_ANDROID" value="AIzaSyBnymrjkIM466BRDu-eq2sQTMMi_Ac8pVg" />
         <variable name="API_KEY_FOR_IOS" value="AIzaSyBt06fORKNKx8ioygwLBz1CttJ6IKxVRZM" />
+        <variable name="LOCATION_WHEN_IN_USE_DESCRIPTION" value="Show your location on the map" />
+        <variable name="LOCATION_ALWAYS_USAGE_DESCRIPTION" value="Trace your location on the map" />
     </plugin>
 </widget>

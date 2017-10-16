@@ -27,8 +27,6 @@ page-shop {
         padding-top: 0px !important;
     }
     .page-header{
-        margin-left: -16px;
-        margin-right: -16px;
         transition:all 0.2s ease 0s;
         
     }
@@ -44,6 +42,8 @@ page-shop {
         position: relative;
         z-index:2;
         height:120px;
+        margin-left: 16px;
+        margin-right: 16px;
         ion-card{
             border-radius:10px;
         }
@@ -132,7 +132,6 @@ page-shop {
     color: $main;
     font-weight: bold;
     left: 5px;
-    font-size: 3.8vw;
     display: -webkit-inline-box;
     }
     .description, .title{
@@ -250,4 +249,44 @@ page-shop {
       ion-card-title{
           font-family: 'Trueno' !important;
       }
+      .list-ios{
+          margin: 16px;
+      }
+      .back-button-text-ios{
+          display: none;
+      }
+      .bar-button-default-ios{
+        color: #ffffff;
+      }
+
+      // Animate loader
+      @keyframes placeHolderShimmer{
+        0%{
+            background-position: -468px 0
+        }
+        100%{
+            background-position: 468px 0
+        }
+    }
+    
+    .animated-background {
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+        animation-iteration-count: infinite;
+        animation-name: placeHolderShimmer;
+        animation-timing-function: linear;
+        background: #f6f7f8;
+        background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+        background-size: 800px 104px;
+        height: 96px;
+        position: relative;
+    }
+    .holderTitle{
+        height: 1.8em !important;
+        width: 40%;
+    }
+    .list-ios > .item-block:first-child{
+        border-top: none;
+    }
+        
 }

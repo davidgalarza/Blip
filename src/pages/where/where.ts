@@ -2,7 +2,7 @@
  * Page to select the delivery direction.
  */
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, MenuController } from 'ionic-angular';
 import { StorageProvider } from '../../providers/storage/storage';
 import { DatabaseProvider } from '../../providers/database/database';
 import { AuthProvider } from '../../providers/auth/auth';
@@ -22,13 +22,18 @@ import { LatLng, Geocoder } from '@ionic-native/google-maps';
 export class WherePage {
   locations: Array<any> = [];
   hasActiveOrders: boolean = false;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: StorageProvider, public geolocation: Geolocation, public geocoder: Geocoder, public db: DatabaseProvider, public auth: AuthProvider, public loader: LoadingController) {
-    this.db.getMyOrders(this.auth.getUser().uid).subscribe((orders)=>{
-      orders.forEach(order=>{
-        if(order.status != 'rated'){
-          this.hasActiveOrders = true;
-        }
-      });
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: StorageProvider, public geolocation: Geolocation, public geocoder: Geocoder, public db: DatabaseProvider, public auth: AuthProvider, public loader: LoadingController, public menu: MenuController) {
+    this.menu.enable(false);
+    this.auth.getAuth().onAuthStateChanged((user) => {
+      if(user){
+        this.db.getMyOrders(this.auth.getUser().uid).subscribe((orders)=>{
+          orders.forEach(order=>{
+            if(order.status != 'rated'){
+              this.hasActiveOrders = true;
+            }
+          });
+        });
+      }
     });
   }
 
@@ -59,8 +64,12 @@ export class WherePage {
       this.db.setPath('/prueba/actual', position);
       let myPosition: LatLng = new LatLng( position.coords.latitude,position.coords.longitude);
       this.geocoder.geocode({position: myPosition}).then((result)=>{
+        console.log("Resultado", result);
+        /* Android
         this.storage.saveDirection(result[0].extra.featureName,result[0].position.lat,result[0].position.lng, '');
-        this.setLocation(result[0].extra.featureName);
+        this.setLocation(result[0].extra.featureName);*/
+        this.storage.saveDirection(result[0].extra.lines[0],result[0].position.lat,result[0].position.lng, '');
+        this.setLocation(result[0].extra.lines[0]);
         loader.dismiss();
       });
     });

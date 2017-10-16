@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, MenuController } from 'ionic-angular';
 import { ListPage } from '../../pages/list/list';
 import { CustomPage } from '../../pages/custom/custom';
 import { Firebase } from '@ionic-native/firebase';
@@ -15,8 +15,10 @@ import { LatLng, Geocoder } from '@ionic-native/google-maps';
 })
 export class HomePage {
   grid: Array<any> =[];
-
-  constructor(public navCtrl: NavController, private firebase: Firebase, public database: DatabaseProvider, public auth:AuthProvider,public nativeGeocoder: NativeGeocoder, public geocoder: Geocoder, public storage: StorageProvider) {
+  address: string = "";
+  constructor(public navCtrl: NavController, private firebase: Firebase, public database: DatabaseProvider, public auth:AuthProvider,public nativeGeocoder: NativeGeocoder, public geocoder: Geocoder, public storage: StorageProvider, public menu: MenuController) {
+    this.menu.enable(true);
+    
     this.firebase.onTokenRefresh().subscribe((token)=>{
       this.database.setUserToken(this.auth.getUser().uid, token);
     });
@@ -25,7 +27,7 @@ export class HomePage {
     });
     this.storage.getByKey('activeDirection').then(key =>{
       this.storage.getByKey(key).then(location=>{
-        this.database.setPath('/prueba/location', location);
+        this.address = location.address;
         let myPosition: LatLng = new LatLng( location.lat,location.lng);
         this.geocoder.geocode({
           position: myPosition

@@ -1,16 +1,24 @@
-<ion-menu [content]="content">
+<ion-menu [content]="content" type="overlay">
   <ion-header>
     <ion-toolbar>
         <div class="headerC">
-            <img src="assets/img/logo_white.png" alt="logoB" class="logoH">
+            <img src="assets/img/BlipRed.png" alt="logoB" class="logoH">
         </div>
     </ion-toolbar>
+   
   </ion-header>
 
   <ion-content class="sidemenuC">
-    <ion-list>
+      <ion-list>
+          <ion-item>
+            <ion-thumbnail item-start>
+              <img src="assets/img/profile.svg">
+            </ion-thumbnail>
+            <h2 class="itemSide">David</h2>
+            <p>  <ion-icon name="settings"></ion-icon>  Ajustes de cuenta</p>
+          </ion-item>
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)" class="itemSide">
-        <ion-icon item-left [name]="p.icon"></ion-icon>
+        <ion-icon item-left [name]="p.icon" class="iconMenu"></ion-icon>
         {{p.title}}
       </button>
     </ion-list>
@@ -19,4 +27,4 @@
 </ion-menu>
 
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
-<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false" mode="md"></ion-nav>

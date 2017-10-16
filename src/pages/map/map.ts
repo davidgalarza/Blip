@@ -73,16 +73,18 @@ export class MapPage {
     };
 
     // move the map's camera to position
-    this.map.moveCamera(position);
+    
 
     // Listen to Map events
     this.map.on(GoogleMapsEvent.MAP_READY).subscribe(()=>{
+      this.map.moveCamera(position);
       element.appendChild(div).className = 'centerMarker';
       var newPosition: LatLng;
       this.map.addEventListener(GoogleMapsEvent.CAMERA_MOVE_END).subscribe(cameraPosition=>{
         newPosition = new LatLng(cameraPosition.target.lat, cameraPosition.target.lng); 
         this.geocoder.geocode({position: newPosition}).then(result=>{
-          this.address = result[0].extra.featureName;
+          //this.address = result[0].extra.featureName;
+          this.address = result[0].extra.lines[0]
           this.mLat = result[0].position.lat;
           this.mLng = result[0].position.lng;
         }); 

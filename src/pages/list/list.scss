@@ -3,7 +3,8 @@ page-list {
         z-index: inherit;  // desapear the header shadown
         text-align: center;
     }
-    .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before{
+    .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before,
+    .header-ios::after, .tabs-ios[tabsPlacement="top"] > .tabbar::after, .footer-ios::before, .tabs-ioså[tabsPlacement="bottom"] > .tabbar::before{
         background-image: none;
     }
     .toolbar-title-md{
@@ -16,16 +17,16 @@ page-list {
     p, input{
         font-family: 'Nexa' !important;
     }
-    .toolbar-background-md{
+    .toolbar-background-md, .toolbar-background-ios{
         background-color: $main;
     }
-    .searchbar-md {
+    .searchbar-md, .searchbar-ios {
         background-color: $main;
     }
     .toolbar-title{
         color: #FFFFFF;
     }
-    .searchbar-md .searchbar-input{
+    .searchbar-md .searchbar-input, .searchbar-ios .searchbar-input{
         background-color: #FFFFFF;
         box-shadow: none !important;
     }
@@ -97,4 +98,148 @@ page-list {
         font-family: 'Trueno' !important;
         font-size: 1.5em;
     }
+    .bar-button-default-ios{
+        color: #FFFFFF;
+    }
+
+
+    // Empieza
+    .timeline-wrapper{
+        margin-bottom: 0.8em;
+    }
+    .timeline-item {
+        background: #fff;
+        border: 1px solid;
+        border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+        border-radius: 0.5em;
+        padding: 1em;
+        margin: 0 auto;
+        height: 12em;
+    }
+    @keyframes placeHolderShimmer{
+        0%{
+            background-position: -468px 0
+        }
+        100%{
+            background-position: 468px 0
+        }
+    }
+    
+    .animated-background {
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+        animation-iteration-count: infinite;
+        animation-name: placeHolderShimmer;
+        animation-timing-function: linear;
+        background: #f6f7f8;
+        background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+        background-size: 800px 104px;
+        height: 40px;
+        position: relative;
+    }
+    .background-masker {
+        background: #fff;
+        position: absolute;
+    }
+    
+    /* Every thing below this is just positioning */
+    
+    .background-masker.header-top,
+    .background-masker.header-bottom,
+    .background-masker.subheader-bottom {
+        top: 0;
+        left: 0px;
+        right: 0;
+        height: 10px;
+    }
+    
+    .background-masker.header-left,
+    .background-masker.subheader-left,
+    .background-masker.header-right,
+    .background-masker.subheader-right {
+        top: 10px;
+        left: 0px;
+        height: 8px;
+        width: 0px;
+    }
+    
+    .background-masker.header-bottom {
+        top: 18px;
+        height: 6px;
+    }
+    
+    .background-masker.subheader-left,
+    .background-masker.subheader-right {
+        top: 24px;
+        height: 6px;
+    }
+    
+    
+    .background-masker.header-right,
+    .background-masker.subheader-right {
+        width: auto;
+        left: 300px;
+        right: 0;
+    }
+    
+    .background-masker.subheader-right {
+        left: 230px;
+    }
+    
+    .background-masker.subheader-bottom {
+        top: 30px;
+        height: 10px;
+    }
+    
+    .background-masker.content-top,
+    .background-masker.content-second-line,
+    .background-masker.content-third-line,
+    .background-masker.content-second-end,
+    .background-masker.content-third-end,
+    .background-masker.content-first-end {
+        top: 40px;
+        left: 0;
+        right: 0;
+        height: 6px;
+    }
+    
+    .background-masker.content-top {
+        height:0px;
+    }
+    
+    .background-masker.content-first-end,
+    .background-masker.content-second-end,
+    .background-masker.content-third-end{
+        width: auto;
+        left: 380px;
+        right: 0;
+        top: 60px;
+        height: 8px;
+    }
+    
+    .background-masker.content-second-line  {
+        top: 68px;
+    }
+    
+    .background-masker.content-second-end {
+        left: 420px;
+        top: 74px;
+    }
+    
+    .background-masker.content-third-line {
+        top: 82px;
+    }
+    
+    .background-masker.content-third-end {
+        left: 300px;
+        top: 88px;
+    }
+    .priceLoader{
+        width: 4em;
+        border-radius: 0.2em;
+        height: 1.8em;
+        margin-bottom: 5.5em;
+        margin-left: calc(100% - 4em);
+    }
+
 }

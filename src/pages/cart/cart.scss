@@ -1,22 +1,16 @@
 page-cart {
     ion-content{
-    font-size: 3.8vw
+
   }
   ion-header{
     z-index: inherit;  // desapear the header shadown
     text-align: right;
-    font-family: 'Trueno' !important;
 }
 .toolbar-title-md{
     color: #FFFFFF;
     text-align: right;
 }
-h2,h1{
-    font-family: 'Trueno' !important;
-}
-p, input{
-    font-family: 'Nexa' !important;
-}
+
   .toolbar-background-md, .toolbar-background-ios {
       background: $main;
   }
@@ -50,7 +44,6 @@ p, input{
   }
   .title{
     margin: 0px;
-    display: inline-block;
     font-weight: bold;
   }
   .controls{
@@ -96,7 +89,6 @@ p, input{
     text-align: center;
     font-size: 1.4em;
     height: 2.5em;
-    font-family: 'Trueno' !important;
   }
   .cart ion-icon{
     margin-top: 3.5%;
@@ -104,4 +96,10 @@ p, input{
   .inputContainer {
     height: 1.2em;
   }
+  .bar-button-default-ios{
+    color: #FFFFFF;
+}
+.toolbar-title{
+  color: #FFFFFF;
+}
 }

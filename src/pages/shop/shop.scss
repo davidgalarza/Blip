@@ -12,7 +12,7 @@ page-shop {
         
         .searchbar-input-container{
             background: #ffffff !important;
-            border-radius: 50px !important;
+            border-radius: 0.3em !important;
             overflow: hidden !important;
             .searchbar-input{
                 background: #ffffff !important;
@@ -38,7 +38,7 @@ page-shop {
     }
     .ph-card-box{
         text-align: center;
-        margin-top:-70px;
+        margin-top:-60px;
         position: relative;
         z-index:2;
         height:120px;
@@ -287,6 +287,9 @@ page-shop {
     }
     .list-ios > .item-block:first-child{
         border-top: none;
+    }
+    ion-title{
+        color: #FFFFFF;
     }
         
 }

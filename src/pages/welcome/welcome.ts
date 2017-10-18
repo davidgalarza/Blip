@@ -5,6 +5,7 @@ import { DatabaseProvider } from '../../providers/database/database';
 import { WherePage } from '../../pages/where/where';
 import { HTTP } from '@ionic-native/http';
 import { Firebase } from '@ionic-native/firebase';
+import { HomePage } from '../../pages/home/home';
 
 /**
  * WELCOME-PAGE
@@ -19,8 +20,27 @@ import { Firebase } from '@ionic-native/firebase';
 export class WelcomePage {
   acceptedTerms: boolean = true;
   name: string = "";
+  message: string;
   constructor(public navCtrl: NavController, public navParams: NavParams, public auth: AuthProvider, private http: HTTP, public db: DatabaseProvider, public load: LoadingController,  private firebase: Firebase,  public toastCtrl: ToastController, public menu: MenuController) {
-    this.menu.enable(false);
+
+        this.menu.enable(false);
+
+    this.message = this.navParams.get('message');
+    console.log(this.message);
+    if(this.message != undefined){
+      const toast = this.toastCtrl.create({
+        message: this.message,
+        duration: 3000,
+        position: 'top',
+        cssClass: "infoWin"
+      });
+    
+      toast.onDidDismiss(() => {
+        console.log('Dismissed toast');
+      });
+    
+      toast.present();
+    }
   }
 
   ionViewDidLoad() {
@@ -47,12 +67,17 @@ export class WelcomePage {
       this.http.get('https://us-central1-atiempo-5533e.cloudfunctions.net/getCustomToken?access_token='+info.token,{},{}).then((data)=>{
        this.auth.signinWithToken(data.data).then((ss)=>{
          (<any>window).AccountKitPlugin.getAccount(user=>{
-          this.db.createFirstUserData(ss.uid, user.phoneNumber).then(ss=>{
+          this.db.createFirstUserData(ss.uid, user.phoneNumber, this.name).then(ss=>{
             this.firebase.setUserId(this.auth.getUser().uid).then(user=>{
               console.log(user);
               loading.dismiss().then(()=>{
-                this.navCtrl.setRoot(WherePage);
-                this.navCtrl.popToRoot();
+                
+                if(this.message != undefined){
+                  this.navCtrl.pop();
+                }else{
+                  this.navCtrl.setRoot(WherePage);
+                  this.navCtrl.popToRoot();
+                } 
               });
             });
           });

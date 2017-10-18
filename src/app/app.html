@@ -14,7 +14,7 @@
             <ion-thumbnail item-start>
               <img src="assets/img/profile.svg">
             </ion-thumbnail>
-            <h2 class="itemSide">David</h2>
+            <h2 class="itemSide">{{userName}}</h2>
             <p>  <ion-icon name="settings"></ion-icon>  Ajustes de cuenta</p>
           </ion-item>
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)" class="itemSide">

@@ -3,6 +3,7 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthProvider } from '../providers/auth/auth';
+import { DatabaseProvider } from '../providers/database/database';
 import { HomePage } from '../pages/home/home';
 import { WelcomePage } from '../pages/welcome/welcome';
 import { WherePage } from '../pages/where/where';
@@ -20,8 +21,8 @@ export class MyApp {
   rootPage: any;
   zone:NgZone;
   pages: Array<{title: string, component: any, icon: any}>;
-
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private auth: AuthProvider) {
+  userName: string = "";
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private auth: AuthProvider, public db: DatabaseProvider) {
     this.initializeApp();
     this.zone = new NgZone({});
     // used for an example of ngFor and navigation
@@ -31,6 +32,13 @@ export class MyApp {
       {title: 'Cerrar sesión', component: null, icon:'md-log-out'}
     ];
     this.platform.ready().then(() => { this.splashScreen.hide() });
+    this.auth.getAuth().onAuthStateChanged((user) => {
+      if(user){
+        this.db.getUserName(user.uid).subscribe(us=>{
+          this.userName = us.name;
+        })
+      }
+    });
 
   }
 

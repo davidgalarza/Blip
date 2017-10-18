@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, MenuController } from 'ionic-angular';
 import { ListPage } from '../../pages/list/list';
+import { WelcomePage } from '../../pages/welcome/welcome';
 import { CustomPage } from '../../pages/custom/custom';
 import { Firebase } from '@ionic-native/firebase';
 import { DatabaseProvider } from '../../providers/database/database';
@@ -20,7 +21,13 @@ export class HomePage {
     this.menu.enable(true);
     
     this.firebase.onTokenRefresh().subscribe((token)=>{
-      this.database.setUserToken(this.auth.getUser().uid, token);
+      this.auth.getAuth().onAuthStateChanged(user=>{
+        if(user){
+          this.database.setUserToken(this.auth.getUser().uid, token);
+        }else{
+          this.menu.enable(false);
+        }
+      }); 
     });
     this.firebase.grantPermission().then(ss=>{
       console.log("Permisions: ", ss);
@@ -60,5 +67,16 @@ export class HomePage {
   }
   pushCustomPage(){
     this.navCtrl.push(CustomPage);
+  }
+  verifyAuth(){
+    this.auth.getAuth().onAuthStateChanged(user=>{
+      if(!user){
+        this.menu.close().then(()=>{
+          this.navCtrl.push(WelcomePage,{
+            message: "Primero debes iniciar sesión",
+          });
+        });
+      }
+    });
   }
 }

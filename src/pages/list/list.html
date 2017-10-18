@@ -66,7 +66,7 @@
     </div>
     <ion-grid *ngIf="!showHolders">
         <ion-row>
-            <ion-col *ngFor="let shop of orderCommerces(openShops)" (click)="pushCommerce(shop.commerceId, shop.isOpen, shop.name\)" col-12>
+            <ion-col *ngFor="let shop of orderCommerces(openShops)" (click)="pushCommerce(shop.commerceId, shop.isOpen, shop.name)" col-12>
                 <div class="imgC" [style.background]="getBackground(shop.bannerUrl)">
                     <span class="price">$ {{shop.delivery_price.toFixed(2)}}</span>
                     <h2 class="commerce_name">{{shop.name}}</h2>

@@ -19,6 +19,9 @@ export class DatabaseProvider {
   getCommerceMenus(uid:string){
     return this.db.list('/commerces/' + uid + '/menus');
   }
+  getUserName(uid: string){
+    return this.db.object('users/'+uid);
+  }
   getProducts(uid:string){
     return this.db.list('/products/', {
       query: {
@@ -39,7 +42,8 @@ export class DatabaseProvider {
       return this.db.database.ref('/commerces/'+id)
 
   }
-  createFirstUserData(uid:string, phone:string){
+  createFirstUserData(uid:string, phone:string, name: string){
+    this.db.database.ref('users/'+uid+ '/name').set(name);
     return this.db.database.ref('users/'+uid+ '/phone').set(phone);
   }
 

@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
-      <button ion-button menuToggle>
-          <ion-icon ios="ios-contact-outline" md="md-contact"></ion-icon>
+      <button ion-button menuToggle (click)="verifyAuth()">
+          <ion-icon ios="ios-contact-outline" md="md-contact" ></ion-icon>
         </button>
     <ion-title>{{address}}</ion-title>
   </ion-navbar>

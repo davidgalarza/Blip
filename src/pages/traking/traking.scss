@@ -16,7 +16,7 @@ page-traking {
     p, input{
         font-family: 'Nexa' !important;
     }
-    .toolbar-background-md{
+    .toolbar-background-md, .toolbar-background-ios{
         background-color: $main;
     }
     .searchbar-md {
@@ -25,7 +25,9 @@ page-traking {
     .toolbar-title{
         color: #FFFFFF;
     }
-
+    .bar-button-default-ios{
+      color: #FFFFFF;
+  }
 
     // Timeline
     $black: #202020;

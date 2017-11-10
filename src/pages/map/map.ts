@@ -83,8 +83,9 @@ export class MapPage {
       this.map.addEventListener(GoogleMapsEvent.CAMERA_MOVE_END).subscribe(cameraPosition=>{
         newPosition = new LatLng(cameraPosition.target.lat, cameraPosition.target.lng); 
         this.geocoder.geocode({position: newPosition}).then(result=>{
-          //this.address = result[0].extra.featureName;
-          this.address = result[0].extra.lines[0]
+          // Android  => this.address = result[0].extra.featureName;
+          // IOS => this.address = result[0].extra.lines[0]
+          this.address = result[0].extra.featureName;
           this.mLat = result[0].position.lat;
           this.mLng = result[0].position.lng;
         }); 

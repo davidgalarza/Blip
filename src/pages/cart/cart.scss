@@ -15,7 +15,7 @@ page-cart {
       background: $main;
   }
   .back-button-icon-md, .back-button-icon-md{
-    color: $green;
+    color: #FFFFFF;
   }
   .content-md, .content-md {
     color: #000;
@@ -60,10 +60,7 @@ page-cart {
   .item ion-input{
     font-size: 0.98em;
   }
-  .text-input-md{
-    margin: 0px;
 
-  }
   .tipe{
     font-size: 1.1em;
   }
@@ -96,7 +93,7 @@ page-cart {
   .inputContainer {
     height: 1.2em;
   }
-  .bar-button-default-ios{
+  .bar-button-default-ios, .bar-button-default-md{
     color: #FFFFFF;
 }
 .toolbar-title{

@@ -68,8 +68,11 @@ export class WherePage {
         /* Android
         this.storage.saveDirection(result[0].extra.featureName,result[0].position.lat,result[0].position.lng, '');
         this.setLocation(result[0].extra.featureName);*/
+        /* IOS
         this.storage.saveDirection(result[0].extra.lines[0],result[0].position.lat,result[0].position.lng, '');
-        this.setLocation(result[0].extra.lines[0]);
+        this.setLocation(result[0].extra.lines[0]);*/
+        this.storage.saveDirection(result[0].extra.featureName,result[0].position.lat,result[0].position.lng, '');
+        this.setLocation(result[0].extra.featureName);
         loader.dismiss();
       });
     });

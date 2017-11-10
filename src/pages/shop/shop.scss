@@ -249,13 +249,13 @@ page-shop {
       ion-card-title{
           font-family: 'Trueno' !important;
       }
-      .list-ios{
+      .list-ios, .list-md{
           margin: 16px;
       }
       .back-button-text-ios{
           display: none;
       }
-      .bar-button-default-ios{
+      .bar-button-default-ios, .bar-button-default-md{
         color: #ffffff;
       }
 
@@ -285,7 +285,8 @@ page-shop {
         height: 1.8em !important;
         width: 40%;
     }
-    .list-ios > .item-block:first-child{
+    .list-ios > .item-block:first-child,
+    .list-md > .item-block:first-child{
         border-top: none;
     }
     ion-title{

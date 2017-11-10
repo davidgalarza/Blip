@@ -9,7 +9,9 @@ page-orders {
     .toolbar-title-md{
         text-align: right;
         color: #ffffff;
-        font-family: 'Trueno' !important;
+    }
+    ion-navbar ion-icon{
+        color: #ffffff;
     }
     h3,h4,h2,h1{
         font-family: 'Trueno' !important;

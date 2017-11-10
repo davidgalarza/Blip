@@ -46,6 +46,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "212855483806-7pnlkibldsvfrid842vbguqed6d05frn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.blipclub.blipers",
+            "certificate_hash": "e91b8177daeaf00149aa99cf9204a01653c2301a"
+          }
+        },
+        {
           "client_id": "212855483806-b9bejc1mml268ve2amf0sh9jtk8ic95r.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -60,8 +68,20 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "212855483806-b9bejc1mml268ve2amf0sh9jtk8ic95r.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "212855483806-k1q13req0ashpkd5j0ho6tmiuf78oe65.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.blipclub.blip"
+              }
+            }
+          ]
         },
         "ads_service": {
           "status": 2
@@ -108,6 +128,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "212855483806-c00pp3vdjk3hvcc87208r15l6b8hhsjb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.blipclub.shops",
+            "certificate_hash": "773132d660b7d10b09d699197438b1c64a5d63da"
+          }
+        },
+        {
           "client_id": "212855483806-b9bejc1mml268ve2amf0sh9jtk8ic95r.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -122,8 +150,20 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "212855483806-b9bejc1mml268ve2amf0sh9jtk8ic95r.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "212855483806-k1q13req0ashpkd5j0ho6tmiuf78oe65.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.blipclub.blip"
+              }
+            }
+          ]
         },
         "ads_service": {
           "status": 2
@@ -139,6 +179,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "212855483806-mul8bgkmlupjsruk1s17o76d04vijh1s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.blipclub.blip",
+            "certificate_hash": "22dc95bfd45196938a52611e8af546f3db0fc150"
+          }
+        },
+        {
           "client_id": "212855483806-b9bejc1mml268ve2amf0sh9jtk8ic95r.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -153,8 +201,20 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "212855483806-b9bejc1mml268ve2amf0sh9jtk8ic95r.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "212855483806-k1q13req0ashpkd5j0ho6tmiuf78oe65.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.blipclub.blip"
+              }
+            }
+          ]
         },
         "ads_service": {
           "status": 2

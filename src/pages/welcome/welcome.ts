@@ -98,7 +98,7 @@ export class WelcomePage {
     if(this.name.length == 0){
       const toast1 = this.toastCtrl.create({
         message: 'Dinos tu nombre para conocerte mejor',
-        duration: 3000,
+        duration: 120000,
         position: 'top',
         cssClass: "infoWin"
       });

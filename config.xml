@@ -3,7 +3,7 @@
     <name>Blip</name>
     <description>Tu ciudad a domicilio.</description>
     <author email="hola@blipclub.com" href="https://blipclub.com">Blip</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://192.168.1.2:8100" />
     <access origin="*" />
     <allow-navigation href="http://ionic.local/*" />
     <allow-intent href="http://*/*" />
@@ -28,6 +28,7 @@
     <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" />
     <preference name="SplashScreenDelay" value="3000" />
     <platform name="android">
+        <preference name="orientation" value="portrait" />
         <preference name="loadUrlTimeoutValue" value="700000" />
         <hook src="hooks/platforms.js" type="after_prepare" />
         <allow-intent href="market:*" />
@@ -111,7 +112,6 @@
     <plugin name="cordova-plugin-geolocation" spec="~2.4.3">
         <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="The app need the geolocation" />
     </plugin>
-    <plugin name="cordova-plugin-firebase" spec="~0.1.23" />
     <plugin name="cordova-plugin-googlemaps" spec="https://github.com/mapsplugin/cordova-plugin-googlemaps#multiple_maps">
         <variable name="API_KEY_FOR_ANDROID" value="AIzaSyBnymrjkIM466BRDu-eq2sQTMMi_Ac8pVg" />
         <variable name="API_KEY_FOR_IOS" value="AIzaSyBt06fORKNKx8ioygwLBz1CttJ6IKxVRZM" />
@@ -119,4 +119,6 @@
         <variable name="LOCATION_ALWAYS_USAGE_DESCRIPTION" value="Trace your location on the map" />
     </plugin>
     <engine name="ios" spec="~4.3.1" />
+    <plugin name="cordova-plugin-firebase" spec="0.1.23" />
+    <engine name="android" spec="~6.1.2" />
 </widget>

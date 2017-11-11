@@ -22,7 +22,7 @@ import { Firebase } from '@ionic-native/firebase';
   selector: 'page-shop',
   templateUrl: 'shop.html',
 })
-
+//Hola
 export class ShopPage {
   @ViewChild(Content) content: Content;
   zone: NgZone;

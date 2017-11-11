@@ -46,7 +46,7 @@ export class MyApp {
 
     // Listen to the auth state and toogling the root page.
     const unsubscribe = this.auth.getAuth().onAuthStateChanged((user) => {
-      this.zone.run( () => {
+      /*this.zone.run( () => {
         if (!user) {
           this.rootPage = WelcomePage;
           unsubscribe();
@@ -54,7 +54,16 @@ export class MyApp {
           this.rootPage = WherePage;
           unsubscribe();
         }
-      });     
+      });  */   
+      this.zone.run( () => {
+        if (!user) {
+          this.rootPage = ShopPage;
+          unsubscribe();
+        } else { 
+          this.rootPage = ShopPage;
+          unsubscribe();
+        }
+      });
       });
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.

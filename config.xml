@@ -3,7 +3,7 @@
     <name>Blip</name>
     <description>Tu ciudad a domicilio.</description>
     <author email="hola@blipclub.com" href="https://blipclub.com">Blip</author>
-    <content original-src="index.html" src="http://192.168.1.2:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-navigation href="http://ionic.local/*" />
     <allow-intent href="http://*/*" />
@@ -121,4 +121,5 @@
     <engine name="ios" spec="~4.3.1" />
     <plugin name="cordova-plugin-firebase" spec="0.1.23" />
     <engine name="android" spec="~6.1.2" />
+    <allow-navigation href="http://192.168.43.56:8100" />
 </widget>

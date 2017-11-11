@@ -26,6 +26,18 @@ $segment-button-md-text-color-activated: #FFFFFF;
         font-weight: normal;
         font-style: normal;
     }
+    @font-face {
+        font-family: 'Proxima Nova';
+        src: url('../assets/fonts/proxima/ProximaNovaA-Regular.otf');
+        font-weight: normal;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'proxima_nova_altbold';
+        src: url('../assets/fonts/proxima/ProximaNova-Bold.otf');
+        font-weight: normal;
+        font-style: normal;
+    }
 ion-header{
     z-index: initial;  // desapear the header shadown
     text-align: center;

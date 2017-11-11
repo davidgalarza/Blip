@@ -11,7 +11,7 @@ import { OptsPage } from '../opts/opts';
 import { CartPage } from '../cart/cart';
 import { Firebase } from '@ionic-native/firebase';
 import { WelcomePage } from '../../pages/welcome/welcome';
-
+import * as moment from 'moment-timezone';
 /**
  * Generated class for the ShopPage page.
  *
@@ -35,10 +35,11 @@ export class ShopPage {
   products: Array<any> = [];
   menu;
   cart: Array<any> = [];
+  cartLenght: number = 0;
   total = 0;
   empty = true;
   shopId: string;
-  isOpen: boolean;
+  isOpen: any;
   shopName: string;
   text: string = '';
   distance: number = 0;
@@ -49,15 +50,19 @@ export class ShopPage {
   public scrollAmount = 0;
   constructor(private _sanitizer: DomSanitizer, public navCtrl: NavController, public navParams: NavParams, public db: DatabaseProvider, public modalCtrl: ModalController, public alert: AlertController, public algolia: AlgoliaProvider, public shopF: ShopFunctionsProvider, public storage: StorageProvider, public platform: Platform, private firebase: Firebase, public toastCtrl: ToastController, public auth: AuthProvider) {
     this.zone = new NgZone({ enableLongStackTrace: false });
-
-    this.shopId = this.navParams.get('shopId');
-    this.isOpen = this.navParams.get('isOpen');
+    this.shopId = 'HXNrxb1G1fYjx0dh6nQAoPzpEkg2';
+    //this.shopId = this.navParams.get('shopId');
+    //this.isOpen = this.navParams.get('isOpen');
+    
     this.shopName = this.navParams.get('name');
     console.log(this.navParams.get('name'));
     console.log(this.shopId);
     this.db.getCommerById(this.shopId).on('value', ss => {
-      console.log(ss)
+      console.log(ss.val())
       this.shop = ss.val();
+      this.shopF.isOpen(this.shop).then(open=>{
+        this.isOpen = open;
+      })
       this.shopName = ss.val().name;
       this.storage.getByKey('activeDirection').then(key => {
         this.storage.getByKey(key).then(location => {
@@ -253,7 +258,6 @@ export class ShopPage {
     }
   }
   removeToCart(productKey: string) {
-
     for (var i = 0; i < this.cart.length; i++) {
       if (this.cart[i].product == productKey) {
         this.cart[i].cant -= 1;
@@ -315,4 +319,11 @@ export class ShopPage {
       }
     });
   }
+  updateCant(){
+    this.cartLenght = 0;
+    this.cart.forEach(product=>{
+      this.cartLenght += product.cant;
+    })
+  }
+  
 }

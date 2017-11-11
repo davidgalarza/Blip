@@ -1,44 +1,48 @@
 <ion-header>
   <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-searchbar
-  [(ngModel)]="myInput"
-  [showCancelButton]="shouldShowCancel"
-  (ionInput)="onInput($event)"
-  (ionCancel)="onCancel($event)"
-  placeholder="¿Qué necesitas?"
-  (click)="pushCategory('','', true)"
-  readonly>
-  
-</ion-searchbar>
+      <button ion-button menuToggle (click)="verifyAuth()">
+          <ion-icon ios="ios-contact-outline" md="md-contact" ></ion-icon>
+        </button>
+    <ion-title>{{address}}</ion-title>
   </ion-navbar>
+  <ion-toolbar>
+    
+    <ion-searchbar [(ngModel)]="myInput" [showCancelButton]="shouldShowCancel" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)"
+      placeholder="Busca cualquier restaurante o tienda" (click)="pushCategory('','', true)" readonly>
+
+    </ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content no-bounce>
   <ion-grid class="heightFull">
-      <ion-row class="heightFull">
-        <ion-col *ngFor="let category of grid" (click)="pushCategory(category.name, category.display_name, false)"  class="containerC" col-6>
-              <div  class="categoryC" [style.backgroundColor]="category.color">
-                  <img [src]="category.img" alt="img" class="image">
-                  <p class="categoryT">{{category.display_name}}</p>
-              </div>
-        </ion-col> 
-        <ion-col (click)="pushCustomPage()" class="containerC"  col-6>
-            <div  class="categoryC" style="background-color:#FFCAB1">
-              <img src="assets/img/pharmacy.png" alt="img" class="image">
-              <p class="categoryT">Farmacia</p>
-            </div>
-      </ion-col> 
-        <ion-col col-12>
-          <div class="custom-div" (click)="pushCustomPage()">
-            <img src="assets/img/magic-wand.svg" class="wand" alt="wand">
-            <h2 class="customT">Lo que sea</h2>
-            <p class="customT paragraph">Pide de cualquier tienda o restaurante de tu ciudad.</p>
+    <ion-row class="heightFull">
+      <ion-col *ngFor="let category of grid" (click)="pushCategory(category.name, category.display_name, false)" class="containerC"
+        col-6 col-md-4>
+        <div class="containerCa">
+          <div class="categoryC" [style.backgroundColor]="category.color">
+            <img [src]="category.img" alt="img" class="image">
+            <p class="categoryT">{{category.display_name}}</p>
           </div>
-        </ion-col>
-      </ion-row>
+        </div>
+
+      </ion-col>
+      <ion-col (click)="pushCustomPage()" class="containerC" col-6 col-md-4>
+        <div class="containerCa">
+          <div class="categoryC" style="background-color:#FFCAB1">
+            <img src="assets/img/pharmacy.png" alt="img" class="image">
+            <p class="categoryT">Farmacia</p>
+          </div>
+        </div>
+      </ion-col>
+      <ion-col col-12>
+        <div class="custom-div" (click)="pushCustomPage()">
+          <img src="assets/img/magic-wand.svg" class="wand" alt="wand">
+          <h2 class="customT">Lo que sea</h2>
+          <p class="customT paragraph">Pide de cualquier tienda o restaurante de tu ciudad.</p>
+        </div>
+      </ion-col>
+    </ion-row>
   </ion-grid>
-        
+
 </ion-content>

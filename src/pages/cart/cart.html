@@ -26,39 +26,39 @@
       </ng-container>
       <ion-grid class="item">
         <ion-row>
-          <ion-col col-1><ion-icon style="color: #717171;" ios="ios-create" md="ios-create" class="controls inputContainer"></ion-icon></ion-col>
+          <ion-col col-1><ion-icon style="color: #717171; margin-top: 0.5em;" ios="ios-create" md="ios-create" class="controls inputContainer"></ion-icon></ion-col>
           <ion-col col-11><ion-textarea [(ngModel)]="details"placeholder="Algún detalle? (Opcional)"></ion-textarea></ion-col>
         </ion-row>
       </ion-grid>
       <p class="section">DATOS DE ENTREGA</p>
       <ion-grid class="item">
         <ion-row>
-          <ion-col col-1><ion-icon style="color: #717171;"  ios="md-pin" md="md-pin" class="controls inputContainer"></ion-icon></ion-col>
+          <ion-col col-1><ion-icon style="color: #717171; margin-top: 0.5em"  ios="md-pin" md="md-pin" class="controls inputContainer"></ion-icon></ion-col>
           <ion-col col-11><ion-input type="text" [(ngModel)]="address.address" readonly placeholder="Direccion de entrega"  (click)="pushLocationPage()"></ion-input></ion-col>
         </ion-row>
       </ion-grid>
        <ion-grid class="item ">
         <ion-row>
-          <ion-col col-1><ion-icon style="color: #717171;" ios="md-phone-portrait" md="md-phone-portrait" class="controls inputContainer"></ion-icon></ion-col>
+          <ion-col col-1><ion-icon style="color: #717171; margin-top: 0.5em" ios="md-phone-portrait" md="md-phone-portrait" class="controls inputContainer"></ion-icon></ion-col>
           <ion-col col-11><ion-input type="text" [(ngModel)]="phone" placeholder="Número de contacto" readonly></ion-input></ion-col>
         </ion-row>
       </ion-grid>
       <p class="section">FACTURACIÓN</p>
       <ion-grid class="item ">
         <ion-row>
-          <ion-col col-1><ion-icon style="color: #717171;" ios="ios-contact" md="ios-contact" class="controls inputContainer"></ion-icon></ion-col>
+          <ion-col col-1><ion-icon style="color: #717171; margin-top: 0.5em" ios="ios-contact" md="ios-contact" class="controls inputContainer"></ion-icon></ion-col>
           <ion-col col-11><ion-input [(ngModel)]="name" type="text" placeholder="Nombre del cliente"></ion-input></ion-col>
         </ion-row>
       </ion-grid>
       <ion-grid class="item ">
         <ion-row>
-          <ion-col col-1><ion-icon style="color: #717171;" ios="ios-contact" md="ios-contact" class="controls inputContainer"></ion-icon></ion-col>
+          <ion-col col-1><ion-icon style="color: #717171; margin-top: 0.5em" ios="ios-contact" md="ios-contact" class="controls inputContainer"></ion-icon></ion-col>
           <ion-col col-11><ion-input [(ngModel)]="ci" type="number" placeholder="CI/RUC"></ion-input></ion-col>
         </ion-row>
       </ion-grid>
       <ion-grid class="item ">
         <ion-row>
-          <ion-col col-1><ion-icon style="color: #717171;"  ios="md-pin" md="md-pin" class="controls inputContainer"></ion-icon></ion-col>
+          <ion-col col-1><ion-icon style="color: #717171; margin-top: 0.5em"  ios="md-pin" md="md-pin" class="controls inputContainer"></ion-icon></ion-col>
           <ion-col col-11><ion-input type="text" [(ngModel)]="addressF" placeholder="Dirección de la factura"></ion-input></ion-col>
         </ion-row>
       </ion-grid>

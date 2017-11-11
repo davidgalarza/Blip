@@ -24,7 +24,6 @@ export class StorageProvider {
         reference: reference
       }).then(()=>{
         this.storage.set("activeDirection", address).then(()=>{
-          let direction;
           this.storage.get('activeDirection').then((activeDirection)=>{
             console.log(activeDirection);
             this.storage.get(activeDirection).then((res)=>{

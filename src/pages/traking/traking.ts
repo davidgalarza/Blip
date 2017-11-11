@@ -134,9 +134,10 @@ export class TrakingPage {
               this.bliperMarker = marker;
               resolve();
             });
+            this.map.setVisible(false);
           });
       
-          this.map.setVisible(false);
+          
     });
     // create a new map and marker div by passing HTMLElement
     

@@ -22,7 +22,8 @@ export class HttpProvider {
   }
   createOrder(data){
     return new Promise((resolve, reject)=>{
-      this.http.post('https://us-central1-atiempo-5533e.cloudfunctions.net/createNewOrder',data,{}).then(res=>{
+      let dataS = JSON.stringify(data); 
+      this.http.post('https://us-central1-atiempo-5533e.cloudfunctions.net/createNewOrder',{data: dataS},{}).then(res=>{
         resolve(res);
       });
     });

@@ -1,6 +1,7 @@
 // http://ionicframework.com/docs/theming/
 $main: #ed5a5f;
 $green: #00a083;
+$green2: #24c48b;
 $background: #ECECEC;
 
 // Color pallete
@@ -25,6 +26,18 @@ $segment-button-md-text-color-activated: #FFFFFF;
         font-weight: normal;
         font-style: normal;
     }
+    @font-face {
+        font-family: 'Proxima Nova';
+        src: url('../assets/fonts/proxima/ProximaNovaA-Regular.otf');
+        font-weight: normal;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'proxima_nova_altbold';
+        src: url('../assets/fonts/proxima/ProximaNova-Bold.otf');
+        font-weight: normal;
+        font-style: normal;
+    }
 ion-header{
     z-index: initial;  // desapear the header shadown
     text-align: center;
@@ -36,11 +49,11 @@ ion-header{
     top:initial;
 }
 .headerC{
-    margin: 1em 1em;
+    //margin: 1em 1em;
   }
   .logoH{
     display: inline-block;
-    width: 8em;
+    width: 2em;
   }
   .toolbar-background-md{
     background-color: $main;
@@ -50,16 +63,43 @@ ion-header{
  }
  .sidemenuC{
  
-    background-color: $main;
+    //background-color: $main;
 }
 .itemSide{
-    background-color: $main;
-    color: #FFFFFF;
-    border-bottom: none;
-    font-weight: bold;
     font-family: 'Trueno';
 }
-.list-md .item-block .item-inner {
+.list-md .item-block .item-inner, {
     border-bottom: none;
     }
 
+    .toast-ios .toast-wrapper,
+    .toast-md .toast-wrapper{
+        background: rgb(255, 119, 51) !important;
+        margin-top: 1em !important;
+        border-radius: 0px !important;
+    }
+    .toast-ios .toast-message,
+    .toast-md .toast-message{
+        font-size: 2rem !important;
+        text-align: center !important;
+    }
+    .header-ios .toolbar-background-ios,
+    .header-md .toolbar-background-md{
+        border-style:none;
+        border-width: 0px;
+    }
+    .toolbar-background-ios,
+    .toolbar-background-md{
+        background-color: #FFFFFF;
+    }
+    .list-ios .item-block .item-inner,
+    .list-md .item-block .item-inner{
+        border-bottom: none;
+    }
+    .list-ios > .item-block:last-child,
+    .list-md > .item-block:last-child{
+        border-bottom: none;
+    }
+    .iconMenu{
+        color: #9fa2a2;
+    }

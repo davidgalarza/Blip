@@ -1,53 +1,60 @@
 page-where {
-
-    .trueno {
-        font-family: 'Trueno' !important;
+    
+        .trueno {
+            font-family: 'Trueno' !important;
+        }
+        .nexa{
+            font-family: 'Nexa' !important;
+        }
+        .orderInfo{
+            background-color: $green;
+            margin:0;
+            display:inline-block;
+            width:100%;
+            text-align: center;
+            height: 3em;
+            padding: 0px;
+        }
+        .orderInfo h4{
+            margin: 0.5em;
+        }
+        .scroll-content{
+            background-color: $main;
+        }
+        .question{
+            color: #FFFFFF;
+            width: 60%;
+            position: relative;
+            top: 20% !important;
+            font-size: 2.3em;
+        }
+        .directionsC{
+            margin-top: 4em;
+            width: 100%;
+        }
+        .button-md, .button-ios{
+            border-radius: 0px;
+            padding: 1.5em;
+            width: 100%;
+            box-shadow: none;
+            border: 2px solid;
+            font-size: 1.4em;
+        }
+        .other{
+            font-size: 1.7em;
+            color: #FFFFFF;
+            text-align: center;
+            text-decoration: underline;
+        }
+        .grid{
+            margin-top: 20%;
+        }
+        .bottomC{
+            text-align: center;
+            bottom: 2em;
+            position: absolute;
+            width: 100%
+        }
+    
     }
-    .nexa{
-        font-family: 'Nexa' !important;
-    }
-    .orderInfo{
-        background-color: $green;
-        margin:0;
-        display:inline-block;
-        width:100%;
-        text-align: center;
-        height: 3em;
-        padding: 0px;
-    }
-    .orderInfo h4{
-        margin: 0.5em;
-    }
-    .scroll-content{
-        background-color: $main;
-    }
-    .question{
-        color: #FFFFFF;
-        width: 40%;
-        position: relative;
-        top: 20% !important;
-
-    }
-    .directionsC{
-        margin-top: 4em;
-    }
-    .button-md{
-        border-radius: 0px;
-        padding: 1.5em;
-        font-size: 1.3em;
-        width: 100%;
-        box-shadow: none;
-        border: 2px solid;
-    }
-    .other{
-        font-size: 1.5em;
-        color: #FFFFFF;
-        text-align: center;
-        text-decoration: underline;
-        bottom: 2em;
-    }
-    .grid{
-        margin-top: 20%;
-    }
-
-}
+    

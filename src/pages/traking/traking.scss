@@ -6,17 +6,13 @@ page-traking {
     .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before{
         background-image: none;
     }
-    .toolbar-title-md{
-        text-align: -webkit-right;
-        font-family: 'Nexa' !important;
-    }
     h3,h4,h2,h1{
         font-family: 'Trueno' !important;
     }
     p, input{
         font-family: 'Nexa' !important;
     }
-    .toolbar-background-md{
+    .toolbar-background-md, .toolbar-background-ios{
         background-color: $main;
     }
     .searchbar-md {
@@ -24,8 +20,14 @@ page-traking {
     }
     .toolbar-title{
         color: #FFFFFF;
+        text-align: right;
     }
-
+    .bar-button-default-ios{
+      color: #FFFFFF;
+  }
+  .back-button-icon-md{
+    color: #FFFFFF;
+  }
 
     // Timeline
     $black: #202020;

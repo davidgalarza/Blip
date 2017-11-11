@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Scroll } from 'ionic-angular';
 import { StorageProvider } from '../../providers/storage/storage';
 import { DomSanitizer } from '@angular/platform-browser';
 import { HttpProvider } from '../../providers/http/http';
@@ -35,8 +35,10 @@ export class ListPage {
   closeShops = [];
   shopIds: any = [];
   isSearch: boolean = false;
+  holders = [1, 2, 3, 4];
+  showHolders = true;
   @ViewChild('myInput') myInput;  
-  constructor(private _sanitizer: DomSanitizer, public navCtrl: NavController, public navParams: NavParams, public storage: StorageProvider ,public db: DatabaseProvider, public geofire: GeofireProvider, public http: HttpProvider, public shopF: ShopFunctionsProvider, public algolia: AlgoliaProvider, private firebase: Firebase) {
+  constructor(private _sanitizer: DomSanitizer, public navCtrl: NavController, public navParams: NavParams, public storage: StorageProvider ,public db: DatabaseProvider, public geofire: GeofireProvider, public http: HttpProvider, public shopF: ShopFunctionsProvider, public algolia: AlgoliaProvider, private firebase: Firebase, public scroll: Scroll) {
     this.category = this.navParams.get('category');
     console.log(this.category);
     this.display_name = this.navParams.get('display_name');
@@ -48,6 +50,9 @@ export class ListPage {
         this.geofire.getNearShopIds(location.lat, location.lng).then(shopIds=>{
           console.log(shopIds);
           this.shopIds =shopIds;
+          setTimeout(()=>{
+            this.showHolders = false;
+          },2000)
           this.shopIds.forEach(shopId => {
               this.db.getCommerById(shopId).once('value', shop=>{
                 console.log(shop);

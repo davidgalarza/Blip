@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, MenuController, Platform } from 'ionic-angular';
 import { ListPage } from '../../pages/list/list';
+import { WelcomePage } from '../../pages/welcome/welcome';
 import { CustomPage } from '../../pages/custom/custom';
 import { Firebase } from '@ionic-native/firebase';
 import { DatabaseProvider } from '../../providers/database/database';
@@ -15,14 +16,35 @@ import { LatLng, Geocoder } from '@ionic-native/google-maps';
 })
 export class HomePage {
   grid: Array<any> =[];
+  address: string = "";
+  constructor(public navCtrl: NavController, private firebase: Firebase, public database: DatabaseProvider, public auth:AuthProvider,public nativeGeocoder: NativeGeocoder, public geocoder: Geocoder, public storage: StorageProvider, public menu: MenuController, public platform: Platform) {
+    this.menu.enable(true);
 
-  constructor(public navCtrl: NavController, private firebase: Firebase, public database: DatabaseProvider, public auth:AuthProvider,public nativeGeocoder: NativeGeocoder, public geocoder: Geocoder, public storage: StorageProvider) {
-    this.firebase.onTokenRefresh().subscribe((token)=>{
-      this.database.setUserToken(this.auth.getUser().uid, token);
+    console.log("Listo=> ");
+    this.firebase.getToken().then(token=>{
+      console.log(token);
     });
+    this.firebase.onTokenRefresh().subscribe((token)=>{
+      console.log("Token: ", token);
+      this.auth.getAuth().onAuthStateChanged(user=>{
+        if(user){
+          console.log("eNTRO ", user);
+          this.database.setUserToken(this.auth.getUser().uid, token);
+        }else{
+          this.menu.enable(false);
+        }
+      }); 
+    });
+    if (this.platform.is('ios')) {
+      this.firebase.grantPermission().then(ss=>{
+        console.log("Permisions: ", ss);
+      });
+    }
+
+   
     this.storage.getByKey('activeDirection').then(key =>{
       this.storage.getByKey(key).then(location=>{
-        this.database.setPath('/prueba/location', location);
+        this.address = location.address;
         let myPosition: LatLng = new LatLng( location.lat,location.lng);
         this.geocoder.geocode({
           position: myPosition
@@ -55,5 +77,16 @@ export class HomePage {
   }
   pushCustomPage(){
     this.navCtrl.push(CustomPage);
+  }
+  verifyAuth(){
+    this.auth.getAuth().onAuthStateChanged(user=>{
+      if(!user){
+        this.menu.close().then(()=>{
+          this.navCtrl.push(WelcomePage,{
+            message: "Primero debes iniciar sesión",
+          });
+        });
+      }
+    });
   }
 }

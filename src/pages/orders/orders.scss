@@ -9,7 +9,9 @@ page-orders {
     .toolbar-title-md{
         text-align: right;
         color: #ffffff;
-        font-family: 'Trueno' !important;
+    }
+    ion-navbar ion-icon{
+        color: #ffffff;
     }
     h3,h4,h2,h1{
         font-family: 'Trueno' !important;
@@ -17,16 +19,16 @@ page-orders {
     p, input{
         font-family: 'Nexa' !important;
     }
-    .toolbar-background-md{
+    .toolbar-background-md, .toolbar-background-ios{
         background-color: $main;
     }
-    .item-md{
+    .item-md, .item-ios{
         border: solid 1px #DBDFE3;
         border-radius: 7px;
         box-shadow: 4px 3px 15px #DBDFE3;
         margin-bottom: 1.5em;
     }
-    .list-md .item-block .item-inner {
+    .list-md .item-block .item-inner, .list-ios .item-block .item-inner {
     border-bottom: 0px solid #dedede !important;
     }   
     .distance{
@@ -100,4 +102,10 @@ page-orders {
         font-family: 'Trueno' !important;
         font-size: 1.5em;
     }
+    .toolbar-title{
+        color: #FFFFFF;
+    }
+    .bar-button-default-ios{
+      color: #FFFFFF;
+  }
 }

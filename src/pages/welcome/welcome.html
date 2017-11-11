@@ -1,8 +1,27 @@
+<ion-header>
+  <ion-toolbar class="headerI">
+    <h2 class="initS">Iniciar sesión</h2>
+  </ion-toolbar>
+</ion-header>
 <ion-content padding>
-  <img src="assets/img/logo_white.png" alt="logo" class="logo">
-
-  <h2 class="center subheading">Tu ciudad a
-                                  domicilio</h2>
-<p class="disclamer">Toca "Aceptar y continuar" para aceptar los Término y Codiciones de sevicio y Política de Privacidad de Blip</p>
-<button ion-button (click)="acept()">ACEPTAR Y CONTINUAR</button>
+  <div class="formG">
+      <ion-item class="marB">
+          <ion-label color="primary" floating>Nombre</ion-label>
+          <ion-input [(ngModel)]="name"></ion-input>
+        </ion-item>
+    <button ion-button full  large icon-start class="buttonA" (click)="loginPhone()">
+        <ion-icon name="phone-portrait"></ion-icon>
+        Ingresa con tu Celular
+    </button>
+    <ion-item class="marT withoutB">
+        <ion-label>Acepto los términos y condiciones</ion-label>
+        <ion-checkbox [(ngModel)]="acceptedTerms" checked="true"></ion-checkbox>
+      </ion-item>
+  </div>
+  <div class="questionC">
+    <p>¿Quieres iniciar sesión despues?</p>
+    <p class="continueWT" (click)="pushWherePage()">Haz click aqui</p>
+  </div>
 </ion-content>
+
+

@@ -9,16 +9,13 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title><ion-searchbar [(ngModel)]="text"
-      [showCancelButton]="shouldShowCancel"
-      (ionInput)="onInput($event)"
-      (ionCancel)="onCancel($event)"
-      placeholder="Buscar Productos"></ion-searchbar></ion-title>
+    <ion-searchbar [(ngModel)]="text" [showCancelButton]="shouldShowCancel" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)"
+      placeholder="Buscar Productos"></ion-searchbar>
   </ion-navbar>
 </ion-header>
 
 
-<ion-content padding #contentRef >
+<ion-content #contentRef>
 
   <div class="page-header" id="page-header">
     <div class="header-bg" id="header-bg" [ngStyle]="{'background-image': 'url(' + shop.bannerUrl + ')'}"></div>
@@ -50,12 +47,27 @@
       </ion-card>
     </div>
   </div>
+  
+  <ion-list  *ngIf="showHolders">
+    <ion-item>
+        <div class="animated-background holderTitle">
+          </div>
+    </ion-item>
 
-
-    <ion-row *ngIf="text.length > 0">
-      <h3 *ngIf="text.length > 0" class="menuC">Resultados para "{{text}}"</h3>
-      <p *ngIf="results.length == 0 && results.length == 0">Lo sentmos no encontramos resultado para tu busqueda :(</p>
-      <ion-col col-12>
+      <ion-item *ngFor="let holder of holders">
+          <ion-thumbnail item-lef>
+              <div class="animated-background">
+                </div>
+          </ion-thumbnail>
+      </ion-item>
+  </ion-list>
+  
+  
+  <ion-row *ngIf="text.length > 0">
+    <h3 *ngIf="text.length > 0" class="menuC">Resultados para "{{text}}"</h3>
+    <p *ngIf="results.length == 0 && results.length == 0">Lo sentmos no encontramos resultado para tu busqueda :(</p>
+    <ion-col col-12>
+      <ion-list>
         <ion-item *ngFor="let product of results" class="itemList">
           <ion-thumbnail item-left>
             <span *ngIf="isInCart(productobjectID)" class="numP">{{getCount(product.objectID)}}</span>
@@ -86,52 +98,66 @@
               "></ion-icon>
 
         </ion-item>
-      </ion-col>
-    </ion-row>
-    <div style="height:100%">
-        <ion-list [virtualScroll]="products" [headerFn]="myHeaderFn" [approxItemHeight]=" '50px'" bufferRatio="2">
-            <h3 *virtualHeader="let header" class="menuC">
-                {{ header }}
-            </h3>
-            
-          <ion-item *virtualItem="let product" class="itemList">
-            <ion-thumbnail item-left>
-              <span *ngIf="isInCart(product.$key)" class="numP">{{getCount(product.$key)}}</span>
-              <img [src]="product.imageUrl" class="productImg">
-              <ion-icon *ngIf="isInCart(product.$key)" (click)="removeToCart(product.$key)" ios="ios-remove-circle" md="md-remove-circle"
-                class="controls" style="
-                margin-top: 2.6em;
-            "></ion-icon>
-            </ion-thumbnail>
-            <ion-grid>
-              <ion-row class="price-container">
-                <ion-col col-10 class="title-container">
-                  <h2 class="title">{{product.product}} </h2>
-                </ion-col>
-                <ion-col col-2 style="text-align: center;">
-                  <p class="price">${{product.price.toFixed(2)}}</p>
-                </ion-col>
-              </ion-row>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+  <div style="height:100%">
+    <ion-list [virtualScroll]="products" [headerFn]="myHeaderFn" [approxItemHeight]=" '50px'" bufferRatio="2">
+      <h3 *virtualHeader="let header" class="menuC">
+        {{ header }}
+      </h3>
 
-            </ion-grid>
-            <ion-row class="description-row">
-              <ion-col col-10 class="description-container">
-                <p class="description">{{product.description}}</p>
-              </ion-col>
-            </ion-row>
-            <ion-icon (click)="addToCart(product.$key)" ios="ios-add-circle" md="md-add-circle" class="controls" style="
-                right: 0.6em;
-            "></ion-icon>
+      <ion-item *virtualItem="let product" class="itemList">
+        <ion-thumbnail item-left>
+          <img [src]="product.imageUrl" class="productImg">
 
-          </ion-item>
-        </ion-list>
+        </ion-thumbnail>
+        <ion-grid>
+          <ion-row class="price-container">
+            <ion-col col-12 class="title-container">
+              <h2 class="title">{{product.product}} </h2>
+            </ion-col>
+          </ion-row>
+
+        </ion-grid>
+        <ion-row class="description-row">
+          <ion-col col-12 class="description-container">
+            <p class="description">{{product.description}}</p>
+            <p class="price">${{product.price.toFixed(2)}}</p>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-6>
+
+          </ion-col>
+          <ion-col col-6>
+            <div  class="addB">
+              <span (click)="addToCart(product.$key)" *ngIf="!(isInCart(product.$key))">Agregar</span>
+              <span class="countE" *ngIf="isInCart(product.$key)">{{getCount(product.$key)}}</span>  
+              <span class="plusE" *ngIf="isInCart(product.$key)" (click)="addToCart(product.$key)">+</span>
+            </div>
+          </ion-col>
+        </ion-row>
+
+      </ion-item>
+    </ion-list>
   </div>
 
 </ion-content>
 <ion-footer class="cart" (click)="carT()" *ngIf="!empty">
+<div class="row">
+  <div col-3>
+    <span class=" countF">{{cart.length}}</span>
+  </div>
+  <div col-6>
+    <span>Ver carrito</span>
+  </div>
+  <div col-3>
+    <span>${{total.toFixed(2)}}</span>
+  </div>
+  <div>
 
+  </div>
+</div>
 
-
-  <ion-icon name="md-cart"></ion-icon>
-  <span>(${{total.toFixed(2)}}) Ver carrito</span>
 </ion-footer>

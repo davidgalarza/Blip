@@ -12,7 +12,7 @@ page-shop {
         
         .searchbar-input-container{
             background: #ffffff !important;
-            border-radius: 50px !important;
+            border-radius: 0.3em !important;
             overflow: hidden !important;
             .searchbar-input{
                 background: #ffffff !important;
@@ -27,8 +27,6 @@ page-shop {
         padding-top: 0px !important;
     }
     .page-header{
-        margin-left: -16px;
-        margin-right: -16px;
         transition:all 0.2s ease 0s;
         
     }
@@ -40,10 +38,12 @@ page-shop {
     }
     .ph-card-box{
         text-align: center;
-        margin-top:-70px;
+        margin-top:-60px;
         position: relative;
         z-index:2;
         height:120px;
+        margin-left: 16px;
+        margin-right: 16px;
         ion-card{
             border-radius:10px;
         }
@@ -61,12 +61,12 @@ page-shop {
             }
         }
     }
-    h4,h3, h2,h1{
+    /*h4,h3, h2,h1{
         font-family: 'Trueno' !important;
     }
     p, input{
         font-family: 'Nexa' !important;
-    }
+    }*/
     ion-header{
         z-index: inherit;  // desapear the header shadown
         text-align: center;
@@ -108,6 +108,7 @@ page-shop {
         transition: 0.2s linear;
         background-color: rgba(0, 0, 0, 0) !important;
         text-align: center !important;
+        font-family: 'Proxima Nova'
     }
     expandable-header{
         background-size: cover !important;
@@ -118,27 +119,21 @@ page-shop {
         color: #FFFFFF;
         opacity: 1;
     }
-
     .productImg{
-        border-radius: 50%;
-        width: 4.1em !important;
-        height: 4.1em !important;
-        margin-left: 0.4em;
-        margin-top: 0.5em;
-        margin-right: 0.05em;
-        border: solid 1px #ececec;
-      }
+        border-radius: 0.3em;
+        width: 100px !important;
+        height: 100px !important;
+    }
     .price{
-    color: $main;
-    font-weight: bold;
-    left: 5px;
-    font-size: 3.8vw;
-    display: -webkit-inline-box;
+        font-weight: bold;
+        font-size: 1em;
+        text-align: left;
     }
     .description, .title{
     width: 100%;
     white-space:pre-line;
-    text-align: left
+    text-align: left;
+    font-size: 0.92em;
     }
     .controls{
     display: -webkit-box;
@@ -163,15 +158,7 @@ page-shop {
         padding: 0px;
     }
     
-    .description-container{
-        padding: 0px !important;
-      }
-      .description-row{
-        position: absolute;
-      }
-      ion-label{
-        margin-top: 0px !important;
-      }
+   
       .numP{
         position: absolute;
         background-color: #4A90E2;
@@ -187,32 +174,13 @@ page-shop {
       }
     
     
-      .title-container{
-        padding: 0px;
-      }
-      .menuC{
-        text-transform: capitalize !important;
-      }
-      .menuContainer{
-          margin-top: 1.5em;
-      }
-      ion-thumbnail{
-        margin-right: 0px !important;
-        margin-top: 8px !important;
-        margin-bottom: 14px !important;
-      }
+     
        .spinner {
       margin: 100px auto;
       width: 50px;
       height: 40px;
       text-align: center;
       font-size: 10px;
-    }
-    .item-md.item-block .item-inner{
-        padding-right: 0px;
-    }
-    .itemList{
-        padding-left: 0px !important;
     }
     ion-segment {
         display: block;
@@ -233,12 +201,13 @@ page-shop {
         }
     }
     .cart {
-        background-color: $green;
+        background-color: #21c48a;
         height: 2.5em;
         color: #ffffff;
         text-align: center;
         font-size: 1.5em;
         padding-top: 0.5em;
+        border-radius: 0.3em 0.3em 0px 0px;
       }
       .loader{
           margin-top: 1em;
@@ -248,6 +217,92 @@ page-shop {
 
       }
       ion-card-title{
-          font-family: 'Trueno' !important;
+          font-family: 'proxima_nova_altbold' !important;
       }
+      .list-ios, .list-md{
+          margin: 5px;
+      }
+      .back-button-text-ios{
+          display: none;
+      }
+      .bar-button-default-ios, .bar-button-default-md{
+        color: #ffffff;
+      }
+
+      // Animate loader
+      @keyframes placeHolderShimmer{
+        0%{
+            background-position: -468px 0
+        }
+        100%{
+            background-position: 468px 0
+        }
+    }
+    
+    .animated-background {
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+        animation-iteration-count: infinite;
+        animation-name: placeHolderShimmer;
+        animation-timing-function: linear;
+        background: #f6f7f8;
+        background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+        background-size: 800px 104px;
+        height: 96px;
+        position: relative;
+    }
+    .holderTitle{
+        height: 1.8em !important;
+        width: 40%;
+    }
+    .list-ios > .item-block:first-child,
+    .list-md > .item-block:first-child{
+        border-top: none;
+    }
+    ion-title{
+        color: #FFFFFF;
+    }
+    
+    .title{
+        font-size: 1.3em;
+        width: 95%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .addB{
+        background-color: #21c48a;
+        color: #ffffff;
+        padding: 1em;
+        border-radius: 0.4em;
+        height: 3.2em;
+    }
+    .menuC{
+        font-family: 'proxima_nova_altbold';
+        text-transform: capitalize;
+    }
+    .countE{
+        background-color: #147651;
+        padding: 0.6em;
+        border-radius: 0.2em;
+        width: 40%;
+        position: absolute;
+        left: 0.4em;
+        top: 0.4em;
+    }
+    .plusE{
+        font-size: 1.7em;
+        right: 0.8em;
+        top: 0.4em;
+        position: absolute
+    }
+    ion-footer{
+        font-family: 'Proxima Nova';
+    }
+    .countF{
+        background-color: #147651;
+        padding: 0.4em 0.8em;
+        border-radius: 0.2em;
+        text-align: left
+    }
 }

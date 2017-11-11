@@ -3,7 +3,7 @@ page-add-direction {
         z-index: inherit;  // desapear the header shadown
         text-align: center;
     }
-    .toolbar-background-md{
+    .toolbar-background-md, .toolbar-background-ios{
         background-color: #FFFFFF !important;
       }
     h2,h1{
@@ -12,14 +12,14 @@ page-add-direction {
     p, input{
         font-family: 'Nexa' !important;
     }
-    .button-md{
+    .button-md, .button-ios{
         padding: 1em 2em;
     }
     .tinfo{
         font-size: 0.8em;
         color: #948e8e;
     }
-    .toolbar-md{
+    .toolbar-md, .toolbar-ios{
         text-align: center;
     }
 }

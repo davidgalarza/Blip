@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { IonicApp, IonicErrorHandler, IonicModule, Scroll } from 'ionic-angular';
 // Import pages
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -110,6 +110,7 @@ export const firebaseConfig = {
     ShopFunctionsProvider,
     GeofireProvider,
     AlgoliaProvider,
+    Scroll
   ]
 })
 export class AppModule {}

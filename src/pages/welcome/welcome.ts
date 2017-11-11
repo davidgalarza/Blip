@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, ToastController, MenuController } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 import { DatabaseProvider } from '../../providers/database/database';
 import { WherePage } from '../../pages/where/where';
 import { HTTP } from '@ionic-native/http';
 import { Firebase } from '@ionic-native/firebase';
+import { HomePage } from '../../pages/home/home';
 
 /**
  * WELCOME-PAGE
@@ -17,12 +18,38 @@ import { Firebase } from '@ionic-native/firebase';
   templateUrl: 'welcome.html',
 })
 export class WelcomePage {
+  acceptedTerms: boolean = true;
+  name: string = "";
+  message: string;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public auth: AuthProvider, private http: HTTP, public db: DatabaseProvider, public load: LoadingController,  private firebase: Firebase,  public toastCtrl: ToastController, public menu: MenuController) {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public auth: AuthProvider, private http: HTTP, public db: DatabaseProvider, public load: LoadingController,  private firebase: Firebase) {
+        this.menu.enable(false);
+
+    this.message = this.navParams.get('message');
+    console.log(this.message);
+    if(this.message != undefined){
+      const toast = this.toastCtrl.create({
+        message: this.message,
+        duration: 3000,
+        position: 'top',
+        cssClass: "infoWin"
+      });
+    
+      toast.onDidDismiss(() => {
+        console.log('Dismissed toast');
+      });
+    
+      toast.present();
+    }
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad WelcomePage');
+  }
+  pushWherePage(){
+    console.log("click");
+    this.navCtrl.setRoot(WherePage);
+    this.navCtrl.popToRoot();
   }
   acept(){
     // Use AccountKitPlugin to login the user.
@@ -40,12 +67,17 @@ export class WelcomePage {
       this.http.get('https://us-central1-atiempo-5533e.cloudfunctions.net/getCustomToken?access_token='+info.token,{},{}).then((data)=>{
        this.auth.signinWithToken(data.data).then((ss)=>{
          (<any>window).AccountKitPlugin.getAccount(user=>{
-          this.db.createFirstUserData(ss.uid, user.phoneNumber).then(ss=>{
+          this.db.createFirstUserData(ss.uid, user.phoneNumber, this.name).then(ss=>{
             this.firebase.setUserId(this.auth.getUser().uid).then(user=>{
               console.log(user);
               loading.dismiss().then(()=>{
-                this.navCtrl.setRoot(WherePage);
-                this.navCtrl.popToRoot();
+                
+                if(this.message != undefined){
+                  this.navCtrl.pop();
+                }else{
+                  this.navCtrl.setRoot(WherePage);
+                  this.navCtrl.popToRoot();
+                } 
               });
             });
           });
@@ -62,4 +94,39 @@ export class WelcomePage {
       console.log(err)
     });
   }
+  loginPhone(){
+    if(this.name.length == 0){
+      const toast1 = this.toastCtrl.create({
+        message: 'Dinos tu nombre para conocerte mejor',
+        duration: 120000,
+        position: 'top',
+        cssClass: "infoWin"
+      });
+    
+      toast1.onDidDismiss(() => {
+        console.log('Dismissed toast');
+      });
+    
+      toast1.present();
+    }else{
+      if(!this.acceptedTerms){
+        const toast = this.toastCtrl.create({
+          message: 'Debes acetar los Términos y condiciones',
+          duration: 3000,
+          position: 'top',
+          cssClass: "infoWin"
+        });
+      
+        toast.onDidDismiss(() => {
+          console.log('Dismissed toast');
+        });
+      
+        toast.present();
+      }else{
+        this.acept();
+      }
+    }
+    
+  }
+
 }

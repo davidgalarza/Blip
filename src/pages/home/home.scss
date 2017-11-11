@@ -9,6 +9,7 @@ page-home {
     .searchbar-md .searchbar-input{
         background-color: #F6F6F6 !important;
         box-shadow: none !important;
+        border-radius: 0.3em;
     }
     .toolbar-background-md {
         background-color: #ffffff !important;
@@ -64,11 +65,11 @@ page-home {
         width: 100%;
         height: 100%;
         border-radius: 0.4em;
-        padding: 0;
+        padding: 0px !important;
+
         margin: 0;
-        position: relative;
-        top: 50%;
-        transform: translateY(-50%);
+        position: absolute;
+
     }
     .categoryT{
         font-family: 'Trueno' !important;
@@ -76,11 +77,28 @@ page-home {
         font-size: 1.3em;
         margin: 0px;
     }
-    .heightFull{
-        height: 100%;
+    .containerCa{
+        position: relative;
+        width: 100%;
+        padding: 0px;
     }
-    .containerC{
-        height: 33.33333333333%;
-    }
-        
+    .containerCa:after {
+        content: "";
+        display: block;
+        padding-bottom: 100%;
+      }
+      .header-ios .toolbar-background-ios, .header-md .toolbar-background-md{
+          border-style: none;
+          border-color: #FFFFFF;
+      }
+      .toolbar-background-ios, .toolbar-background-md{
+          background-color: #FFFFFF;
+      }
+      .bar-button-default-ios, .bar-button-default-md{
+          color:  $green2;
+      }
+      .toolbar-title-ios, .toolbar-title-md{
+          color: $green2;
+          text-align: right;
+      }
 }

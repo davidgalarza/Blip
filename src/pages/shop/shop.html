@@ -27,7 +27,7 @@
             <ion-row>
               <ion-col col-6>
                 <div class="price-box">
-                  <p class="price">
+                  <p class="price deliveryPrice">
                     <ion-icon ios="ios-bicycle" md="md-bicycle"></ion-icon>
                     <span>$ {{price.toFixed(2)}}</span>
                   </p>
@@ -70,32 +70,34 @@
       <ion-list>
         <ion-item *ngFor="let product of results" class="itemList">
           <ion-thumbnail item-left>
-            <span *ngIf="isInCart(productobjectID)" class="numP">{{getCount(product.objectID)}}</span>
-            <img [src]="product.imageUrl" onerror="this.src='assets/img/shopping-bag.svg';" class="productImg">
-            <ion-icon *ngIf="isInCart(product.objectID)" (click)="removeToCart(product.objectID)" ios="ios-remove-circle" md="md-remove-circle"
-              class="controls" style="
-                  margin-top: 2.6em;
-              "></ion-icon>
+            <img onError="this.src='/assets/img/shopping-bag.svg';" [src]="product.imageUrl" class="productImg">
           </ion-thumbnail>
           <ion-grid>
             <ion-row class="price-container">
-              <ion-col col-10 class="title-container">
+              <ion-col col-12 class="title-container">
                 <h2 class="title">{{product.product}} </h2>
-              </ion-col>
-              <ion-col col-2 style="text-align: center;">
-                <p class="price">${{product.price.toFixed(2)}}</p>
               </ion-col>
             </ion-row>
 
           </ion-grid>
           <ion-row class="description-row">
-            <ion-col col-10 class="description-container">
+            <ion-col col-12 class="description-container">
               <p class="description">{{product.description}}</p>
+              <p class="price">${{product.price.toFixed(2)}}</p>
             </ion-col>
           </ion-row>
-          <ion-icon (click)="addToCart(product.objectID)" ios="ios-add-circle" md="md-add-circle" class="controls" style="
-                  right: 0.6em;
-              "></ion-icon>
+          <ion-row>
+            <ion-col col-6>
+  
+            </ion-col>
+            <ion-col col-6>
+              <div class="addB">
+                <span (click)="addToCart(product.objectID)" *ngIf="!(isInCart(product.objectID))">Agregar</span>
+                <span class="countE" *ngIf="isInCart(product.objectID)">{{getCount(product.$key)}}</span>
+                <span class="plusE" *ngIf="isInCart(product.objectID)" (click)="addToCart(product.objectID)">+</span>
+              </div>
+            </ion-col>
+          </ion-row>
 
         </ion-item>
       </ion-list>
@@ -109,7 +111,7 @@
 
       <ion-item *virtualItem="let product" class="itemList">
         <ion-thumbnail item-left>
-          <img [src]="product.imageUrl" class="productImg">
+          <img onError="this.src='/assets/img/shopping-bag.svg';" [src]="product.imageUrl" class="productImg">
 
         </ion-thumbnail>
         <ion-grid>

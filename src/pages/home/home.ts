@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, MenuController, Platform } from 'ionic-angular';
+import { NavController, MenuController, Platform, LoadingController } from 'ionic-angular';
 import { ListPage } from '../../pages/list/list';
 import { WelcomePage } from '../../pages/welcome/welcome';
 import { CustomPage } from '../../pages/custom/custom';
@@ -17,7 +17,7 @@ import { LatLng, Geocoder } from '@ionic-native/google-maps';
 export class HomePage {
   grid: Array<any> =[];
   address: string = "";
-  constructor(public navCtrl: NavController, private firebase: Firebase, public database: DatabaseProvider, public auth:AuthProvider,public nativeGeocoder: NativeGeocoder, public geocoder: Geocoder, public storage: StorageProvider, public menu: MenuController, public platform: Platform) {
+  constructor(public navCtrl: NavController, private firebase: Firebase, public database: DatabaseProvider, public auth:AuthProvider,public nativeGeocoder: NativeGeocoder, public geocoder: Geocoder, public storage: StorageProvider, public menu: MenuController, public platform: Platform, private load: LoadingController) {
     this.menu.enable(true);
 
     console.log("Listo=> ");
@@ -40,7 +40,10 @@ export class HomePage {
         console.log("Permisions: ", ss);
       });
     }
-
+    let loading = this.load.create({
+      content: 'Danos un minuto...'
+    });
+    loading.present();
    
     this.storage.getByKey('activeDirection').then(key =>{
       this.storage.getByKey(key).then(location=>{
@@ -53,6 +56,7 @@ export class HomePage {
           console.log("To lower", position[0].locality.toLowerCase());
           this.database.getCategories(position[0].locality.toLowerCase()).subscribe(categories=>{
             this.grid = categories;
+            loading.dismiss();
           });
         });
       });

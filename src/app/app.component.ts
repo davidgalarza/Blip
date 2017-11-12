@@ -11,6 +11,8 @@ import { ShopPage } from '../pages/shop/shop';
 import { OrdersPage } from '../pages/orders/orders';
 import { AddDirectionPage } from '../pages/add-direction/add-direction';
 
+//declare var handleBranch;
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -31,7 +33,27 @@ export class MyApp {
       { title: 'Pedidos activos', component: OrdersPage, icon:'md-list' },
       {title: 'Cerrar sesión', component: null, icon:'md-log-out'}
     ];
-    this.platform.ready().then(() => { this.splashScreen.hide() });
+    this.platform.ready().then(() => { 
+      this.splashScreen.hide() 
+      handleBranch();
+      
+    });
+    this.platform.resume.subscribe(() => {
+      handleBranch();
+    });
+    // Branch initialization
+    const handleBranch = () => {
+      // only on devices
+      if (!platform.is('cordova')) { return }
+      const Branch = window['Branch'];
+      Branch.initSession(data => {
+        if (data['+clicked_branch_link']) {
+          // read deep link data on click
+          alert('Deep Link Data: ' + JSON.stringify(data));
+        }
+      });
+      Branch.setDebug(true);
+    }
     this.auth.getAuth().onAuthStateChanged((user) => {
       if(user){
         this.db.getUserName(user.uid).subscribe(us=>{

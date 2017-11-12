@@ -118,6 +118,12 @@
         <variable name="LOCATION_WHEN_IN_USE_DESCRIPTION" value="Show your location on the map" />
         <variable name="LOCATION_ALWAYS_USAGE_DESCRIPTION" value="Trace your location on the map" />
     </plugin>
+    <plugin name="branch-cordova-sdk" spec="^2.6.0" />
+  <branch-config>
+    <branch-key value="key_live_aaCKswO2HcT2RpJND26NbcabwBdLxo7x" />
+    <uri-scheme value="blip" />
+    <link-domain value="blip.app.link" />
+    <ios-team-release value="L84R9VU4JF" />
     <engine name="ios" spec="~4.3.1" />
     <plugin name="cordova-plugin-firebase" spec="0.1.23" />
     <engine name="android" spec="~6.1.2" />

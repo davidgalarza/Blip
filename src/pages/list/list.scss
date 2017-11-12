@@ -11,10 +11,10 @@ page-list {
         text-align: -webkit-right;
     }
     h2,h1{
-        font-family: 'Trueno' !important;
+        font-family: 'proxima_nova_altbold' !important;
     }
     p, input{
-        font-family: 'Nexa' !important;
+        font-family: 'Proxima Nova' !important;
     }
     .toolbar-background-md, .toolbar-background-ios{
         background-color: $main;
@@ -66,7 +66,7 @@ page-list {
         background-color: $green;
         padding: 0.4em;
         color: #FFFFFF;
-        font-family: 'Nexa';
+        font-family: 'Proxima Nova';
         border-radius: 0.3em;
     }
     [col-12]{

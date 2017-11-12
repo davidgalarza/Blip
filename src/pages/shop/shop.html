@@ -47,22 +47,22 @@
       </ion-card>
     </div>
   </div>
-  
-  <ion-list  *ngIf="showHolders">
+
+  <ion-list *ngIf="showHolders">
     <ion-item>
-        <div class="animated-background holderTitle">
-          </div>
+      <div class="animated-background holderTitle">
+      </div>
     </ion-item>
 
-      <ion-item *ngFor="let holder of holders">
-          <ion-thumbnail item-lef>
-              <div class="animated-background">
-                </div>
-          </ion-thumbnail>
-      </ion-item>
+    <ion-item *ngFor="let holder of holders">
+      <ion-thumbnail item-lef>
+        <div class="animated-background">
+        </div>
+      </ion-thumbnail>
+    </ion-item>
   </ion-list>
-  
-  
+
+
   <ion-row *ngIf="text.length > 0">
     <h3 *ngIf="text.length > 0" class="menuC">Resultados para "{{text}}"</h3>
     <p *ngIf="results.length == 0 && results.length == 0">Lo sentmos no encontramos resultado para tu busqueda :(</p>
@@ -131,9 +131,9 @@
 
           </ion-col>
           <ion-col col-6>
-            <div  class="addB">
+            <div class="addB">
               <span (click)="addToCart(product.$key)" *ngIf="!(isInCart(product.$key))">Agregar</span>
-              <span class="countE" *ngIf="isInCart(product.$key)">{{getCount(product.$key)}}</span>  
+              <span class="countE" *ngIf="isInCart(product.$key)">{{getCount(product.$key)}}</span>
               <span class="plusE" *ngIf="isInCart(product.$key)" (click)="addToCart(product.$key)">+</span>
             </div>
           </ion-col>
@@ -145,19 +145,19 @@
 
 </ion-content>
 <ion-footer class="cart" (click)="carT()" *ngIf="!empty">
-<div class="row">
-  <div col-3>
-    <span class=" countF">{{cart.length}}</span>
-  </div>
-  <div col-6>
-    <span>Ver carrito</span>
-  </div>
-  <div col-3>
-    <span>${{total.toFixed(2)}}</span>
-  </div>
-  <div>
+  <div class="row">
+    <div col-3>
+      <span class=" countF">{{cart.length}}</span>
+    </div>
+    <div col-6>
+      <span>Ver carrito</span>
+    </div>
+    <div col-3>
+      <span>${{total.toFixed(2)}}</span>
+    </div>
+    <div>
 
+    </div>
   </div>
-</div>
 
 </ion-footer>

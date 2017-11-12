@@ -2,7 +2,7 @@ page-welcome {
     h2,h1{
         font-family: 'Trueno' !important;
     }
-
+    font-family:  'Proxima Nova';
     .logo{
         margin: auto;
         width: 60%;
@@ -16,7 +16,7 @@ page-welcome {
         width: 50%;
         padding: 10px;
         display: block;
-        text-align: right
+        text-align: right;
     }
     .button{
         color: #FFFFFF;
@@ -92,5 +92,8 @@ page-welcome {
     }
     .footer-md::before{
         background-image: none;
+    }
+    .item.item-md .checkbox-md{
+        margin: 9px 15px 9px 4px !important;
     }
 }

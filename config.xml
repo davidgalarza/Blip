@@ -3,7 +3,7 @@
     <name>Blip</name>
     <description>Tu ciudad a domicilio.</description>
     <author email="hola@blipclub.com" href="https://blipclub.com">Blip</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://192.168.1.8:8100" />
     <access origin="*" />
     <allow-navigation href="http://ionic.local/*" />
     <allow-intent href="http://*/*" />
@@ -118,16 +118,17 @@
         <variable name="LOCATION_WHEN_IN_USE_DESCRIPTION" value="Show your location on the map" />
         <variable name="LOCATION_ALWAYS_USAGE_DESCRIPTION" value="Trace your location on the map" />
     </plugin>
-        <plugin name="branch-cordova-sdk" spec="^2.6.0" />
-  <branch-config>
-    <branch-key value="key_live_aaCKswO2HcT2RpJND26NbcabwBdLxo7x" />
-    <uri-scheme value="blip" />
-    <link-domain value="blip.app.link" />
-    <ios-team-release value="L84R9VU4JF" />
-  </branch-config>
+    <plugin name="branch-cordova-sdk" spec="^2.6.0" />
+    <branch-config>
+        <branch-key value="key_live_aaCKswO2HcT2RpJND26NbcabwBdLxo7x" />
+        <uri-scheme value="blip" />
+        <link-domain value="blip.app.link" />
+        <ios-team-release value="L84R9VU4JF" />
+    </branch-config>
     <engine name="ios" spec="~4.3.1" />
     <plugin name="cordova-plugin-firebase" spec="0.1.23" />
-    <engine name="android" spec="~6.1.2" />
     <allow-navigation href="http://192.168.43.56:8100" />
     <allow-navigation href="http://192.168.1.7:8100" />
+    <allow-navigation href="http://192.168.1.9:8100" />
+    <engine name="android" spec="~6.1.2" />
 </widget>

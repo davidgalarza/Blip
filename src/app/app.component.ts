@@ -11,6 +11,7 @@ import { ShopPage } from '../pages/shop/shop';
 import { OrdersPage } from '../pages/orders/orders';
 import { AddDirectionPage } from '../pages/add-direction/add-direction';
 
+
 //declare var handleBranch;
 
 @Component({
@@ -76,7 +77,16 @@ export class MyApp {
           this.rootPage = WherePage;
           unsubscribe();
         }
-      });    
+      }); 
+      /*this.zone.run( () => {
+        if (!user) {
+          this.rootPage = ShopPage;
+          unsubscribe();
+        } else { 
+          this.rootPage = ShopPage;
+          unsubscribe();
+        }
+      });*/
       });
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.

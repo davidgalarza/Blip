@@ -18,9 +18,18 @@ page-shop {
                 background: #ffffff !important;
             }
         }
-        ion-title{
+        /*ion-title{
             padding:5px 0px 10px 5px !important;
-        }
+        }*/
+        ion-title {
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 0 90px 1px;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+          }
     }
     .scroll-content{
         margin-top: 0px !important;
@@ -80,7 +89,7 @@ page-shop {
         text-align: center !important;
     }
     .toolbar-title-md{
-        font-family: 'Trueno' !important;
+        font-family: 'Proxima Nova' !important;
         color: #FFFFFF !important;
     }
     .item-md.item-block .item-inner{
@@ -310,6 +319,29 @@ page-shop {
         margin-right: 2em;
     }
     #header{
-        
+        background-size: cover !important;
+        background-position: center !important;
+    }
+    #firstC{
+        text-align: center !important;
+        font-size: 0.7em !important;
+        margin-top: -20px !important;
+    }
+    .itemList{
+        border-bottom: solid 1.5px #ecede9
+    }
+    .textInf{
+        font-family: 'Proxima Nova';
+        color: #FFFFFF;
+        font-size: 1.2em;
+        border: solid 2px #FFFFFF !important;
+        padding: 0.2em 0.5em;
+        border-radius: 0.3em;
+    }
+    .marginS{
+        margin-top: 5px;
+    }
+    .marginB{
+        margin-top: 20px;
     }
 }

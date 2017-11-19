@@ -1,7 +1,7 @@
-import { Component, ViewChild, NgZone } from '@angular/core';
+import { Component, ViewChild,  NgZone } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, AlertController, ToastController } from 'ionic-angular';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Content, Platform } from 'ionic-angular';
+import { Content, Platform, Searchbar, Segment } from 'ionic-angular';
 import { DatabaseProvider } from '../../providers/database/database';
 import { ShopFunctionsProvider } from '../../providers/shop-functions/shop-functions';
 import { AlgoliaProvider } from '../../providers/algolia/algolia';
@@ -12,13 +12,14 @@ import { CartPage } from '../cart/cart';
 import { Firebase } from '@ionic-native/firebase';
 import { WelcomePage } from '../../pages/welcome/welcome';
 import * as moment from 'moment-timezone';
+import { Keyboard } from '@ionic-native/keyboard';
+
 /**
  * Generated class for the ShopPage page.
  *
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-
 
 @IonicPage()
 @Component({
@@ -28,6 +29,9 @@ import * as moment from 'moment-timezone';
 //Hola
 export class ShopPage {
   @ViewChild(Content) content: Content;
+  @ViewChild('searchBar') searchInput: Searchbar;
+  @ViewChild(Segment)
+  private segment: Segment;
   zone: NgZone;
   shop: any = {};
   results: Array<any> = [];
@@ -47,10 +51,13 @@ export class ShopPage {
   prueba = [{ $key: "-Ko912LubYCtwp4sVF29", commerceId: "HXNrxb1G1fYjx0dh6nQAoPzpEkg2", description: "Chaulafán especial, Chancho con tamarindo, Tallarín especial.", imageUrl: "https://firebasestorage.googleapis.com/v0/b/atiempo-5533e.appspot.com/o/uploads%2FHXNrxb1G1fYjx0dh6nQAoPzpEkg2%2Fproducts%2FEspecial%20(1).jpg?alt=media&token=e3a9d22d-32ec-4a02-896d-7515cdb07f32", menu: "platos especiales - special dishes", price: 8.4, product: "Bandeja Especial #1" }]
   holders = [1, 2, 3, 4, 5, 6];
   showHolders = true;
+  showSearchBar: boolean = false;
+  ids;
   public scrollAmount = 0;
-  constructor(private _sanitizer: DomSanitizer, public navCtrl: NavController, public navParams: NavParams, public db: DatabaseProvider, public modalCtrl: ModalController, public alert: AlertController, public algolia: AlgoliaProvider, public shopF: ShopFunctionsProvider, public storage: StorageProvider, public platform: Platform, private firebase: Firebase, public toastCtrl: ToastController, public auth: AuthProvider) {
+  constructor(private _sanitizer: DomSanitizer, public navCtrl: NavController, public navParams: NavParams, public db: DatabaseProvider, public modalCtrl: ModalController, public alert: AlertController, public algolia: AlgoliaProvider, public shopF: ShopFunctionsProvider, public storage: StorageProvider, public platform: Platform, private firebase: Firebase, public toastCtrl: ToastController, public auth: AuthProvider, private keyboard: Keyboard) {
     this.zone = new NgZone({ enableLongStackTrace: false });
-    this.shopId = this.navParams.get('shopId');
+    //this.shopId = this.navParams.get('shopId');
+    this.shopId = 'HXNrxb1G1fYjx0dh6nQAoPzpEkg2';
     //this.isOpen = this.navParams.get('isOpen');
     
     this.shopName = this.navParams.get('name');
@@ -75,7 +82,7 @@ export class ShopPage {
           });
         });
       });
-
+      this.ids = 0;
       this.db.getProducts(this.shopId).subscribe(snap => {
         this.products = snap;
         console.log("Productos", snap);
@@ -83,26 +90,51 @@ export class ShopPage {
           this.showHolders = false;
           this.menus = menus;
           console.log("Menus", menus);
+          setTimeout(() => {
+            if (this.segment) {
+                this.segment.ngAfterContentInit();
+                console.log("Entra segment");
+            }
+        },1000);
         });
       });
 
     });
-
   }
 
 
   ngOnInit() {
   }
   ngAfterViewInit() {
+    document.getElementById('header').style.height = '130px';
+    document.getElementById('contentC').style.marginTop = '130px';
+    document.getElementById('text1').style.marginLeft = '0px';
+    document.getElementById('text2').style.marginRight = '0px';
+    this.content.resize();
     this.content.ionScroll.subscribe(($e) => {
+      if($e.scrollTop <= 74 ){
+        document.getElementById('header').style.height = (130 - $e.scrollTop).toString() + 'px';
+        document.getElementById('contentC').style.marginTop = document.getElementById('header').style.height;
+        document.getElementById('firstC').style.display = '-webkit-box';
+        document.getElementById('text1').style.marginLeft = (-(($e.scrollTop)/74)*430).toString() + 'px';
+        document.getElementById('text2').style.marginRight = (-(($e.scrollTop)/74)*430).toString() + 'px';
+      }else{
+        document.getElementById('header').style.height = '56px';
+        document.getElementById('contentC').style.marginTop = document.getElementById('header').style.height;
+        document.getElementById('text1').style.marginLeft = '-900px';
+        document.getElementById('text2').style.marginRight = '-900px';
+        document.getElementById('firstC').style.display = 'none';
+      }
+    
+      
       this.zone.run(() => {
         console.log($e);
-        this.scrollAmount++
-
-        document.getElementById('page-header').style.opacity = (1 - $e.scrollTop / 120).toString();
-        document.getElementById('header-bg').style.backgroundSize = (100 + $e.scrollTop).toString() + '%';
-        document.getElementById('main-header').style.background = "rgba(238,91,95," + ($e.scrollTop / 120) + ")";
-        console.log("If");
+        this.scrollAmount++;
+        //document.getElementById('header').style.height = 
+        //document.getElementById('page-header').style.opacity = (1 - $e.scrollTop / 120).toString();
+        //document.getElementById('header-bg').style.backgroundSize = (100 + $e.scrollTop).toString() + '%';
+       // document.getElementById('main-header').style.background = "rgba(238,91,95," + ($e.scrollTop / 120) + ")";
+       // console.log("If");
 
       });
 
@@ -112,14 +144,15 @@ export class ShopPage {
         console.log($e);
         this.scrollAmount++
         if ($e.scrollTop <= 130) {
-          document.getElementById('page-header').style.opacity = (1 - $e.scrollTop / 120).toString();
-          document.getElementById('header-bg').style.backgroundSize = (100 + $e.scrollTop).toString() + '%';
-          document.getElementById('main-header').style.background = "rgba(238,91,95," + ($e.scrollTop / 120) + ")";
-          console.log("If");
+          //document.getElementById('page-header').style.opacity = (1 - $e.scrollTop / 120).toString();
+          //document.getElementById('header-bg').style.backgroundSize = (100 + $e.scrollTop).toString() + '%';
+          //document.getElementById('main-header').style.background = "rgba(238,91,95," + ($e.scrollTop / 120) + ")";
+//console.log("If");
 
         }
       });
     });
+    
 
   }
 
@@ -298,13 +331,12 @@ export class ShopPage {
     })
   }
   myHeaderFn(record, recordIndex, records) {
-    console.log(recordIndex);
-
     if (recordIndex == 0) {
       return records[recordIndex].menu;
     } else {
       if (records[recordIndex].menu != records[recordIndex - 1].menu) {
-        return records[recordIndex].menu
+
+        return records[recordIndex].menu;
       }
       return null;
     }
@@ -324,5 +356,20 @@ export class ShopPage {
       this.cartLenght += product.cant;
     })
   }
-  
+  toogleSearch(){
+    this.content.scrollToTop().then(()=>{
+      this.showSearchBar = !this.showSearchBar;
+      if(this.showSearchBar){
+        setTimeout(() => {
+          this.searchInput.setFocus();
+          this.keyboard.show();
+        }, 300);
+      }else{
+        setTimeout(() => {
+          this.keyboard.close();
+        }, 300);
+      }
+      
+    })
+  }
 }

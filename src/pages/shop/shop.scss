@@ -2,12 +2,13 @@ page-shop {
     ion-header{
         transition:all 0.5s ease 0s;
         background:rgba($main,0);
+        box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 20px 0 rgba(0, 0, 0, 0.19)  !important;
         &:after{
             content:none !important;
         }
         .toolbar-background{
             background:rgba($main,0) !important;
-            border:none !important;
+           // border:none !important;
         }
         
         .searchbar-input-container{
@@ -18,9 +19,18 @@ page-shop {
                 background: #ffffff !important;
             }
         }
-        ion-title{
+        /*ion-title{
             padding:5px 0px 10px 5px !important;
-        }
+        }*/
+        ion-title {
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 0 90px 1px;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+          }
     }
     .scroll-content{
         margin-top: 0px !important;
@@ -80,7 +90,7 @@ page-shop {
         text-align: center !important;
     }
     .toolbar-title-md{
-        font-family: 'Trueno' !important;
+        font-family: 'Proxima Nova' !important;
         color: #FFFFFF !important;
     }
     .item-md.item-block .item-inner{
@@ -309,4 +319,59 @@ page-shop {
         text-align: right;
         margin-right: 2em;
     }
+    #header{
+        background-size: cover !important;
+        background-position: center !important;
+    }
+    #firstC{
+        text-align: center !important;
+        font-size: 0.7em !important;
+        margin-top: -20px !important;
+    }
+    .itemList{
+        border-bottom: solid 1.5px #ecede9
+    }
+    .textInf{
+        font-family: 'Proxima Nova';
+        color: #FFFFFF;
+        font-size: 1.2em;
+        border: solid 2px #FFFFFF !important;
+        padding: 0.2em 0.5em;
+        border-radius: 0.3em;
+    }
+    .marginS{
+        margin-top: 5px;
+    }
+    .marginB{
+        margin-top: 20px;
+    }
+    ion-segment {
+        display: block;
+        overflow-x: scroll;
+        white-space: nowrap;
+        font-family: 'proxima_nova_altbold';
+  
+        ion-segment-button.segment-button {
+          display: inline-block;
+          width: auto;
+          text-transform: capitalize !important;
+          text-decoration: none;
+          font-size: 1.5rem !important;
+        }
+      }
+      .segment-md .segment-button.segment-activated{
+        border-color: #21c48a !important;
+        color: black;
+      }
+      .segment-md .segment-button{
+          color: #b1b2b3;
+          opacity: 1;
+          height: 56px;
+          padding-top: 10px;
+      }
+      .scrollable-segments{
+        padding: 0px;
+        min-height: 0 !important;
+        background-color: #f9f9fa;
+      }
 }

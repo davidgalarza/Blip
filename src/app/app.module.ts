@@ -26,7 +26,8 @@ import { Firebase } from '@ionic-native/firebase'
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { IonicStorageModule } from '@ionic/storage';
-import { Geolocation } from '@ionic-native/geolocation';
+import { Geolocation } from '@ionic-native/geolocation'
+import { Keyboard } from '@ionic-native/keyboard';;
 import { GoogleMaps } from '@ionic-native/google-maps';
 import { Geocoder} from '@ionic-native/google-maps';
 import { NativeGeocoder } from '@ionic-native/native-geocoder';
@@ -101,6 +102,7 @@ export const firebaseConfig = {
     HTTP,
     StorageProvider,
     Geolocation,
+    Keyboard,
     GoogleMaps,
     NativeGeocoder,
     Geocoder,

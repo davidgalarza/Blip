@@ -2,12 +2,13 @@ page-shop {
     ion-header{
         transition:all 0.5s ease 0s;
         background:rgba($main,0);
+        box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 20px 0 rgba(0, 0, 0, 0.19)  !important;
         &:after{
             content:none !important;
         }
         .toolbar-background{
             background:rgba($main,0) !important;
-            border:none !important;
+           // border:none !important;
         }
         
         .searchbar-input-container{
@@ -344,4 +345,33 @@ page-shop {
     .marginB{
         margin-top: 20px;
     }
+    ion-segment {
+        display: block;
+        overflow-x: scroll;
+        white-space: nowrap;
+        font-family: 'proxima_nova_altbold';
+  
+        ion-segment-button.segment-button {
+          display: inline-block;
+          width: auto;
+          text-transform: capitalize !important;
+          text-decoration: none;
+          font-size: 1.5rem !important;
+        }
+      }
+      .segment-md .segment-button.segment-activated{
+        border-color: #21c48a !important;
+        color: black;
+      }
+      .segment-md .segment-button{
+          color: #b1b2b3;
+          opacity: 1;
+          height: 56px;
+          padding-top: 10px;
+      }
+      .scrollable-segments{
+        padding: 0px;
+        min-height: 0 !important;
+        background-color: #f9f9fa;
+      }
 }

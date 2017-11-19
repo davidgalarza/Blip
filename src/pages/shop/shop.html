@@ -16,38 +16,40 @@
 </ion-header>
 -->
 
-<ion-header id="header" [ngStyle]="{'background': 'linear-gradient(
-  rgba(20,20,20, .5), 
-  rgba(20,20,20, .5)),' + 'url(' + shop.bannerUrl + ')'}">
-  <ion-navbar >
-    <ion-title style="width:100%">{{shop.name}}</ion-title>
-    <ion-buttons end>
-      <button (click)="toogleSearch()" ion-button icon-only>
-          <ion-icon *ngIf="showSearchBar" name="close"></ion-icon>
-        <ion-icon *ngIf="!showSearchBar" name="search"></ion-icon>
-      </button>
-    </ion-buttons>
-  </ion-navbar>
-  <ion-toolbar>
-        <ion-title style="width:100%" *ngIf="!showSearchBar" id="firstC">11:00 - 22:00</ion-title>
-        <div class="grid secondC" >
-          <div class="row">
-            <div *ngIf="!showSearchBar" class="marginB" col-3>
-              <span id="text1" class="textInf">2.00km</span>
-            </div>
-            <div *ngIf="!showSearchBar" class="marginB" col-6>
-
-            </div>
-            <div *ngIf="!showSearchBar" class="marginB" col-3>
-              <span id="text2" class="textInf priceS">$2.00</span>
-            </div>
-            <div *ngIf="showSearchBar" class="marginS" col-12>
-                <ion-searchbar [(ngModel)]="text" [showCancelButton]="shouldShowCancel" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)"
-                placeholder="Buscar Productos" #searchBar></ion-searchbar>
-            </div>
-          </div>
-        </div>
-  </ion-toolbar>
+<ion-header  shadown >
+  <div id="header" [ngStyle]="{'background': 'linear-gradient(
+    rgba(20,20,20, .5), 
+    rgba(20,20,20, .5)),' + 'url(' + shop.bannerUrl + ')'}">
+      <ion-navbar >
+          <ion-title style="width:100%">{{shop.name}}</ion-title>
+          <ion-buttons end>
+            <button (click)="toogleSearch()" ion-button icon-only>
+                <ion-icon *ngIf="showSearchBar" name="close"></ion-icon>
+              <ion-icon *ngIf="!showSearchBar" name="search"></ion-icon>
+            </button>
+          </ion-buttons>
+        </ion-navbar>
+        <ion-toolbar >
+              <ion-title style="width:100%" *ngIf="!showSearchBar" id="firstC">11:00 - 22:00</ion-title>
+              <div class="grid secondC" >
+                <div class="row">
+                  <div *ngIf="!showSearchBar" class="marginB" col-3>
+                    <span id="text1" class="textInf">{{distance.toFixed(2)}}km</span>
+                  </div>
+                  <div *ngIf="!showSearchBar" class="marginB" col-6>
+      
+                  </div>
+                  <div *ngIf="!showSearchBar" class="marginB" col-3>
+                    <span id="text2" class="textInf priceS">${{price.toFixed(2)}}</span>
+                  </div>
+                  <div *ngIf="showSearchBar" class="marginS" col-12>
+                      <ion-searchbar [(ngModel)]="text" [showCancelButton]="shouldShowCancel" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)"
+                      placeholder="Buscar Productos" #searchBar></ion-searchbar>
+                  </div>
+                </div>
+              </div>
+        </ion-toolbar>
+  </div>
 
 </ion-header>
 
@@ -142,7 +144,7 @@
   </ion-row>
   <div style="height:100%">
     <ion-list [virtualScroll]="products" [headerFn]="myHeaderFn" [approxItemHeight]=" '50px'" bufferRatio="2">
-      <h3 *virtualHeader="let header" class="menuC">
+      <h3 *virtualHeader="let header;" [id]="header" class="menuC">
         {{ header }}
       </h3>
 

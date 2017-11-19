@@ -33,6 +33,12 @@ $segment-button-md-text-color-activated: #FFFFFF;
         font-style: normal;
     }
     @font-face {
+        font-family: 'BebasNeue';
+        src: url('../assets/fonts/proxima/BebasNeue-Bold.ttf');
+        font-weight: normal;
+        font-style: normal;
+    }
+    @font-face {
         font-family: 'proxima_nova_altbold';
         src: url('../assets/fonts/proxima/ProximaNova-Bold.otf');
         font-weight: normal;

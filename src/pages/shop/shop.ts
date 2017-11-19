@@ -1,7 +1,7 @@
 import { Component, ViewChild,  NgZone } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, AlertController, ToastController } from 'ionic-angular';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Content, Platform, Searchbar } from 'ionic-angular';
+import { Content, Platform, Searchbar, Segment } from 'ionic-angular';
 import { DatabaseProvider } from '../../providers/database/database';
 import { ShopFunctionsProvider } from '../../providers/shop-functions/shop-functions';
 import { AlgoliaProvider } from '../../providers/algolia/algolia';
@@ -30,6 +30,8 @@ import { Keyboard } from '@ionic-native/keyboard';
 export class ShopPage {
   @ViewChild(Content) content: Content;
   @ViewChild('searchBar') searchInput: Searchbar;
+  @ViewChild(Segment)
+  private segment: Segment;
   zone: NgZone;
   shop: any = {};
   results: Array<any> = [];
@@ -50,6 +52,7 @@ export class ShopPage {
   holders = [1, 2, 3, 4, 5, 6];
   showHolders = true;
   showSearchBar: boolean = false;
+  ids;
   public scrollAmount = 0;
   constructor(private _sanitizer: DomSanitizer, public navCtrl: NavController, public navParams: NavParams, public db: DatabaseProvider, public modalCtrl: ModalController, public alert: AlertController, public algolia: AlgoliaProvider, public shopF: ShopFunctionsProvider, public storage: StorageProvider, public platform: Platform, private firebase: Firebase, public toastCtrl: ToastController, public auth: AuthProvider, private keyboard: Keyboard) {
     this.zone = new NgZone({ enableLongStackTrace: false });
@@ -79,7 +82,7 @@ export class ShopPage {
           });
         });
       });
-
+      this.ids = 0;
       this.db.getProducts(this.shopId).subscribe(snap => {
         this.products = snap;
         console.log("Productos", snap);
@@ -87,11 +90,16 @@ export class ShopPage {
           this.showHolders = false;
           this.menus = menus;
           console.log("Menus", menus);
+          setTimeout(() => {
+            if (this.segment) {
+                this.segment.ngAfterContentInit();
+                console.log("Entra segment");
+            }
+        },1000);
         });
       });
 
     });
-
   }
 
 
@@ -323,13 +331,12 @@ export class ShopPage {
     })
   }
   myHeaderFn(record, recordIndex, records) {
-    console.log(recordIndex);
-
     if (recordIndex == 0) {
       return records[recordIndex].menu;
     } else {
       if (records[recordIndex].menu != records[recordIndex - 1].menu) {
-        return records[recordIndex].menu
+
+        return records[recordIndex].menu;
       }
       return null;
     }
@@ -365,6 +372,4 @@ export class ShopPage {
       
     })
   }
-
-  
 }

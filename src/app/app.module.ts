@@ -16,6 +16,9 @@ import { CartPageModule } from '../pages/cart/cart.module';
 import { CustomPageModule } from '../pages/custom/custom.module';
 import { TrakingPageModule } from '../pages/traking/traking.module';
 import { OrdersPageModule } from '../pages/orders/orders.module';
+import { ReferPageModule } from '../pages/refer/refer.module';
+import { RefsTermsPageModule } from '../pages/refs-terms/refs-terms.module';
+import { CreditsPageModule } from '../pages/credits/credits.module';
 // Import AngularFire Library
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -27,8 +30,9 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { IonicStorageModule } from '@ionic/storage';
 import { Geolocation } from '@ionic-native/geolocation'
-import { Keyboard } from '@ionic-native/keyboard';;
+import { Keyboard } from '@ionic-native/keyboard';
 import { GoogleMaps } from '@ionic-native/google-maps';
+import { SocialSharing } from '@ionic-native/social-sharing';
 import { Geocoder} from '@ionic-native/google-maps';
 import { NativeGeocoder } from '@ionic-native/native-geocoder';
 import { HTTP } from '@ionic-native/http';
@@ -82,6 +86,9 @@ export const firebaseConfig = {
     CustomPageModule,
     TrakingPageModule,
     OrdersPageModule,
+    ReferPageModule,
+    RefsTermsPageModule,
+    CreditsPageModule,
     HttpModule,
     IonicStorageModule.forRoot({
       name: '__mydb',
@@ -103,6 +110,7 @@ export const firebaseConfig = {
     StorageProvider,
     Geolocation,
     Keyboard,
+    SocialSharing,
     GoogleMaps,
     NativeGeocoder,
     Geocoder,

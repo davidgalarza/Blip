@@ -56,8 +56,8 @@ export class ShopPage {
   public scrollAmount = 0;
   constructor(private _sanitizer: DomSanitizer, public navCtrl: NavController, public navParams: NavParams, public db: DatabaseProvider, public modalCtrl: ModalController, public alert: AlertController, public algolia: AlgoliaProvider, public shopF: ShopFunctionsProvider, public storage: StorageProvider, public platform: Platform, private firebase: Firebase, public toastCtrl: ToastController, public auth: AuthProvider, private keyboard: Keyboard) {
     this.zone = new NgZone({ enableLongStackTrace: false });
-    //this.shopId = this.navParams.get('shopId');
-    this.shopId = 'HXNrxb1G1fYjx0dh6nQAoPzpEkg2';
+    this.shopId = this.navParams.get('shopId');
+    //this.shopId = 'HXNrxb1G1fYjx0dh6nQAoPzpEkg2';
     //this.isOpen = this.navParams.get('isOpen');
     
     this.shopName = this.navParams.get('name');

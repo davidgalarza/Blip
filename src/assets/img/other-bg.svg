@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="113px" height="113px" viewBox="0 0 113 113" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
+    <title>Untitled</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="file" transform="translate(0.000000, 1.000000)" fill="#E3E3E3">
+            <path d="M56.018,112.037 C25.078,112.037 0,86.957 0,56.018 C0,25.08 25.078,0 56.018,0 C86.956,0 112.036,25.08 112.036,56.018 C112.036,86.957 86.956,112.037 56.018,112.037 Z" id="Fill-12"></path>
+        </g>
+        <g id="ellipsis" transform="translate(31.000000, 43.000000)" fill-rule="nonzero" fill="#000000">
+            <path d="M6.375,0 C2.86875,0 0,2.925 0,6.5 C0,10.075 2.86875,13 6.375,13 C9.88125,13 12.75,10.075 12.75,6.5 C12.75,2.925 9.88125,0 6.375,0 Z M44.625,0 C41.11875,0 38.25,2.925 38.25,6.5 C38.25,10.075 41.11875,13 44.625,13 C48.13125,13 51,10.075 51,6.5 C51,2.925 48.13125,0 44.625,0 Z M25.5,0 C21.99375,0 19.125,2.925 19.125,6.5 C19.125,10.075 21.99375,13 25.5,13 C29.00625,13 31.875,10.075 31.875,6.5 C31.875,2.925 29.00625,0 25.5,0 Z" id="Shape"></path>
+        </g>
+        <text id="Otros" font-family="ProximaNovaA-Regular, Proxima Nova Alt" font-size="22" font-weight="normal" letter-spacing="0.0698499978" fill="#000000">
+            <tspan x="30" y="77">Otros</tspan>
+        </text>
+    </g>
+</svg>

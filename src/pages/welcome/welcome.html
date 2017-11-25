@@ -1,27 +1,31 @@
 <ion-header>
   <ion-toolbar class="headerI">
     <h2 class="initS">Iniciar sesión</h2>
+    <div *ngIf="gift != 0 && gift != undefined && gift != null" class="promo">
+      <h6>Gratis
+        <br>${{gift.toFixed(2)}}</h6>
+    </div>
   </ion-toolbar>
+
 </ion-header>
 <ion-content padding>
+
   <div class="formG">
-      <ion-item class="marB">
-          <ion-label color="primary" floating>Nombre</ion-label>
-          <ion-input [(ngModel)]="name"></ion-input>
-        </ion-item>
-    <button ion-button full  large icon-start class="buttonA" (click)="loginPhone()">
-        <ion-icon name="phone-portrait"></ion-icon>
-        Ingresa con tu Celular
+    <ion-item class="marB">
+      <ion-label color="primary" floating>Nombre</ion-label>
+      <ion-input [(ngModel)]="name"></ion-input>
+    </ion-item>
+    <button ion-button full large icon-start class="buttonA" (click)="loginPhone()">
+      <ion-icon name="phone-portrait"></ion-icon>
+      Ingresa con tu Celular
     </button>
     <ion-item class="marT withoutB">
-        <ion-label>Acepto los términos y condiciones</ion-label>
-        <ion-checkbox [(ngModel)]="acceptedTerms" checked="true"></ion-checkbox>
-      </ion-item>
+      <ion-label>Acepto los términos y condiciones</ion-label>
+      <ion-checkbox [(ngModel)]="acceptedTerms" checked="true"></ion-checkbox>
+    </ion-item>
   </div>
   <div class="questionC">
     <p>¿Quieres iniciar sesión despues?</p>
     <p class="continueWT" (click)="pushWherePage()">Haz click aqui</p>
   </div>
 </ion-content>
-
-

@@ -1,0 +1,58 @@
+<!--
+  Generated template for the ReferPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Refiere y Gana</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+<div id="imgC">
+  <h3 class="textI">Comparte $6.00 <br/> y Gana $4.00</h3>
+</div>
+<div class="shareC">
+  <div class="shareB" (click)="shareViaFacebook()">
+    <img class="iconS" src="/assets/img/facebook.svg" alt="">
+  </div>
+  <div class="shareB">
+      <img class="iconS" (click)="shareViaWhatsApp()" src="/assets/img/whatsapp.svg" alt="">
+  </div>
+  <div class="shareB">
+      <img class="iconS" (click)="shareSheet()" src="/assets/img/ellipsis.svg" alt="">
+  </div>
+  
+  <p class="termsT" (click)="pushTerms()">Ver terminos y condiciones ></p>
+</div>
+<div class="earnsC">
+  <img src="assets/img/giftbox.svg" class="giftI" alt="">
+  <h4 class="giftT">Has ganado: ${{rewards.toFixed(2)}} </h4>
+</div>
+<div class="referralsC">
+    <h6>Tus Referidos</h6>
+    <div class="grid">
+      <div class="row">
+        <div col-9>
+          <p>David Galarza</p>
+        </div>
+        <div col-3>
+          <p>+ $4.00</p>
+        </div>
+      </div>
+      <div class="row">
+          <div col-9>
+            <p>Rodrigo</p>
+          </div>
+          <div col-3>
+            <p>+ $4.00</p>
+          </div>
+        </div>
+    </div>
+</div>
+</ion-content>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, ToastController, MenuController } from 'ionic-angular';
+import { Platform, IonicPage, NavController, NavParams, LoadingController, ToastController, MenuController } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 import { DatabaseProvider } from '../../providers/database/database';
 import { WherePage } from '../../pages/where/where';
@@ -21,7 +21,8 @@ export class WelcomePage {
   acceptedTerms: boolean = true;
   name: string = "";
   message: string;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public auth: AuthProvider, private http: HTTP, public db: DatabaseProvider, public load: LoadingController,  private firebase: Firebase,  public toastCtrl: ToastController, public menu: MenuController) {
+  gift:number; 
+  constructor(private platform: Platform,public navCtrl: NavController, public navParams: NavParams, public auth: AuthProvider, private http: HTTP, public db: DatabaseProvider, public load: LoadingController,  private firebase: Firebase,  public toastCtrl: ToastController, public menu: MenuController) {
 
         this.menu.enable(false);
 
@@ -41,10 +42,24 @@ export class WelcomePage {
     
       toast.present();
     }
+    
+
+    
   }
 
   ionViewDidLoad() {
+
     console.log('ionViewDidLoad WelcomePage');
+    this.platform.ready().then(()=>{
+      const Branch = window['Branch'];
+      Branch.initSession(data => {
+        if (data['+clicked_branch_link']) {
+          // read deep link data on click
+          console.log('Deep Link Data: ' + JSON.stringify(data));
+          this.gift = Number(data.gift);
+        }
+      });
+    });
   }
   pushWherePage(){
     console.log("click");
@@ -67,6 +82,10 @@ export class WelcomePage {
       this.http.get('https://us-central1-atiempo-5533e.cloudfunctions.net/getCustomToken?access_token='+info.token,{},{}).then((data)=>{
        this.auth.signinWithToken(data.data).then((ss)=>{
          (<any>window).AccountKitPlugin.getAccount(user=>{
+           this.auth.getAuth().currentUser.updateProfile({
+            displayName: this.name,
+            photoURL: ''
+          });
           this.db.createFirstUserData(ss.uid, user.phoneNumber, this.name).then(ss=>{
             this.firebase.setUserId(this.auth.getUser().uid).then(user=>{
               console.log(user);

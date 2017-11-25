@@ -10,7 +10,8 @@ import { WherePage } from '../pages/where/where';
 import { ShopPage } from '../pages/shop/shop';
 import { OrdersPage } from '../pages/orders/orders';
 import { AddDirectionPage } from '../pages/add-direction/add-direction';
-
+import { ReferPage } from '../pages/refer/refer';
+import { CreditsPage } from '../pages/credits/credits';
 
 //declare var handleBranch;
 
@@ -32,6 +33,7 @@ export class MyApp {
     this.pages = [
       { title: 'Inicio', component: HomePage, icon:'md-planet' },
       { title: 'Pedidos activos', component: OrdersPage, icon:'md-list' },
+      { title: 'Gana $$', component: ReferPage, icon:'star' },
       {title: 'Cerrar sesión', component: null, icon:'md-log-out'}
     ];
     this.platform.ready().then(() => { 
@@ -50,13 +52,24 @@ export class MyApp {
       Branch.initSession(data => {
         if (data['+clicked_branch_link']) {
           // read deep link data on click
-          alert('Deep Link Data: ' + JSON.stringify(data));
+          console.log('Deep Link Data: ' + JSON.stringify(data));
         }
       });
       Branch.setDebug(true);
+      this.auth.getAuth().onAuthStateChanged((user) => {
+        if(user){
+          console.log(user.uid)
+          Branch.setIdentity(user.uid).then(function (res) {
+            console.log('Response: ' + JSON.stringify(res))
+          }).catch(function (err) {
+            console.log('Error: ' + err.message)
+          })
+        }
+      })
     }
     this.auth.getAuth().onAuthStateChanged((user) => {
       if(user){
+
         this.db.getUserName(user.uid).subscribe(us=>{
           this.userName = us.name;
         })
@@ -77,13 +90,13 @@ export class MyApp {
           this.rootPage = WherePage;
           unsubscribe();
         }
-      }); 
+      });
       /*this.zone.run( () => {
         if (!user) {
-          this.rootPage = ShopPage;
+          this.rootPage = ReferPage;
           unsubscribe();
         } else { 
-          this.rootPage = ShopPage;
+          this.rootPage = ReferPage;
           unsubscribe();
         }
       });*/
@@ -108,5 +121,8 @@ export class MyApp {
       // redirect to home
       this.nav.setRoot(WelcomePage);
   }
+  }
+  pushCreditsPage(){
+      this.nav.setRoot(CreditsPage);
   }
 }

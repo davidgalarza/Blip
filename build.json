@@ -1,13 +1,12 @@
 {
-    "ios": {
-      "debug": {
-        "developmentTeam": "L84R9VU4JF"
-      },
-  
-      "release": {
-        "developmentTeam": "L84R9VU4JF",
-        "codeSignIdentity": "iPhone Developer",
-        "packageType": "ad-hoc"
-      }
+  "ios": {
+    "debug": {
+      "developmentTeam": "L84R9VU4JF"
+    },
+    "release": {
+      "developmentTeam": "L84R9VU4JF",
+      "codeSignIdentity": "iPhone Developer",
+      "packageType": "ad-hoc"
     }
   }
+}

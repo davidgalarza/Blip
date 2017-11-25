@@ -1,0 +1,26 @@
+page-refs-terms {
+    ion-header{
+        z-index: inherit;  // desapear the header shadown
+        text-align: center;
+    }
+    .header-md::after{
+        background-image: none;
+    }
+    .titleI{
+        font-size: 2.5em;
+        color: #21c48a;
+        font-family: 'proxima_nova_altbold' !important;
+    }
+    .termsI{
+        font-family: 'Proxima Nova' !important;
+        font-size: 1.5em;
+    }
+    .iconS{
+        width: 7em;
+        margin: 0px 0.3em;
+    }
+    .shareC{
+        text-align: center;
+        margin-top: 5em;
+    }
+}

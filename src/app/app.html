@@ -11,12 +11,26 @@
   <ion-content class="sidemenuC">
       <ion-list>
           <ion-item>
-            <ion-thumbnail item-start>
-              <img src="assets/img/profile.svg">
+            <ion-thumbnail id="profileT" item-start>
+              <img id="profileI" src="assets/img/profile.svg">
             </ion-thumbnail>
-            <h2 class="itemSide">{{userName}}</h2>
+            <h2 class="itemSide userName">{{userName}}</h2>
             <p>  <ion-icon name="settings"></ion-icon>  Ajustes de cuenta</p>
           </ion-item>
+          <ion-item menuClose (click)="pushCreditsPage()">
+              <div id="creditsR" class="row" >
+                  <div col-4>
+                    <span>Blipcrédito</span> 
+                  </div>
+                  <div col-4>
+                      
+                    </div>
+                  <div style="text-align:right;" col-4>
+                       <span id="credits">$0   <ion-icon style="color: #ed5a5f" name="ios-arrow-forward-outline"></ion-icon></span> 
+                  </div>
+                </div>
+          </ion-item>
+          
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)" class="itemSide">
         <ion-icon item-left [name]="p.icon" class="iconMenu"></ion-icon>
         {{p.title}}

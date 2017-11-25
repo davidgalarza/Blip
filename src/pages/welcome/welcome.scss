@@ -96,4 +96,17 @@ page-welcome {
     .item.item-md .checkbox-md{
         margin: 9px 15px 9px 4px !important;
     }
+    .promo{
+        position: absolute;
+        top: 1em;
+        left: 1em;
+        background-color: #00a083;
+        color: #FFFFFF;
+        width: 5em;
+        height: 5em;
+        border-radius: 5em;
+        font-family: 'proxima_nova_altbold';
+        font-size: 1.5;
+        border-style: dashed
+    }
 }

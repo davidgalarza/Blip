@@ -2,6 +2,7 @@ page-list {
     ion-header{
         z-index: inherit;  // desapear the header shadown
         text-align: center;
+        font-family: 'Proxima Nova' !important;
     }
     .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before,
     .header-ios::after, .tabs-ios[tabsPlacement="top"] > .tabbar::after, .footer-ios::before, .tabs-ioså[tabsPlacement="bottom"] > .tabbar::before{

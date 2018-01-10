@@ -9,6 +9,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { StorageProvider } from '../../providers/storage/storage';
 import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult } from '@ionic-native/native-geocoder';
 import { LatLng, Geocoder } from '@ionic-native/google-maps';
+import { ReferPage } from '../../pages/refer/refer';
 
 @Component({
   selector: 'page-home',
@@ -69,7 +70,7 @@ export class HomePage {
     this.firebase.logEvent('page_view', {page: "home"})
     .then((res: any) => console.log(res))
     .catch((error: any) => console.error(error));
-
+    this.menu.enable(true);
   }
   pushCategory(category: string, display_name: string, search:  boolean){
     console.log(category);
@@ -92,5 +93,8 @@ export class HomePage {
         });
       }
     });
+  }
+  pushReferPage(){
+    this.navCtrl.push(ReferPage);
   }
 }

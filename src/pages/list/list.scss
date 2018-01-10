@@ -6,11 +6,34 @@ page-list {
     }
     .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before,
     .header-ios::after, .tabs-ios[tabsPlacement="top"] > .tabbar::after, .footer-ios::before, .tabs-ioså[tabsPlacement="bottom"] > .tabbar::before{
-        background-image: none;
+        //background-image: none;
     }
-    .toolbar-title-md{
-        text-align: -webkit-right;
-    }
+    .back-button.show-back-button {
+        z-index: 9999;
+        display: inline-block;
+        }
+
+        .toolbar {
+            &.toolbar-md { //material design only
+                &.home-nav {
+                    position: relative;
+                    .title-md { //material design only
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        height: 100%;
+                        width: 100%;
+                        text-align: center !important;
+                    }
+                }
+            }
+        }
+        ion-header ion-icon.back-button-icon.icon {
+            color: #21c48a
+        }
+        .toolbar-title-md{
+            color: #21c48a !important 
+        }
     h2,h1{
         font-family: 'proxima_nova_altbold' !important;
     }
@@ -18,17 +41,18 @@ page-list {
         font-family: 'Proxima Nova' !important;
     }
     .toolbar-background-md, .toolbar-background-ios{
-        background-color: $main;
+        //background-color: $main;
     }
     .searchbar-md, .searchbar-ios {
-        background-color: $main;
+       // background-color: $main;
     }
     .toolbar-title{
         color: #FFFFFF;
     }
     .searchbar-md .searchbar-input, .searchbar-ios .searchbar-input{
-        background-color: #FFFFFF;
+        background-color: #F7F7F7;
         box-shadow: none !important;
+        border-radius: 0.3em;
     }
     .imgC{
         width: 100%;
@@ -37,6 +61,8 @@ page-list {
         background-size: cover !important;
         -moz-background-size: cover !important;  /* Firefox 3.6 */
         background-position: center !important;  
+        -webkit-box-shadow:  0px 6px 10px 0px  #ccc !important;
+        box-shadow: 0px 6px 10px 0px #ccc !important;
     }
     .commerce_name{
         font-size: 1.3em;

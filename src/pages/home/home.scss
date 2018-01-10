@@ -1,7 +1,6 @@
 page-home {
     ion-header{
         z-index: inherit;  // desapear the header shadown
-        text-align: center;
         font-family: 'Proxima Nova' !important;
     }
     .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before{
@@ -67,7 +66,8 @@ page-home {
         height: 100%;
         border-radius: 0.4em;
         padding: 0px !important;
-
+        -webkit-box-shadow:  0px 6px 10px 0px  #ccc !important;
+        box-shadow: 0px 6px 10px 0px #ccc !important;
         margin: 0;
         position: absolute;
 
@@ -100,7 +100,6 @@ page-home {
       }
       .toolbar-title-ios, .toolbar-title-md{
           color: $green2;
-          text-align: right;
       }
       .motivationT{
           text-align: center;
@@ -114,4 +113,61 @@ page-home {
           width: 1.2em;
           vertical-align: sub !important;
       }
+      .shareC{
+        background: no-repeat url('../assets/img/referralcode.png') 50% / 100%;
+        border-radius: 0.4em;
+        -webkit-box-shadow:  0px 6px 10px 0px  #ccc !important;
+        box-shadow: 0px 6px 10px 0px #ccc !important;
+      }
+      .shareC img{
+        vertical-align: top;
+        width: 100%; /* max width */
+        opacity: 0;  /* make it transparent */
+        height: 0px !important;
+        display: table;
+
+    }
+    .shareT{
+        margin: 0px;
+        color: #8486A7;
+    }
+    .shareV{
+        margin: 0px;
+        font-family: 'proxima_nova_altbold' !important;
+        color: #8486A7;
+
+    }
+    .shereB p{
+        background-color: #FFFFFF;
+        //margin: 0px 0.5em;
+        padding: 0.4em;
+        border-radius: 0.3em; 
+        color: #8B91CE;
+    }
+    .back-button.show-back-button {
+        z-index: 9999;
+        display: inline-block;
+        }
+
+        .toolbar {
+            &.toolbar-md { //material design only
+                &.home-nav {
+                    position: relative;
+                    .title-md { //material design only
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        height: 100%;
+                        width: 100%;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+        ion-header ion-icon.back-button-icon.icon {
+            color: #21c48a
+        }
+        .toolbar-title-md{
+            color: #21c48a !important 
+        }
 }

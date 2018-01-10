@@ -50,6 +50,7 @@ import { GeofireProvider } from '../providers/geofire/geofire';
 import { AlgoliaProvider } from '../providers/algolia/algolia';
 
 
+
 // Components
 
 // Firebase credentials      
@@ -120,7 +121,7 @@ export const firebaseConfig = {
     ShopFunctionsProvider,
     GeofireProvider,
     AlgoliaProvider,
-    Scroll
+    Scroll,
   ]
 })
 export class AppModule {}

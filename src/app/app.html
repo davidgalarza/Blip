@@ -2,7 +2,7 @@
   <ion-header>
     <ion-toolbar>
         <div class="headerC">
-            <img src="assets/img/BlipRed.png" alt="logoB" class="logoH">
+            <img src="assets/img/logo-2.png" alt="logoB" class="logoH">
         </div>
     </ion-toolbar>
    
@@ -12,7 +12,7 @@
       <ion-list>
           <ion-item>
             <ion-thumbnail id="profileT" item-start>
-              <img id="profileI" src="assets/img/profile.svg">
+              <img id="profileI" src="assets/img/avatar.png">
             </ion-thumbnail>
             <h2 class="itemSide userName">{{userName}}</h2>
             <p>  <ion-icon name="settings"></ion-icon>  Ajustes de cuenta</p>
@@ -26,7 +26,7 @@
                       
                     </div>
                   <div style="text-align:right;" col-4>
-                       <span id="credits">$0   <ion-icon style="color: #ed5a5f" name="ios-arrow-forward-outline"></ion-icon></span> 
+                       <span id="credits">${{rewards.toFixed(2)}}   <ion-icon style="color: #ed5a5f" name="ios-arrow-forward-outline"></ion-icon></span> 
                   </div>
                 </div>
           </ion-item>

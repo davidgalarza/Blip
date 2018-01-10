@@ -22,7 +22,7 @@ export class AlgoliaProvider {
       return shop.search({
         query: text,
         aroundLatLng: lat.toString() + ',' + lng.toString(),
-        aroundRadius: 4000
+        aroundRadius: 3500
       });
   }
   serchProducts(text: string, uid: string){

@@ -3,24 +3,46 @@ page-orders {
         z-index: inherit;  // desapear the header shadown
         text-align: center;
     }
-    .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before{
-        background-image: none;
-    }
+    .back-button.show-back-button {
+        z-index: 9999;
+        display: inline-block;
+        }
+
+        .toolbar {
+            &.toolbar-md { //material design only
+                &.home-nav {
+                    position: relative;
+                    .title-md { //material design only
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        height: 100%;
+                        width: 100%;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+        ion-header ion-icon.back-button-icon.icon {
+            color: #21c48a
+        }
+        .toolbar-title-md{
+            color: #21c48a !important 
+        }
     .toolbar-title-md{
-        text-align: right;
         color: #ffffff;
     }
     ion-navbar ion-icon{
         color: #ffffff;
     }
     h3,h4,h2,h1{
-        font-family: 'Trueno' !important;
+        font-family: 'Proxima Nova' !important;
     }
     p, input{
-        font-family: 'Nexa' !important;
+        font-family: 'Proxima Nova' !important;
     }
     .toolbar-background-md, .toolbar-background-ios{
-        background-color: $main;
+       // background-color: $main;
     }
     .item-md, .item-ios{
         border: solid 1px #DBDFE3;

@@ -1,7 +1,7 @@
 page-refer {
     ion-header{
         z-index: inherit;  // desapear the header shadown
-        text-align: center;
+       // text-align: center;
     }
 
     ion-title{
@@ -12,7 +12,7 @@ page-refer {
         background-image: none !important;
     }
     #imgC{
-        background-image: url('/assets/img/referral_banner.jpg');
+        background-image: url('../assets/img/refbanner.jpg');
         width: 100%;
         height: 33%;
         background-position: center;
@@ -65,4 +65,30 @@ page-refer {
         padding: 0px 1em;
         font-family: 'Proxima Nova' !important;
     }
+    .back-button.show-back-button {
+        z-index: 9999;
+        display: inline-block;
+        }
+
+        .toolbar {
+            &.toolbar-md { //material design only
+                &.home-nav {
+                    position: relative;
+                    .title-md { //material design only
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        height: 100%;
+                        width: 100%;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+        ion-header ion-icon.back-button-icon.icon {
+            color: #21c48a
+        }
+        .toolbar-title-md{
+            color: #21c48a !important 
+        }
 }

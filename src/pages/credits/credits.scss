@@ -1,3 +1,80 @@
 page-credits {
+    ion-header{
+        z-index: inherit;  // desapear the header shadown
+        //text-align: center;
+    }
 
+    ion-title{
+        font-family: 'Proxima Nova' !important;
+        font-weight: bold;
+        color: #21c48a !important
+        
+    }
+    .toolbar-title-md{
+        color: #21c48a !important 
+    }
+    .containerC{
+        background-color: #21c48a !important;
+        height: 33%;
+        text-align: center;
+        margin: 0;
+        padding: 1em
+    }
+    .text1{
+        color: #ffffff;
+        font-family: 'Proxima Nova' !important;
+        margin-top: 0px;
+        font-size: 1.3em
+    }
+    .creditsT{
+        font-family: 'proxima_nova_altbold' !important;
+        color: #ffffff;
+        font-size: 3em
+    }
+    .text2{
+        color: #ffffff;
+        font-family: 'Proxima Nova' !important;
+    }
+    .historyT{
+        font-family: 'proxima_nova_altbold' !important;
+    }
+    .historyC{
+        padding-left: 6px;
+        padding-right: 6px;
+    }
+    .ctaT{
+        font-family: 'proxima_nova_altbold' !important;
+    }
+    .ctaD{
+        font-family: 'Proxima Nova' !important;
+    }
+    .textT{
+        font-family: 'Proxima Nova' !important;
+    }
+    .amountC{
+        text-align: center
+    }
+    .back-button.show-back-button {
+        z-index: 9999;
+        display: inline-block;
+        }
+
+        .toolbar {
+            &.toolbar-md { //material design only
+                &.home-nav {
+                    position: relative;
+                    .title-md { //material design only
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        height: 100%;
+                        width: 100%;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+        ion-header ion-icon.back-button-icon.icon {
+            color: #21c48a
+        }
 }

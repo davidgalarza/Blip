@@ -4,11 +4,11 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
+<ion-header id="header">
 
-    <ion-navbar>
+    <ion-navbar class="home-nav" id="navbar">
         <ion-title>
-            <ion-icon ios="ios-pin-outline" md="ios-pin-outline" style="color: #FFFFFF;"></ion-icon> {{location.address}}</ion-title>
+            {{display_name}}</ion-title>
     </ion-navbar>
     <ion-searchbar [(ngModel)]="searchText" [showCancelButton]="shouldShowCancel" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)"
         placeholder="Buscar {{display_name}}" #myInput>
@@ -25,7 +25,8 @@
         <ion-row>
             <ion-col *ngFor="let shop of resultShopsOpen" (click)="pushCommerce(shop.commerceId, shop.isOpen, shop.name)" col-12>
                 <div class="imgC" [style.background]="getBackground(shop.bannerUrl)">
-                    <span class="price">${{shop.delivery_price.toFixed(2)}}</span>
+                    <span *ngIf="shop.delivery_price == 0" class="price">GRATIS</span>
+                    <span *ngIf="shop.delivery_price != 0" class="price">${{shop.delivery_price.toFixed(2)}}</span>
                     <h2 class="commerce_name">{{shop.name}}</h2>
                     <p class="commerce_description">{{shop.description}}</p>
                 </div>
@@ -68,7 +69,8 @@
         <ion-row>
             <ion-col *ngFor="let shop of orderCommerces(openShops)" (click)="pushCommerce(shop.commerceId, shop.isOpen, shop.name)" col-12>
                 <div class="imgC" [style.background]="getBackground(shop.bannerUrl)">
-                    <span class="price">${{shop.delivery_price.toFixed(2)}}</span>
+                    <span *ngIf="shop.delivery_price == 0" class="price">GRATIS</span>
+                    <span *ngIf="shop.delivery_price != 0" class="price">${{shop.delivery_price.toFixed(2)}}</span>
                     <h2 class="commerce_name">{{shop.name}}</h2>
                     <p class="commerce_description">{{shop.description}}</p>
                 </div>

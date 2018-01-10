@@ -39,6 +39,7 @@
     "firebase": "^4.3.0",
     "geofire": "^4.1.2",
     "ionic-angular": "3.6.0",
+    "ionic2-elastic-header": "0.0.10",
     "ionic2-rating": "^1.2.2",
     "ionicons": "3.0.0",
     "moment": "^2.18.1",

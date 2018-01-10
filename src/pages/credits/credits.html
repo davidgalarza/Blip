@@ -6,13 +6,39 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>credits</ion-title>
+  <ion-navbar  class="home-nav">
+    <ion-title>Blipcréditos</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+  <div class="containerC">
+    <p class="text1">Tus blipcréditos</p>
+    <h1 class="creditsT">${{rewards.toFixed(2)}}</h1>
+    <p class="text2"><ion-icon name="bulb"></ion-icon> ¿Cómo funciona?</p>
+  </div>
+  
+  <div class="historyC">
+    <div class="row">
+      <div col-3>
+        <img src="assets/img/ic_card_points.png" alt="">
+      </div>
+      <div col-9>
+        <h6 class="ctaT">Gana $4.00</h6>
+        <p class="ctaD">Comparte tu link y gana</p>
+      </div>
+    </div>
+      <h6 class="historyT">Historial</h6>
+      <div *ngFor="let transaction of transactions" class="row">
+        <div col-4>
+          <p class="textT">{{transaction.type}}</p>
+        </div>
+        <div col-8 class="amountC">
+            <p class="textT amountC">${{transaction.amount.toFixed(2)}}</p>
+        </div>
+      </div>
+  </div>
 
 </ion-content>

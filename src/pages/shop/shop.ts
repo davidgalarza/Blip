@@ -33,7 +33,7 @@ export class ShopPage {
   @ViewChild(Segment)
   private segment: Segment;
   zone: NgZone;
-  shop: any = {};
+  shop: any = { attention: [{}, {} , {} , {}, {}, {}, {}]};
   results: Array<any> = [];
   menus = [];
   products: Array<any> = [];
@@ -57,7 +57,7 @@ export class ShopPage {
   constructor(private _sanitizer: DomSanitizer, public navCtrl: NavController, public navParams: NavParams, public db: DatabaseProvider, public modalCtrl: ModalController, public alert: AlertController, public algolia: AlgoliaProvider, public shopF: ShopFunctionsProvider, public storage: StorageProvider, public platform: Platform, private firebase: Firebase, public toastCtrl: ToastController, public auth: AuthProvider, private keyboard: Keyboard) {
     this.zone = new NgZone({ enableLongStackTrace: false });
     this.shopId = this.navParams.get('shopId');
-    //this.shopId = 'HXNrxb1G1fYjx0dh6nQAoPzpEkg2';
+   // this.shopId = 'pUnWGehSlUgy0dkiaGRCUMXDTt13';
     //this.isOpen = this.navParams.get('isOpen');
     
     this.shopName = this.navParams.get('name');
@@ -75,10 +75,15 @@ export class ShopPage {
           this.shopF.geofire.distanceBetwen(this.shop.lat, this.shop.lng, location.lat, location.lng).then(dis => {
             let distance: any = dis
             this.distance = distance;
-            this.shopF.getDeliveryPrice(this.distance).then(pri => {
+            if (this.shop.own_transport) {
+              this.price = this.shop.delivery_price;
+            } else {
+              this.price = 1.75;
+            }
+            /*this.shopF.getDeliveryPrice(this.distance).then(pri => {
               let price: any = pri;
               this.price = price;
-            });
+            });*/
           });
         });
       });
@@ -100,6 +105,8 @@ export class ShopPage {
       });
 
     });
+
+    this.getDay();
   }
 
 
@@ -127,31 +134,9 @@ export class ShopPage {
       }
     
       
-      this.zone.run(() => {
-        console.log($e);
-        this.scrollAmount++;
-        //document.getElementById('header').style.height = 
-        //document.getElementById('page-header').style.opacity = (1 - $e.scrollTop / 120).toString();
-        //document.getElementById('header-bg').style.backgroundSize = (100 + $e.scrollTop).toString() + '%';
-       // document.getElementById('main-header').style.background = "rgba(238,91,95," + ($e.scrollTop / 120) + ")";
-       // console.log("If");
-
-      });
 
     });
-    this.content.ionScroll.subscribe(($e) => {
-      this.zone.run(() => {
-        console.log($e);
-        this.scrollAmount++
-        if ($e.scrollTop <= 130) {
-          //document.getElementById('page-header').style.opacity = (1 - $e.scrollTop / 120).toString();
-          //document.getElementById('header-bg').style.backgroundSize = (100 + $e.scrollTop).toString() + '%';
-          //document.getElementById('main-header').style.background = "rgba(238,91,95," + ($e.scrollTop / 120) + ")";
-//console.log("If");
-
-        }
-      });
-    });
+   
     
 
   }
@@ -322,10 +307,14 @@ export class ShopPage {
   }
 
   carT() {
-    this.navCtrl.push(CartPage, { cart: this.cart, commerce: this.shopId, personalized: false });
+    this.navCtrl.push(CartPage, { cart: this.cart, commerce: this.shopId, personalized: false }, {
+      animate: true,
+      direction: 'forward'
+
+    });
   }
   onInput(event) {
-    this.content.scrollTo(0, 216);
+    //this.content.scrollTo(0, 216);
     this.algolia.serchProducts(this.text, this.shopId).then(ss => {
       this.results = ss.hits;
     })
@@ -371,5 +360,10 @@ export class ShopPage {
       }
       
     })
+  }
+  getDay(): number{
+
+    return moment().day() - 1;
+    
   }
 }

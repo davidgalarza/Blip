@@ -1,8 +1,8 @@
 <ion-header>
-  <ion-navbar>
-      <button ion-button menuToggle (click)="verifyAuth()">
-          <ion-icon name="menu" ></ion-icon>
-        </button>
+  <ion-navbar  class="home-nav">
+    <button ion-button menuToggle (click)="verifyAuth()">
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>{{address}}</ion-title>
   </ion-navbar>
   <!--<ion-toolbar>
@@ -16,8 +16,10 @@
 
 <ion-content no-bounce>
   <ion-grid class="heightFull">
-    <p class="motivationT">Tu vida es más fácil con Blip <img id="emoji" src="assets/img/face.svg" alt=""></p>
-    
+    <p class="motivationT">Tu vida es más fácil con Blip
+      <img id="emoji" src="assets/img/face.svg" alt="">
+    </p>
+
     <ion-row class="heightFull">
       <ion-col *ngFor="let category of grid" (click)="pushCategory(category.name, category.display_name, false)" class="containerC"
         col-6 col-md-4>
@@ -29,6 +31,32 @@
         </div>
 
       </ion-col>
+      <ion-row>
+        <ion-col col-12>
+          <div class="shareC" (click)="pushReferPage()">
+
+            <img class="shareI" src="assets/img/referralcode.png" alt="gtytyu">
+            <ion-row>
+              <ion-col col-4>
+
+              </ion-col>
+              <ion-col col-4>
+                <p class="shareT">Refiere y
+                  <br> gana</p>
+                <p class="shareV">$4.00</p>
+              </ion-col>
+              <ion-col col-4>
+                <div class="shereB">
+                  <p>Compartir
+                    <ion-icon style="color: #ed5a5f" name="ios-arrow-forward-outline"></ion-icon>
+                  </p>
+                </div>
+              </ion-col>
+            </ion-row>
+          </div>
+        </ion-col>
+      </ion-row>
+
     </ion-row>
   </ion-grid>
 

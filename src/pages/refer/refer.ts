@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { RefsTermsPage } from '../refs-terms/refs-terms';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { AuthProvider } from '../../providers/auth/auth';
+import { DatabaseProvider } from '../../providers/database/database';
+import { transition } from '@angular/core/src/animation/dsl';
 
 /**
  * Generated class for the ReferPage page.
@@ -18,28 +20,39 @@ import { AuthProvider } from '../../providers/auth/auth';
 
 export class ReferPage {
   name: string;
-  json: object = {
-    "date": "1511564314996",
-    "$og_title": "Blip",
-    "custom_boolean": "true",
-    "$publicly_indexable": "false", 
-    "~creation_source": 2,
-    "$og_description": "¡Blip es un Centro Comercial en tu bolsillo! Platos de cualquier Restaurante, Mercado, Licores o literalmente ¡Lo que quieras! Todos tus domicilios 24/7 y en minutos", 
-    "custom": 
-    "data", "+click_timestamp": 1511566708, "source": "android", "$identity_id": 459251096184023000, "~stage": "user", "$og_image_url": "https://firebasestorage.googleapis.com/v0/b/atiempo-5533e.appspot.com/o/icon.png?alt=media&token=c9e93480-95e0-4e06-8e75-7d33c72c57f3", "~feature": "referral", "+match_guaranteed": true, "~tags": ["one", "two", "three"], "$canonical_identifier": "content/123", "+clicked_branch_link": true, "~id": 462741154082069700, "$one_time_use": false, "~campaign": "referrals", "+is_first_session": false, "campaign": "referrals", "~channel": "facebook", "~referring_link": "https://blip.app.link/D25N3FrwlI"
-  }
+  json: Array<any> = [
+    {
+      "transaction":
+        {
+          "date": "2017-11-24T23:12:36.462Z",
+          "id": "462744683257453610", "bucket": "default", "type": 0, "amount": 5
+        },
+      "event":
+        {
+          "name": "install",
+          "metadata":
+            {
+              "reinstall": false,
+              "ip": "190.152.130.171",
+              "referred": true
+            }
+        },
+      "referrer": "502323476775506", "referree": null
+    }]
+  transactioHistory: Array<object> = [];
   rewards: number = 0;
-  constructor(public platform: Platform, public navCtrl: NavController, public navParams: NavParams, private socialSharing: SocialSharing, private auth: AuthProvider) {
-    this.platform.ready().then(()=>{
+  constructor(public platform: Platform, public navCtrl: NavController, public navParams: NavParams, private socialSharing: SocialSharing, private auth: AuthProvider, private db: DatabaseProvider) {
+    this.platform.ready().then(() => {
       this.initBranch();
     })
     this.initBranch();
-    this.name  = this.auth.getAuth().currentUser.displayName;
+    this.name = this.auth.getAuth().currentUser.displayName;
+    
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ReferPage');
-    
+
   }
   pushTerms() {
     this.navCtrl.push(RefsTermsPage);
@@ -48,13 +61,32 @@ export class ReferPage {
     var self = this;
     if (!this.platform.is('cordova')) { return }
     const Branch = window['Branch'];
-    var bucket = 'this_bucket'
-    Branch.loadRewards(bucket).then(function (res) {
-      console.log('Response: ' + res)
-      self.rewards = res;
-
+    Branch.creditHistory().then(function (res) {
+      return new Promise((resolve, reject)=>{
+        self.transactioHistory = [];
+        for(let i = 0; i<res.length; i++){
+          console.log(res[i].referree)
+          if(res[i].referree != null){
+            self.db.getUser(res[i].referree).once('value', (ss)=>{
+              if(ss.val() != null){
+                self.transactioHistory.push({
+                  name: ss.val().name,
+                  amount: (res[i].transaction.amount)/100
+                });
+                self.updateRewards();
+              }
+              console.log(self.transactioHistory);
+            })
+          }
+          if(i == (res.length-1)){
+            console.log("se resuleva")
+            resolve()
+          }
+        }
+      });
+      
     }).catch(function (err) {
-      console.log('Error: ' + err)
+      console.log('Error: ' + JSON.stringify(err))
     })
   }
 
@@ -84,10 +116,10 @@ export class ReferPage {
     });
   }
 
-  creaateReferralLink(friend: string) {
+  creaateReferralLink(friend: string, channel: string) {
     return new Promise((resolve, reject) => {
       var analytics = {
-        channel: 'facebook',
+        channel: channel,
         feature: 'referral',
         campaign: 'referrals',
         stage: 'user',
@@ -118,25 +150,39 @@ export class ReferPage {
   }
 
   shareViaFacebook() {
-      this.creaateReferralLink(this.name).then(url => {
-        let link: any = url;
-        this.socialSharing.shareViaFacebook('¡Te regalo $6.00 USD para tu primer pedido en Blip! Descarga la app y pide ya', '', link);
-      });
-    
+    this.creaateReferralLink(this.name, 'facebook').then(url => {
+      let link: any = url;
+      this.socialSharing.shareViaFacebook('¡Te regalo $6.00 USD para tu primer pedido en Blip! Descarga la app y pide ya', '', link);
+    });
+
   }
   shareViaWhatsApp() {
-      this.creaateReferralLink(this.name).then(url => {
-        let link: any = url;
-        this.socialSharing.shareViaWhatsApp('¡Te regalo $6.00 USD para tu primer pedido en Blip! Descarga la app y pide ya', '', link);
-      });
+    this.creaateReferralLink(this.name, 'whatsapp').then(url => {
+      let link: any = url;
+      this.socialSharing.shareViaWhatsApp('¡Te regalo $6.00 USD para tu primer pedido en Blip! Descarga la app y pide ya', '', link);
+    });
 
-    
+
   }
   shareSheet() {
-      this.creaateReferralLink(this.name).then(url => {
-        let link: any = url;
-        this.socialSharing.share('¡Te regalo $6.00 USD para tu primer pedido en Blip! Descarga la app y pide ya', '', '', link);
-      });
+    this.creaateReferralLink(this.name, 'other').then(url => {
+      let link: any = url;
+      this.socialSharing.share('¡Te regalo $6.00 USD para tu primer pedido en Blip! Descarga la app y pide ya', '', '', link);
+    });
+  }
+
+  getUserNameById(uid: string){
+    console.log(uid);
+    this.db.getUser(uid).on('value', (ss)=>{
+      return ss.val().name;
+    })
+  }
+  updateRewards(){
+    this.rewards = 0;
+    this.transactioHistory.forEach(element => {
+      let transaction: any = element;
+      this.rewards += transaction.amount;
+    });
   }
 
 

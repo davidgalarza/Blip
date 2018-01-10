@@ -7,6 +7,7 @@ import { StorageProvider } from '../../providers/storage/storage';
 import { ShopFunctionsProvider } from '../../providers/shop-functions/shop-functions';
 import { TrakingPage } from '../../pages/traking/traking';
 import { Firebase } from '@ionic-native/firebase';
+import { Promise } from 'firebase/app';
 /**
  * Generated class for the CartPage page.
  *
@@ -24,7 +25,7 @@ export class CartPage {
   shopId: any;
   commerce: any = {};
   d: string;
-  total:number = 0;
+  total: number = 0;
   totalT: number = 0;
   dis: any;
   address: any = {};
@@ -38,15 +39,18 @@ export class CartPage {
   text: string;
   disabled: boolean = false;
   userId;
+  tachText: boolean = false;
+  delivery_price: number;
+  credits: number;
   constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseProvider, public geofire: GeofireProvider, public storage: StorageProvider, public shop: ShopFunctionsProvider, public alertCtrl: AlertController, public http: HttpProvider, public loader: LoadingController, private firebase: Firebase) {
     this.products = this.navParams.get('cart');
     console.log(this.products);
     this.shopId = this.navParams.get('commerce');
     this.personalized = this.navParams.get('personalized');
-    (<any>window).AccountKitPlugin.getAccount(user=>{
+    (<any>window).AccountKitPlugin.getAccount(user => {
       console.log(user);
       this.userId = user.accountId;
-      this.db.getUser(user.accountId).on('value', ss=>{
+      this.db.getUser(user.accountId).on('value', ss => {
         console.log("Usuario:", ss.val());
         this.phone = ss.val().phone;
         this.addressF = ss.val().billing.address;
@@ -54,28 +58,40 @@ export class CartPage {
         this.name = ss.val().billing.name;
       })
     });
-    
-    this.storage.getByKey('activeDirection').then(key=>{
-      this.storage.getByKey(key).then(location=>{
+
+    this.storage.getByKey('activeDirection').then(key => {
+      this.storage.getByKey(key).then(location => {
         console.log(location);
         this.address = location;
-        if(!this.personalized){
+        if (!this.personalized) {
           this.getTotalCart();
           //this.dis = this.distance(this.commerce.lat, this.commerce.lng, this.adress.lat,this.adress.lng);
-          this.db.getCommerById(this.shopId).on('value', (ss)=>{
+          this.db.getCommerById(this.shopId).on('value', (ss) => {
             console.log(ss.val());
             this.commerce = ss.val();
-            this.dis = this.geofire.distanceBetwen(location.lat, location.lng, ss.val().lat, ss.val().lng ).then(dis=>{
-              this.shop.getDeliveryPrice(dis).then(price=>{
+            this.dis = this.geofire.distanceBetwen(location.lat, location.lng, ss.val().lat, ss.val().lng).then(dis => {
+              this.shop.getDeliveryPrice(this.commerce, dis).then(price => {
                 let priceA: any = price;
                 this.deliveryPrice = priceA;
-                this.updateTotalT();
+                var self = this;
+                this.getBranchCredit().then(credit => {
+                  let credits: any = credit;
+                  this.credits = credits / 100;
+                  console.log("Creditos: ", this.credits)
+                  this.verifyDiscount(this);
+                });
+
+                //this.updateTotalT();
+                //this.getTotalCart();
               });
             });
           });
-          this.totalT = this.total + this.deliveryPrice;
-        }else{
-          this.text = this.navParams.get('text'); 
+          const Branch = window['Branch'];
+
+
+
+        } else {
+          this.text = this.navParams.get('text');
           this.details = this.text;
           this.totalT = 2;
         }
@@ -86,86 +102,152 @@ export class CartPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad CartPage');
   }
-  ionViewWillEnter(){
+  ionViewWillEnter() {
     this.firebase.setScreenName('cart');
-    this.firebase.logEvent('page_view', {page: "cart",
-                                              nProducts: this.products.length,
-                                            price: this.total})
-    .then((res: any) => console.log(res))
-    .catch((error: any) => console.error(error));
+    this.firebase.logEvent('page_view', {
+      page: "cart",
+      nProducts: this.products.length,
+      price: this.total
+    })
+      .then((res: any) => console.log(res))
+      .catch((error: any) => console.error(error));
 
   }
 
-  increaseCart(productKey: string){
+  increaseCart(productKey: string) {
     console.log(productKey);
     let finded = false;
     let index;
-    for(var i = 0; i < this.products.length; i++){
+    for (var i = 0; i < this.products.length; i++) {
       if (this.products[i].product == productKey) {
         finded = true;
         index = i;
         break;
       }
     }
-    if(finded){
-      this.products[index].cant +=1;
+    if (finded) {
+      this.products[index].cant += 1;
       this.getTotalCart();
-      this.updateTotalT();
+      this.verifyDiscount(this);
+      //this.updateTotalT();
     }
   }
-  decreaseCart(productKey: string){
-        let finded = false;
+  decreaseCart(productKey: string) {
+    let finded = false;
     let index;
-    for(var i = 0; i < this.products.length; i++){
+    for (var i = 0; i < this.products.length; i++) {
       if (this.products[i].product == productKey) {
         finded = true;
         index = i;
         break;
       }
     }
-    if(finded){
-      this.products[index].cant -=1;
+    if (finded) {
+      this.products[index].cant -= 1;
       this.getTotalCart();
-      this.updateTotalT();
-      if(this.products[index].cant == 0){
-        this.products.splice(i,1);
+      this.verifyDiscount(this);
+      //this.updateTotalT();
+      if (this.products[index].cant == 0) {
+        this.products.splice(i, 1);
         this.getTotalCart();
-        this.updateTotalT();
+        this.verifyDiscount(this);
+        //this.updateTotalT();
       }
     }
   }
-  getTotalCart(){
-    this.total =0;
-    this.products.forEach(product=>{
+  getTotalCart() {
+    this.total = 0;
+    this.products.forEach(product => {
       this.total += product.price * product.cant;
     });
   }
-  updateTotalT(){
+  updateTotalT() {
     this.totalT = this.total + this.deliveryPrice;
   }
-  createOrder(){
-    
-    if(this.phone == undefined ){
+  createOrder() {
+
+    if (this.phone == undefined) {
       let alert = this.alertCtrl.create({
         title: 'Campo requerido',
         subTitle: 'El numero de telefono es necesario para contactarnos contigo.',
         buttons: ['Entendido']
       });
       alert.present();
-    }else{
-      if(this.name == '' || this.addressF =='' || this.ci == null ){
+    } else {
+      if (this.name == '' || this.addressF == '' || this.ci == null) {
         let alert = this.alertCtrl.create({
           title: 'Campo requerido',
           subTitle: 'Los detalles de facturacion son obligatorios.',
           buttons: ['Entendido']
         });
-      alert.present();
-      }else{
+        alert.present();
+      } else {
         let loading = this.loader.create({
-          content:'Creando tu orden...'
+          content: 'Creando tu orden...'
         });
         loading.present();
-        if(!this.personalized){
+
+        if (this.tachText) {
+          const Branch = window['Branch'];
+          var amount = this.deliveryPrice * 100;
+          var self = this;
+          if (amount != 0) {
+            Branch.redeemRewards(amount).then(function (res) {
+              console.log('Se debito: ' + JSON.stringify(res));
+              self.http.createOrder({
+                products: self.products,
+                address: self.address,
+                details: self.details,
+                ci: self.ci,
+                addressF: self.addressF,
+                commerceId: self.shopId,
+                name: self.name,
+                uid: self.userId,
+                phone: self.phone,
+                delivery_price: self.deliveryPrice,
+                charge: false
+              }).then(res => {
+                self.db.setUserBilling(self.userId, {
+                  name: self.name,
+                  address: self.addressF,
+                  ci: self.ci
+                });
+                console.log(res);
+                loading.dismiss();
+                self.navCtrl.push(TrakingPage, {
+                  id: res
+                });
+              });
+            }).catch(function (err) {
+              console.log('Error: ' + JSON.stringify(err))
+            })
+          }else{
+            self.http.createOrder({
+              products: self.products,
+              address: self.address,
+              details: self.details,
+              ci: self.ci,
+              addressF: self.addressF,
+              commerceId: self.shopId,
+              name: self.name,
+              uid: self.userId,
+              phone: self.phone,
+              delivery_price: self.deliveryPrice,
+              charge: false
+            }).then(res => {
+              self.db.setUserBilling(self.userId, {
+                name: self.name,
+                address: self.addressF,
+                ci: self.ci
+              });
+              console.log(res);
+              loading.dismiss();
+              self.navCtrl.push(TrakingPage, {
+                id: res
+              });
+            });
+          }
+        } else {
           this.http.createOrder({
             products: this.products,
             address: this.address,
@@ -175,46 +257,49 @@ export class CartPage {
             commerceId: this.shopId,
             name: this.name,
             uid: this.userId,
-            phone: this.phone
-          }).then(res=>{
-            this.db.setUserBilling(this.userId, {
-              name: this.name,
-              address: this.addressF,
-              ci: this.ci
-            });
-            console.log(res);
-            loading.dismiss();
-            this.navCtrl.push(TrakingPage,{
-              id: res
-            });
-          })
-        }else{
-          console.log(this.userId);
-          this.http.createOrder({
-            address: this.address,
-            details: this.details,
-            ci: this.ci,
-            adressF: this.addressF,
-            name: this.name,
-            uid: this.userId,
             phone: this.phone,
-            type: 'personalized'
-          }).then(res=>{
+            delivery_price: this.deliveryPrice,
+            charge: true
+          }).then(res => {
             this.db.setUserBilling(this.userId, {
               name: this.name,
               address: this.addressF,
               ci: this.ci
             });
-            let orderId:any = res;
             console.log(res);
             loading.dismiss();
-            this.navCtrl.push(TrakingPage,{
+            this.navCtrl.push(TrakingPage, {
               id: res
             });
           });
         }
+
       }
-      }
+    }
+
+  }
+  verifyDiscount(self) {
+    if (self.credits >= self.deliveryPrice && self.total >= 20) {
+      self.totalT = self.total;
+      console.log("Entro");
+      self.delivery_price = 0;
+      self.tachText = true;
+    } else {
+      self.totalT = self.total + self.deliveryPrice;
+      self.delivery_price = self.deliveryPrice;
+      console.log("No entro");
+      self.tachText = false;
+    }
+  }
+  getBranchCredit() {
+    return new Promise((resolve, reject) => {
+      const Branch = window['Branch'];
+      Branch.loadRewards().then(function (res) {
+        resolve(res)
+      }).catch(function (err) {
+        reject(err);
+      })
+    });
   }
   /*
   pushLocationPage(){

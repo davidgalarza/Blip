@@ -78,7 +78,7 @@ page-shop {
         font-family: 'Nexa' !important;
     }*/
     ion-header{
-        z-index: inherit;  // desapear the header shadown
+        //z-index: inherit;  // desapear the header shadown
         text-align: center;
         color: black !important;
     }
@@ -374,4 +374,19 @@ page-shop {
         min-height: 0 !important;
         background-color: #f9f9fa;
       }
+      .back-button.show-back-button {
+        z-index: 9999;
+        display: inline-block;
+        }
+        #listI{
+            margin-bottom: 8em;
+        }
+        #basket{
+            width: 70%;
+            position: absolute;
+            /* margin-bottom: -2.5em; */
+            top: -2.5em;
+            /* background-color: white; */
+            left: 15%;
+        }
 }

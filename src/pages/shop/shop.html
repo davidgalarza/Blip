@@ -30,7 +30,7 @@
           </ion-buttons>
         </ion-navbar>
         <ion-toolbar >
-              <ion-title style="width:100%" *ngIf="!showSearchBar" id="firstC">11:00 - 22:00</ion-title>
+              <ion-title style="width:100%" *ngIf="!showSearchBar" id="firstC">{{shop.attention[getDay()].open}} - {{shop.attention[getDay()].close}}</ion-title>
               <div class="grid secondC" >
                 <div class="row">
                   <div *ngIf="!showSearchBar" class="marginB" col-3>
@@ -40,7 +40,8 @@
       
                   </div>
                   <div *ngIf="!showSearchBar" class="marginB" col-3>
-                    <span id="text2" class="textInf priceS">${{price.toFixed(2)}}</span>
+                      <span id="text2" *ngIf="price == 0" class="textInf priceS">GRATIS</span>
+                    <span id="text2" *ngIf="price != 0"  class="textInf priceS">${{price.toFixed(2)}}</span>
                   </div>
                   <div *ngIf="showSearchBar" class="marginS" col-12>
                       <ion-searchbar [(ngModel)]="text" [showCancelButton]="shouldShowCancel" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)"
@@ -87,7 +88,7 @@
     </div>
   </div>
 -->
-  <ion-list *ngIf="showHolders">
+  <ion-list  *ngIf="showHolders">
     <ion-item>
       <div class="animated-background holderTitle">
       </div>
@@ -142,8 +143,8 @@
       </ion-list>
     </ion-col>
   </ion-row>
-  <div style="height:100%">
-    <ion-list [virtualScroll]="products" [headerFn]="myHeaderFn" [approxItemHeight]=" '50px'" bufferRatio="2">
+  <div  style="height:100%">
+    <ion-list id="listI" [virtualScroll]="products" [headerFn]="myHeaderFn" [approxItemHeight]=" '50px'" bufferRatio="2">
       <h3 *virtualHeader="let header;" [id]="header" class="menuC">
         {{ header }}
       </h3>
@@ -185,7 +186,9 @@
   </div>
 
 </ion-content>
+
 <ion-footer class="cart" (click)="carT()" *ngIf="!empty">
+    <img src="assets/img/basket.png" id="basket" alt="">
   <div class="row">
     <div col-3>
       <span class=" countF">{{cart.length}}</span>

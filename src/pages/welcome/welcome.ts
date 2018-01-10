@@ -86,6 +86,18 @@ export class WelcomePage {
             displayName: this.name,
             photoURL: ''
           });
+          const Branch = window['Branch'];
+          Branch.setIdentity(ss.uid).then(function (res) {
+            var eventName = 'session'
+            var metadata = { 'date': Date.now()  }
+            Branch.userCompletedAction(eventName, metadata).then(function (res) {
+
+            }).catch(function (err) {
+            })
+            console.log('Response: ' + JSON.stringify(res))
+          }).catch(function (err) {
+            console.log('Error: ' + err.message)
+          })
           this.db.createFirstUserData(ss.uid, user.phoneNumber, this.name).then(ss=>{
             this.firebase.setUserId(this.auth.getUser().uid).then(user=>{
               console.log(user);

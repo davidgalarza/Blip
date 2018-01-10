@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild} from '@angular/core';
 import { IonicPage, NavController, NavParams, Scroll } from 'ionic-angular';
 import { StorageProvider } from '../../providers/storage/storage';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -90,6 +90,9 @@ export class ListPage {
       (<any>window).cordova.plugins.Keyboard.show();
     }, 600); //Autofcocos on Search 
   }
+  }
+  ngAfterViewInit() {
+
   }
   ionViewWillEnter(){
     this.firebase.setScreenName('list');

@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar class="home-nav">
     <ion-title>Refiere y Gana</ion-title>
   </ion-navbar>
 
@@ -36,23 +36,15 @@
 </div>
 <div class="referralsC">
     <h6>Tus Referidos</h6>
-    <div class="grid">
+    <div *ngFor="let transaction of transactioHistory" class="grid">
       <div class="row">
         <div col-9>
-          <p>David Galarza</p>
+          <p>{{transaction.name}}</p>
         </div>
         <div col-3>
-          <p>+ $4.00</p>
+          <p>+ ${{transaction.amount.toFixed(2)}}</p>
         </div>
       </div>
-      <div class="row">
-          <div col-9>
-            <p>Rodrigo</p>
-          </div>
-          <div col-3>
-            <p>+ $4.00</p>
-          </div>
-        </div>
     </div>
 </div>
 </ion-content>

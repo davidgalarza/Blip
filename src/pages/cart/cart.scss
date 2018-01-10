@@ -1,21 +1,42 @@
 page-cart {
     ion-content{
+      font-family: 'Proxima Nova' !important;
 
   }
   ion-header{
     z-index: inherit;  // desapear the header shadown
-    text-align: right;
-}
-.toolbar-title-md{
-    color: #FFFFFF;
-    text-align: right;
 }
 
-  .toolbar-background-md, .toolbar-background-ios {
-      background: $main;
+ion-title{
+  font-family: 'Proxima Nova' !important;
+  font-weight: bold;
+}
+
+.back-button.show-back-button {
+  z-index: 9999;
+  display: inline-block;
   }
-  .back-button-icon-md, .back-button-icon-md{
-    color: #FFFFFF;
+
+  .toolbar {
+      &.toolbar-md { //material design only
+          &.home-nav {
+              position: relative;
+              .title-md { //material design only
+                  position: absolute;
+                  left: 0;
+                  top: 0;
+                  height: 100%;
+                  width: 100%;
+                  text-align: center;
+              }
+          }
+      }
+  }
+  ion-header ion-icon.back-button-icon.icon {
+      color: #21c48a
+  }
+  .toolbar-title-md{
+      color: #21c48a !important 
   }
   .content-md, .content-md {
     color: #000;
@@ -81,7 +102,7 @@ page-cart {
     padding: 0;
     width: 100%;
     z-index: 999;
-    background-color: $main;
+    background-color: $green;
     color: #FFFFFF;
     text-align: center;
     font-size: 1.4em;
@@ -98,5 +119,12 @@ page-cart {
 }
 .toolbar-title{
   color: #FFFFFF;
+}
+.tachedT{
+  text-decoration: line-through;
+  text-decoration-color: $green;
+}
+ion-footer{
+  font-family: 'Proxima Nova' !important;
 }
 }

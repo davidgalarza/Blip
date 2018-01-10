@@ -1,6 +1,6 @@
 <ion-header>
     
-      <ion-navbar>
+      <ion-navbar class="home-nav">
         <ion-title>Carrito</ion-title>
       </ion-navbar>
     
@@ -71,7 +71,8 @@
         </ion-row>
         <ion-row *ngIf="!personalized">
           <ion-col col-3 class="tipe"><p>Envío</p></ion-col>
-          <ion-col col-9><p class="priceContent">${{deliveryPrice.toFixed(2)}}</p></ion-col>
+          <ion-col  *ngIf="deliveryPrice != 0" col-9><p class="priceContent" [class.tachedT]="tachText">${{deliveryPrice.toFixed(2)}}</p></ion-col>
+          <ion-col  *ngIf="deliveryPrice == 0" col-9><p class="priceContent" >GRATIS</p></ion-col>
         </ion-row>
         <ion-row>
           <ion-col col-3 class="tipe" style="font-size:1.2em"><p>TOTAL</p></ion-col>

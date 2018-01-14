@@ -13,6 +13,7 @@ import { AddDirectionPage } from '../pages/add-direction/add-direction';
 import { ReferPage } from '../pages/refer/refer';
 import { CreditsPage } from '../pages/credits/credits';
 import { AddrefPage } from '../pages/addref/addref';
+import { CartmPage } from '../pages/cartm/cartm';
 //declare var handleBranch;
 
 @Component({
@@ -97,10 +98,10 @@ export class MyApp {
       });
      /*this.zone.run( () => {
         if (!user) {
-          this.rootPage = AddrefPage;
+          this.rootPage = CartmPage;
           unsubscribe();
         } else { 
-          this.rootPage = AddrefPage;
+          this.rootPage = CartmPage;
           unsubscribe();
         }
       });*/

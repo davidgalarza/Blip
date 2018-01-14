@@ -89,4 +89,7 @@ export class DatabaseProvider {
   setPath(path, value){
     this.db.database.ref(path).set(value);
   }
+  getProduct(key: string){
+    return this.db.object('/products/'+key);
+  }
 }

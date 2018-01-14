@@ -13,6 +13,7 @@ import { ListPageModule } from '../pages/list/list.module';
 import { ShopPageModule } from '../pages/shop/shop.module';
 import { OptsPageModule } from '../pages/opts/opts.module';
 import { CartPageModule } from '../pages/cart/cart.module';
+import { CartmPageModule } from '../pages/cartm/cartm.module';
 import { CustomPageModule } from '../pages/custom/custom.module';
 import { TrakingPageModule } from '../pages/traking/traking.module';
 import { OrdersPageModule } from '../pages/orders/orders.module';
@@ -96,6 +97,7 @@ export const firebaseConfig = {
     RefsTermsPageModule,
     CreditsPageModule,
     AddrefPageModule,
+    CartmPageModule,
     HttpModule,
     IonicStorageModule.forRoot({
       name: '__mydb',

@@ -8,7 +8,7 @@ import { AlgoliaProvider } from '../../providers/algolia/algolia';
 import { StorageProvider } from '../../providers/storage/storage';
 import { AuthProvider } from '../../providers/auth/auth';
 import { OptsPage } from '../opts/opts';
-import { CartPage } from '../cart/cart';
+import { CartmPage } from '../cartm/cartm';
 import { Firebase } from '@ionic-native/firebase';
 import { WelcomePage } from '../../pages/welcome/welcome';
 import * as moment from 'moment-timezone';
@@ -152,12 +152,18 @@ export class ShopPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad:', this.products);
+    
   }
   ionViewWillEnter() {
     this.firebase.setScreenName('shop');
     this.firebase.logEvent('page_view', { page: "shop" })
       .then((res: any) => console.log(res))
       .catch((error: any) => console.error(error));
+
+      
+      setTimeout(()=>{
+        this.getTotalCart();
+      }, 300) 
 
   }
   ionViewDidEnter() {
@@ -322,7 +328,7 @@ export class ShopPage {
   }
 
   carT() {
-    this.navCtrl.push(CartPage, { cart: this.cart, commerce: this.shopId, personalized: false }, {
+    this.navCtrl.push(CartmPage, { cart: this.cart, commerce: this.shopId, personalized: false }, {
       animate: true,
       direction: 'forward'
 
@@ -377,9 +383,14 @@ export class ShopPage {
     })
   }
   getDay(): number{
-
-    return moment().day() - 1;
-    
+    let dateMoment = moment().tz("America/Bogota");
+    let day;
+    if (dateMoment.day() == 0) {
+      day = 6;
+    } else {
+      day = dateMoment.day() - 1;
+    }
+    return day;
   }
 
   playSound(){

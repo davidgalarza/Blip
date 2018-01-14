@@ -1,0 +1,138 @@
+page-cartm {
+    ion-header{
+        z-index: inherit;  // desapear the header shadown
+       // text-align: center;
+    }
+
+    ion-title{
+        font-family: 'Proxima Nova' !important;
+        font-weight: bold;
+    }
+    ion-content{
+        font-family: 'Proxima Nova' !important;
+    }
+    .regular{
+        font-family: 'Proxima Nova' !important;
+    }
+    .bold{
+        font-family:  'proxima_nova_altbold' !important;
+    }
+    .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before{
+        background-image: none;
+    }
+    .back-button.show-back-button {
+        z-index: 9999;
+        display: inline-block;
+        }
+
+        .toolbar {
+            &.toolbar-md { //material design only
+                &.home-nav {
+                    position: relative;
+                    .title-md { //material design only
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        height: 100%;
+                        width: 100%;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+        ion-header ion-icon.back-button-icon.icon {
+            color: #21c48a
+        }
+        .toolbar-title-md{
+            color: #21c48a !important 
+        }
+        #totalT{
+            color: #ccc;
+            margin-top: 0px;
+            margin-bottom: 0px;
+            margin-left: 0.5em;
+        }
+        #priceT{
+            margin-left: 0.5em;
+            margin-top: 0px;
+        }
+        #toolbarM{
+            text-align: left;
+            
+        }
+        #directionC{
+            background-color: #f7f7f7;
+            padding: 0.5em;
+            border-top: solid 1px #ededed;
+            border-bottom: solid 1px #ededed;
+        }
+        .marginTD{
+            margin-top: 3px;
+            margin-bottom: 3px;
+            font-size: 0.9em;
+        }
+        .directionLT{
+            color: #b3b3b3;
+        }
+        .mapI{
+            border-radius: 0.3em;
+            width: 80%;
+            margin-left: 10%;
+        }
+        .infoC{
+            padding-left:0.5em;
+            padding-right: 0.5em;
+            padding-top: 1.5em;
+            padding-bottom: 0.5em; 
+        }
+        .infoTE{
+            margin-bottom: 0.1em;
+        }
+        .infoTA{
+            font-size: 0.9em;
+            margin-top: 0.1em;
+        }
+        .greenT{
+            color: #21c48a;
+        }
+        .cantC{
+            font-size: 1.3em !important;
+            text-align: center;
+            border: 1px solid #b3b3b3;
+            border-radius: 0.3em;
+            position: relative;
+top: 25%;
+transform: translateY(25%);
+        }
+        .productI{
+            border-radius: 0.3em;
+        }
+        .productT{
+            font-size: 1.2em;
+            margin-bottom: 0.2em;
+            margin-top: 0.2em;
+        }
+        .productP{
+            margin-bottom: 0px;
+            margin-top: 0px;
+        }
+        .productC{
+            border-bottom: 1px solid #ebebeb;
+        }
+        .other{
+            font-size: 1.2em;
+            background-color: $green;
+            color: #ffffff;
+            text-align: center;
+            //text-decoration: underline;
+            border: solid 2px $green;
+            border-radius: 0.3em;
+            padding: 0.5em;
+            margin: 0.5em;
+        }
+        ion-footer{
+            background-color: #f7f7f7;
+            font-family:  'Proxima Nova' !important;
+        }
+
+}

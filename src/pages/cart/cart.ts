@@ -8,6 +8,9 @@ import { ShopFunctionsProvider } from '../../providers/shop-functions/shop-funct
 import { TrakingPage } from '../../pages/traking/traking';
 import { Firebase } from '@ionic-native/firebase';
 import { Promise } from 'firebase/app';
+
+import { NativeAudio } from '@ionic-native/native-audio';
+
 /**
  * Generated class for the CartPage page.
  *
@@ -42,7 +45,7 @@ export class CartPage {
   tachText: boolean = false;
   delivery_price: number;
   credits: number;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseProvider, public geofire: GeofireProvider, public storage: StorageProvider, public shop: ShopFunctionsProvider, public alertCtrl: AlertController, public http: HttpProvider, public loader: LoadingController, private firebase: Firebase) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseProvider, public geofire: GeofireProvider, public storage: StorageProvider, public shop: ShopFunctionsProvider, public alertCtrl: AlertController, public http: HttpProvider, public loader: LoadingController, private firebase: Firebase,  private nativeAudio: NativeAudio) {
     this.products = this.navParams.get('cart');
     console.log(this.products);
     this.shopId = this.navParams.get('commerce');
@@ -97,10 +100,22 @@ export class CartPage {
         }
       });
     });
+
+    this.nativeAudio.preloadSimple('up', 'assets/sounds/up_general.mp3').then((dat)=>{
+      console.log('Cargo: ', dat)
+    }, (err)=>{
+      console.log("Error", err)
+    });
+    this.nativeAudio.preloadSimple('down', 'assets/sounds/down_general.mp3').then((dat)=>{
+      console.log('Cargo: ', dat)
+    }, (err)=>{
+      console.log("Error", err)
+    });
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CartPage');
+    window.addEventListener('native.keyboardshow', this.keyboardShowHandler);
   }
   ionViewWillEnter() {
     this.firebase.setScreenName('cart');
@@ -130,6 +145,12 @@ export class CartPage {
       this.getTotalCart();
       this.verifyDiscount(this);
       //this.updateTotalT();
+      this.nativeAudio.play('up').then(dat=>{
+        console.log('Sono: ', dat)
+        
+      }, err=>{
+       console.log( "Error play: ", err)
+      });
     }
   }
   decreaseCart(productKey: string) {
@@ -153,6 +174,12 @@ export class CartPage {
         this.verifyDiscount(this);
         //this.updateTotalT();
       }
+      this.nativeAudio.play('down').then(dat=>{
+        console.log('Sono: ', dat)
+        
+      }, err=>{
+       console.log( "Error play: ", err)
+      });
     }
   }
   getTotalCart() {
@@ -305,4 +332,9 @@ export class CartPage {
   pushLocationPage(){
     this.navCtrl.push(LocationsPage);
   }*/
+
+
+keyboardShowHandler(e){
+    alert('Keyboard height is: ' + e.keyboardHeight);
+}
 }

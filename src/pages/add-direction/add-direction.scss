@@ -3,9 +3,39 @@ page-add-direction {
         z-index: inherit;  // desapear the header shadown
         text-align: center;
     }
-    .toolbar-background-md, .toolbar-background-ios{
-        background-color: #FFFFFF !important;
-      }
+    ion-title{
+        font-family: 'Proxima Nova' !important;
+        font-weight: bold;
+    }
+    ion-content{
+        font-family: 'Proxima Nova' !important;
+    }
+    .back-button.show-back-button {
+        z-index: 9999;
+        display: inline-block;
+        }
+
+        .toolbar {
+            &.toolbar-md { //material design only
+                &.home-nav {
+                    position: relative;
+                    .title-md { //material design only
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        height: 100%;
+                        width: 100%;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+        ion-header ion-icon.back-button-icon.icon {
+            color: #21c48a
+        }
+        .toolbar-title-md{
+            color: #21c48a !important 
+        }
     h2,h1{
         font-family:  'proxima_nova_altbold' !important;
     }
@@ -22,4 +52,46 @@ page-add-direction {
     .toolbar-md, .toolbar-ios{
         text-align: center;
     }
+    .tagI{
+        width: 1.8em;
+        position: relative;
+top: 50%;
+transform: translateY(75%);
+    }
+    .tagC{
+        text-align: center;
+        width: 100%;
+    height: 100%;
+    border-radius: 0.4em;
+    padding: 0px !important;
+    }
+    .tagCa{
+        position: relative;
+    width: 100%;
+    padding: 0px;
+    }
+    .iconC{
+        border: solid 1px #ccc;
+        text-align: center;
+        width: 100%;
+        //height: 100%;
+        border-radius: 0.4em;
+        padding: 0px !important;
+
+    }
+    .iconC::after{
+        content: "";
+        display: block;
+        padding-bottom: 50%;
+    }
+    .tagT{
+        text-align: center;
+    }
+    .saveB{
+
+        position: relative;
+        transform: translateX(-50%);
+        left: 50%;
+        
+                }
 }

@@ -3,7 +3,7 @@
     <name>Blip</name>
     <description>Tu ciudad a domicilio.</description>
     <author email="hola@blipclub.com" href="https://blipclub.com">Blip</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://192.168.1.6:8100" />
     <access origin="*" />
     <allow-navigation href="http://ionic.local/*" />
     <allow-intent href="http://*/*" />
@@ -135,4 +135,6 @@
     <allow-navigation href="http://192.168.1.12:8100" />
     <allow-navigation href="http://10.7.8.163:8100" />
     <allow-navigation href="http://192.168.1.10:8100" />
+    <plugin name="cordova-plugin-nativeaudio" spec="~3.0.9" />
+    <plugin name="cordova-plugin-request-location-accuracy" spec="~2.2.2" />
 </widget>

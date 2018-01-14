@@ -10,6 +10,7 @@ import { StorageProvider } from '../../providers/storage/storage';
 import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult } from '@ionic-native/native-geocoder';
 import { LatLng, Geocoder } from '@ionic-native/google-maps';
 import { ReferPage } from '../../pages/refer/refer';
+import { WherePage } from '../where/where';
 
 @Component({
   selector: 'page-home',
@@ -96,5 +97,9 @@ export class HomePage {
   }
   pushReferPage(){
     this.navCtrl.push(ReferPage);
+  }
+  pushWhere(){
+    this.navCtrl.setRoot(WherePage);
+    this.navCtrl.popToRoot();
   }
 }

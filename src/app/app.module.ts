@@ -19,6 +19,7 @@ import { OrdersPageModule } from '../pages/orders/orders.module';
 import { ReferPageModule } from '../pages/refer/refer.module';
 import { RefsTermsPageModule } from '../pages/refs-terms/refs-terms.module';
 import { CreditsPageModule } from '../pages/credits/credits.module';
+import { AddrefPageModule } from '../pages/addref/addref.module';
 // Import AngularFire Library
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -35,8 +36,11 @@ import { GoogleMaps } from '@ionic-native/google-maps';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { Geocoder} from '@ionic-native/google-maps';
 import { NativeGeocoder } from '@ionic-native/native-geocoder';
+import { NativeAudio } from '@ionic-native/native-audio';
 import { HTTP } from '@ionic-native/http';
 import { HttpModule } from '@angular/http';
+
+import { LocationAccuracy } from '@ionic-native/location-accuracy';
 // Import ionic2-rating module
 
 
@@ -48,6 +52,7 @@ import { HttpProvider } from '../providers/http/http';
 import { ShopFunctionsProvider } from '../providers/shop-functions/shop-functions';
 import { GeofireProvider } from '../providers/geofire/geofire';
 import { AlgoliaProvider } from '../providers/algolia/algolia';
+import { AddrefPage } from '../pages/addref/addref';
 
 
 
@@ -90,6 +95,7 @@ export const firebaseConfig = {
     ReferPageModule,
     RefsTermsPageModule,
     CreditsPageModule,
+    AddrefPageModule,
     HttpModule,
     IonicStorageModule.forRoot({
       name: '__mydb',
@@ -114,6 +120,7 @@ export const firebaseConfig = {
     SocialSharing,
     GoogleMaps,
     NativeGeocoder,
+    NativeAudio,
     Geocoder,
     DatabaseProvider,
     HTTP,
@@ -122,6 +129,7 @@ export const firebaseConfig = {
     GeofireProvider,
     AlgoliaProvider,
     Scroll,
+    LocationAccuracy
   ]
 })
 export class AppModule {}

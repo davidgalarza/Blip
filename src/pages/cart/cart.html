@@ -78,6 +78,7 @@
           <ion-col col-3 class="tipe" style="font-size:1.2em"><p>TOTAL</p></ion-col>
           <ion-col col-9><p class="priceContent" style="font-size:1.2em">${{totalT.toFixed(2)}}</p></ion-col>
         </ion-row>
+        <p class="pay nexa" (click)="createOrder()">Enviar pedido</p>
         <ion-row *ngIf="personalized">
           <ion-col col-12 class="tipe" style="font-size:1em"><p>El precio de los productos no esta incluido.</p></ion-col>
            <ion-col col-12 class="tipe" style="font-size:1em"><p>Pedidos  con una distancia hasta 3km tienen un precio de envio de $2.</p></ion-col>
@@ -86,8 +87,8 @@
     
     
     </ion-content>
-    <ion-footer  class="cart" (click)="createOrder()">
+   <!-- <ion-footer  class="cart" (click)="createOrder()">
     
         <ion-icon name="md-cart"></ion-icon>
         <span>COMPLETAR ORDEN</span>
-    </ion-footer>
+    </ion-footer>-->

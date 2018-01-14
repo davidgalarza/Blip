@@ -15,13 +15,14 @@ export class StorageProvider {
     console.log('Hello StorageProvider Provider');
   }
 
-  saveDirection(address: string, lat:number, lng:number, reference:string){
+  saveDirection(address: string, lat:number, lng:number, reference:string, tag: string){
     return this.storage.keys().then((keys)=>{
       this.storage.set(address, {
         address: address,
         lat: lat,
         lng: lng,
-        reference: reference
+        reference: reference, 
+        tag: tag
       }).then(()=>{
         this.storage.set("activeDirection", address).then(()=>{
           this.storage.get('activeDirection').then((activeDirection)=>{
@@ -44,5 +45,8 @@ export class StorageProvider {
   }
   setActiveLocation(key: string){
     return this.storage.set("activeDirection", key);
+  }
+  delete(key: string){
+    return this.storage.remove(key);
   }
 }

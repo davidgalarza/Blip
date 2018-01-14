@@ -13,6 +13,7 @@ import { Firebase } from '@ionic-native/firebase';
 import { WelcomePage } from '../../pages/welcome/welcome';
 import * as moment from 'moment-timezone';
 import { Keyboard } from '@ionic-native/keyboard';
+import { NativeAudio } from '@ionic-native/native-audio';
 
 /**
  * Generated class for the ShopPage page.
@@ -53,8 +54,10 @@ export class ShopPage {
   showHolders = true;
   showSearchBar: boolean = false;
   ids;
+
+  check;
   public scrollAmount = 0;
-  constructor(private _sanitizer: DomSanitizer, public navCtrl: NavController, public navParams: NavParams, public db: DatabaseProvider, public modalCtrl: ModalController, public alert: AlertController, public algolia: AlgoliaProvider, public shopF: ShopFunctionsProvider, public storage: StorageProvider, public platform: Platform, private firebase: Firebase, public toastCtrl: ToastController, public auth: AuthProvider, private keyboard: Keyboard) {
+  constructor(private _sanitizer: DomSanitizer, public navCtrl: NavController, public navParams: NavParams, public db: DatabaseProvider, public modalCtrl: ModalController, public alert: AlertController, public algolia: AlgoliaProvider, public shopF: ShopFunctionsProvider, public storage: StorageProvider, public platform: Platform, private firebase: Firebase, public toastCtrl: ToastController, public auth: AuthProvider, private keyboard: Keyboard, private nativeAudio: NativeAudio) {
     this.zone = new NgZone({ enableLongStackTrace: false });
     this.shopId = this.navParams.get('shopId');
    // this.shopId = 'pUnWGehSlUgy0dkiaGRCUMXDTt13';
@@ -107,6 +110,11 @@ export class ShopPage {
     });
 
     this.getDay();
+    this.nativeAudio.preloadSimple('drop', 'assets/sounds/drop.mp3').then((dat)=>{
+      console.log('Cargo: ', dat)
+    }, (err)=>{
+      console.log("Error", err)
+    });
   }
 
 
@@ -117,6 +125,7 @@ export class ShopPage {
     document.getElementById('contentC').style.marginTop = '130px';
     document.getElementById('text1').style.marginLeft = '0px';
     document.getElementById('text2').style.marginRight = '0px';
+    
     this.content.resize();
     this.content.ionScroll.subscribe(($e) => {
       if($e.scrollTop <= 74 ){
@@ -132,7 +141,7 @@ export class ShopPage {
         document.getElementById('text2').style.marginRight = '-900px';
         document.getElementById('firstC').style.display = 'none';
       }
-    
+
       
 
     });
@@ -215,7 +224,9 @@ export class ShopPage {
       }
       if (finded) {
         this.cart[index].cant += 1;
+        
         this.getTotalCart();
+        this.playSound();
       } else {
         let extraPrice = 0;
         product = this.products.filter(product => {
@@ -242,9 +253,11 @@ export class ShopPage {
                 name: product[0].product,
                 options: data
               });
+              
               console.log(this.cart);
               this.getTotalCart();
               this.isEmpty();
+              this.playSound();
             }
           });
           modal.present();
@@ -255,7 +268,9 @@ export class ShopPage {
             name: product[0].product,
             price: product[0].price
           });
+          
           this.getTotalCart();
+          this.playSound();
         }
       }
       this.isEmpty();
@@ -365,5 +380,28 @@ export class ShopPage {
 
     return moment().day() - 1;
     
+  }
+
+  playSound(){
+    setTimeout(()=>{
+      this.check = document.getElementById('checkC');
+    
+      this.check.classList.add('active')
+
+    
+    this.nativeAudio.play('drop').then(dat=>{
+      console.log('Sono: ', dat)
+      setTimeout(()=>{
+        this.check.classList.remove('active')
+      }, 300)
+      
+    }, err=>{
+     console.log( "Error play: ", err)
+    });
+    }, 50);
+    
+
+
+
   }
 }

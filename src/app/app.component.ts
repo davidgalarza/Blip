@@ -12,7 +12,7 @@ import { OrdersPage } from '../pages/orders/orders';
 import { AddDirectionPage } from '../pages/add-direction/add-direction';
 import { ReferPage } from '../pages/refer/refer';
 import { CreditsPage } from '../pages/credits/credits';
-
+import { AddrefPage } from '../pages/addref/addref';
 //declare var handleBranch;
 
 @Component({
@@ -95,12 +95,12 @@ export class MyApp {
           unsubscribe();
         }
       });
-     /* this.zone.run( () => {
+     /*this.zone.run( () => {
         if (!user) {
-          this.rootPage = ShopPage;
+          this.rootPage = AddrefPage;
           unsubscribe();
         } else { 
-          this.rootPage = ShopPage;
+          this.rootPage = AddrefPage;
           unsubscribe();
         }
       });*/

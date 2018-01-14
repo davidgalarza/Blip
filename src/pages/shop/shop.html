@@ -88,6 +88,8 @@
     </div>
   </div>
 -->
+
+
   <ion-list  *ngIf="showHolders">
     <ion-item>
       <div class="animated-background holderTitle">
@@ -187,7 +189,8 @@
 
 </ion-content>
 
-<ion-footer class="cart" (click)="carT()" *ngIf="!empty">
+<ion-footer class="cart" (click)="carT()" *ngIf="cart.length > 0">
+    <img src="assets/img/check.png" id="checkC" alt="">
     <img src="assets/img/basket.png" id="basket" alt="">
   <div class="row">
     <div col-3>

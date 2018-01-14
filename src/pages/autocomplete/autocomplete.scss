@@ -3,4 +3,10 @@ page-autocomplete {
     .toolbar-background-md, .toolbar-background-ios {
         background: #FFFFFF;
     }
+    .toolbar-title-md{
+        color: #21c48a !important 
+    }
+    ion-item{
+        border-bottom: dotted 1px #ccc !important;
+    }
 }

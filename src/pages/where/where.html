@@ -7,22 +7,49 @@
 
 
 
-<ion-content >
-    <div class="orderInfo" *ngIf="hasActiveOrders" (click)="pushOrdersPage()">
-        <h4 class="nexa" style="color:#ffffff;"> <ion-icon ios="ios-eye" md="md-eye"></ion-icon>  Tienes pedidos en proceso</h4>
+<ion-content>
+  <div class="orderInfo" *ngIf="hasActiveOrders" (click)="pushOrdersPage()">
+    <h4 class="nexa" style="color:#ffffff;">
+      <ion-icon ios="ios-eye" md="md-eye"></ion-icon> Tienes pedidos en proceso</h4>
+  </div>
+  <ion-grid padding >
+    <ion-row>
+      <h1 class="question nexa">Hola {{userName}},
+        <br/>¿A dónde enviamos tu pedido?</h1>
+    </ion-row>
+    <ion-row>
+      <div class="directionsC trueno">
+        <div  *ngFor="let location of locations" class="row" style="margin-bottom: 1.5em;">
+          <div col-2 (click)="setLocation(location.key)">
+            <img *ngIf="location.tag == 'Casa'" class="tagI" src="assets/img/home.svg" alt="">
+            <img *ngIf="location.tag == 'Oficina'" class="tagI" src="assets/img/monitor.svg" alt="">
+            <img *ngIf="location.tag == 'Novi@'" class="tagI" src="assets/img/heart.svg" alt="">
+            <img *ngIf="location.tag != 'Casa' && location.tag != 'Oficina' && location.tag != 'Novi@'" class="tagI" src="assets/img/pin2.svg"
+              alt="">
+          </div>
+          <div col-9 (click)="setLocation(location.key)">
+            <div class="directionC">
+              <h5 class="trueno direction">{{location.address}}</h5>
+              <h6 class="nexa tag">{{location.tag}}</h6>
+            </div>
+
+          </div>
+          <div col-1>
+            <div class="moreContainer" (click)="showActionSheet(location.key)">
+              <ion-icon class="moreI" ios="md-more" md="md-more"></ion-icon>
+            </div>
+
+
+          </div>
+        </div>
+        
+        <!--<button ion-button (click)="setCurrentLocation()">UBICACIÓN ACTUAL</button>-->
+        <!--<button ion-button (click)="setLocation(location.key)" *ngFor="let location of locations">{{location.address}}</button>-->
       </div>
-<ion-grid padding>
-<ion-row>
-<h1 class="question trueno">¿A dónde quieres pedir hoy?</h1>
-</ion-row>
-<ion-row>
-<div class="directionsC trueno">
-  <button ion-button (click)="setCurrentLocation()">UBICACIÓN ACTUAL</button>
-  <button ion-button (click)="setLocation(location.key)" *ngFor="let location of locations">{{location.address}}</button>
-</div>
-</ion-row>
-</ion-grid>
-<div class="bottomC">
-    <p class="other nexa" (click)="pushAddDirectionPage()">Agregar dirección</p>
-</div>
+    </ion-row>
+  </ion-grid>
+  <div class="bottomC">
+    <p class="other nexa" (click)="setCurrentLocation()">Ubicacion Actual</p>
+    <p class="other nexa" (click)="pushAddDirectionPage()">Otra dirección</p>
+  </div>
 </ion-content>

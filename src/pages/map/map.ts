@@ -28,6 +28,7 @@ import { StorageProvider } from '../../providers/storage/storage';
 export class MapPage {
   address: string;
   reference: string;
+  tag: string;
   map: GoogleMap;
   mLat: any;
   mLng: any;
@@ -36,6 +37,7 @@ export class MapPage {
     public googleMaps: GoogleMaps, public geocoder: Geocoder, public alert: AlertController, public storage: StorageProvider) {
       this.address = this.navParams.get('address');
       this.reference = this.navParams.get('reference');
+      this.tag = this.navParams.get('tag');
   }
 
   ionViewDidLoad() {
@@ -98,7 +100,7 @@ export class MapPage {
   }
 
   save(){
-    this.storage.saveDirection(this.address, this.mLat, this.mLng, this.reference).then(()=>{
+    this.storage.saveDirection(this.address, this.mLat, this.mLng, this.reference, this.tag).then(()=>{
       this.storage.setActiveLocation(this.address).then(()=>{
         this.navCtrl.setRoot(HomePage);
         this.navCtrl.popToRoot();

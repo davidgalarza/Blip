@@ -5,7 +5,7 @@ import { DatabaseProvider } from '../../providers/database/database';
 import { NativeAudio } from '@ionic-native/native-audio';
 import { ShopFunctionsProvider } from '../../providers/shop-functions/shop-functions';
 
-
+import { CheckoutPage } from '../../pages/checkout/checkout';
 /**
  * Generated class for the CartmPage page.
  *
@@ -26,6 +26,7 @@ export class CartmPage {
   total: number = 0;
   totalT: number = 0;
   deliveryPrice: number = 0;
+  mapLink: string = '';
   constructor(public navCtrl: NavController, public navParams: NavParams, private storage: StorageProvider, private db: DatabaseProvider, private nativeAudio: NativeAudio, private shop: ShopFunctionsProvider) {
     //this.products = this.navParams.get('cart');
     this.shopId = this.navParams.get('commerce');
@@ -36,6 +37,7 @@ export class CartmPage {
       this.storage.getByKey(key).then(location => {
         console.log(location);
         this.address = location;
+        this.mapLink = 'https://maps.googleapis.com/maps/api/staticmap?center='+this.address.lat+','+this.address.lng+'&zoom=17&size=500x500&style=feature:road|color:0xffffff|visibility:simplified&&markers=color:blue%7Clabel:S%7C'+this.address.lat+','+this.address.lng+'&key=AIzaSyCoRb8eDf4KnwNHuL1LIMK_o1LQqxzuf3Y';
         
           this.db.getCommerById(this.shopId).on('value', (ss) => {
             console.log(ss.val());
@@ -146,6 +148,12 @@ export class CartmPage {
     this.db.getProduct(id).subscribe(ss=>{
       console.log(ss.imageUrl);
       return ss.imageUrl;
+    })
+  }
+  pushCheckout(){
+    this.navCtrl.push(CheckoutPage, {
+      cart: this.products,
+      shopId: this.shopId
     })
   }
 

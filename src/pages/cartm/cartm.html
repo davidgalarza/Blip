@@ -26,7 +26,7 @@
         <p class="marginTD directionLT"><3 Blip</p>
       </div>
       <div col-3>
-        <img class="mapI" src="https://maps.googleapis.com/maps/api/staticmap?center=-1.2691258,-78.6149221&zoom=17&size=500x500&style=feature:road|color:0xffffff|visibility:simplified&key=AIzaSyCoRb8eDf4KnwNHuL1LIMK_o1LQqxzuf3Y" alt="">
+        <img class="mapI" [src]="mapLink" alt="">
       </div>
     </div>
   </div>
@@ -57,5 +57,5 @@
 </ion-content>
 
 <ion-footer>
-  <p class="other nexa">Ir a pagar</p>
+  <p class="other nexa" (click)="pushCheckout()">Ir a pagar</p>
 </ion-footer>

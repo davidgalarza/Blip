@@ -14,6 +14,7 @@ import { ReferPage } from '../pages/refer/refer';
 import { CreditsPage } from '../pages/credits/credits';
 import { AddrefPage } from '../pages/addref/addref';
 import { CartmPage } from '../pages/cartm/cartm';
+import { CheckoutPage } from '../pages/checkout/checkout';
 //declare var handleBranch;
 
 @Component({
@@ -98,10 +99,10 @@ export class MyApp {
       });
      /*this.zone.run( () => {
         if (!user) {
-          this.rootPage = CartmPage;
+          this.rootPage = CheckoutPage;
           unsubscribe();
         } else { 
-          this.rootPage = CartmPage;
+          this.rootPage = CheckoutPage;
           unsubscribe();
         }
       });*/

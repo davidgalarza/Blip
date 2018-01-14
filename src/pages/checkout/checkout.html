@@ -1,0 +1,111 @@
+<!--
+  Generated template for the CheckoutPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar class="home-nav">
+    <ion-title>Pedido</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <div class="grid" style="padding-bottom: 0px;">
+    <div class="row checkoutI">
+      <div col-9>
+        <p class="tagT">Tiempo de entrega</p>
+      </div>
+      <div col-3>
+        <p class="tagT deliveryT">35 min</p>
+      </div>
+    </div>
+    <div class="row checkoutI">
+      <div col-6>
+        <p class="tagT">Dirección</p>
+      </div>
+      <div col-6>
+        <p class="tagT" id="directionT">{{address.address}}</p>
+      </div>
+    </div>
+    <div class="row checkoutI">
+      <div col-6>
+        <p class="tagT">Metodo de Pago</p>
+      </div>
+      <div col-6>
+        <p class="tagT cashT" id="directionT">
+          <ion-icon name="cash"></ion-icon> Efectivo</p>
+      </div>
+    </div>
+    <div class="row checkoutI">
+      <div col-6>
+        <p class="tagT">Facturación</p>
+      </div>
+      <div col-6>
+        <p class="tagT" id="directionT"><span (click)="promptBilling()" *ngIf="name == '' ||name ==undefined ">Ingresar</span><span (click)="promptBilling()" *ngIf="name != '' && name !=undefined">{{name}}</span>
+          <ion-icon ios="ios-arrow-forward" md="ios-arrow-forward"></ion-icon>
+        </p>
+      </div>
+    </div>
+    <div class="row checkoutI" style="border-bottom: none">
+      <div col-12>
+        <p class="tagT">Propina</p>
+      </div>
+      <div col-12>
+        <div class="row">
+          <div class="proC" col-3>
+            <div class="propineC" (click)="changeTip(0)" [ngStyle]="tip == 0 && {'background': 'linear-gradient(to right, #de6262, #ffb88c)'}">
+              <p [ngStyle]="tip == 0 && {'color': '#ffffff'}">No</p>
+            </div>
+          </div>
+          <div class="proC" col-3>
+            <div class="propineC" (click)="changeTip(0.50)" [ngStyle]="tip == 0.50 && {'background': 'linear-gradient(to right, #de6262, #ffb88c)'}">
+              <p [ngStyle]="tip == 0.50 && {'color': '#ffffff'}">$0.50</p>
+            </div>
+          </div>
+          <div class="proC" col-3>
+            <div class="propineC" (click)="changeTip(1.00)" [ngStyle]="tip == 1.00 && {'background': 'linear-gradient(to right, #de6262, #ffb88c)'}">
+              <p [ngStyle]="tip == 1.00 && {'color': '#ffffff'}">$1.00</p>
+            </div>
+          </div>
+          <div class="proC"  col-3>
+              <div class="propineC" (click)="changeTip(1.50)" [ngStyle]="tip == 1.50 && {'background': 'linear-gradient(to right, #de6262, #ffb88c)'}">
+                  <p [ngStyle]="tip == 1.50 && {'color': '#ffffff'}">$1.50</p>
+                </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="backgroundM"></div>
+</ion-content>
+<ion-footer>
+  <div class="grid">
+    <div class="row itemF">
+      <div col-9 class="tagTi">Costo de los productos: </div>
+      <div col-3 style="text-align: right;"> ${{total.toFixed(2)}}</div>
+    </div>
+    <div class="row itemF">
+      <div col-9 class="tagTi">Costo domicilio: </div>
+      <div col-3 style="text-align: right;"><span *ngIf="!tachText">${{deliveryPrice.toFixed(2)}}</span><span *ngIf="tachText">$0.00</span></div>
+    </div>
+    <div class="row itemF">
+      <div col-9 class="tagTi">Propina: </div>
+      <div col-3 style="text-align: right;">${{tip.toFixed(2)}}</div>
+    </div>
+    <div class="row" (click)="createOrder()" id="mainB">
+      <div col-3></div>
+      <div col-6>
+        <p style="text-align: center;" class="buttonT">Enviar pedido</p>
+      </div>
+      <div col-3 >
+        <p style="text-align: right;" class="buttonT"><span *ngIf="!tachText">${{(totalT + deliveryPrice + tip).toFixed(2)}}</span><span *ngIf="tachText">${{(totalT  + tip).toFixed(2)}}</span></p>
+      </div>
+
+    </div>
+  </div>
+</ion-footer>

@@ -5,7 +5,7 @@ import { DatabaseProvider } from '../../providers/database/database';
 import { ShopFunctionsProvider } from '../../providers/shop-functions/shop-functions';
 import { HttpProvider } from '../../providers/http/http';
 import { TrakingPage } from '../../pages/traking/traking';
-
+import { AppUpdate } from '@ionic-native/app-update';
 
 /**
  * Generated class for the CheckoutPage page.
@@ -35,7 +35,7 @@ export class CheckoutPage {
   commerce;
   tachText: boolean = false;
   credits: number;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: StorageProvider, private db: DatabaseProvider, private alertCtrl: AlertController, private shop: ShopFunctionsProvider, private loader: LoadingController, private http: HttpProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: StorageProvider, private db: DatabaseProvider, private alertCtrl: AlertController, private shop: ShopFunctionsProvider, private loader: LoadingController, private http: HttpProvider, private appUpdate: AppUpdate) {
     this.products = this.navParams.get('cart');
     this.shopId = this.navParams.get('shopId');
 
@@ -46,6 +46,8 @@ export class CheckoutPage {
     console.log('ionViewDidLoad CheckoutPage');
   }
   ionViewDidEnter() {
+    const updateUrl = 'https://pastebin.com/raw/2qQNV0dY';
+    this.appUpdate.checkAppUpdate(updateUrl);
     this.products.forEach(product => {
       delete product['imageUrl'];
     });

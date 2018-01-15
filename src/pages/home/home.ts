@@ -11,6 +11,7 @@ import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResul
 import { LatLng, Geocoder } from '@ionic-native/google-maps';
 import { ReferPage } from '../../pages/refer/refer';
 import { WherePage } from '../where/where';
+import { AppUpdate } from '@ionic-native/app-update';
 
 @Component({
   selector: 'page-home',
@@ -19,7 +20,7 @@ import { WherePage } from '../where/where';
 export class HomePage {
   grid: Array<any> =[];
   address: string = "";
-  constructor(public navCtrl: NavController, private firebase: Firebase, public database: DatabaseProvider, public auth:AuthProvider,public nativeGeocoder: NativeGeocoder, public geocoder: Geocoder, public storage: StorageProvider, public menu: MenuController, public platform: Platform, private load: LoadingController) {
+  constructor(public navCtrl: NavController, private firebase: Firebase, public database: DatabaseProvider, public auth:AuthProvider,public nativeGeocoder: NativeGeocoder, public geocoder: Geocoder, public storage: StorageProvider, public menu: MenuController, public platform: Platform, private load: LoadingController, private appUpdate: AppUpdate) {
     this.menu.enable(true);
 
     console.log("Listo=> ");
@@ -72,6 +73,8 @@ export class HomePage {
     .then((res: any) => console.log(res))
     .catch((error: any) => console.error(error));
     this.menu.enable(true);
+    const updateUrl = 'https://pastebin.com/raw/2qQNV0dY';
+    this.appUpdate.checkAppUpdate(updateUrl);
   }
   pushCategory(category: string, display_name: string, search:  boolean){
     console.log(category);

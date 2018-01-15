@@ -14,6 +14,7 @@ import { WelcomePage } from '../../pages/welcome/welcome';
 import * as moment from 'moment-timezone';
 import { Keyboard } from '@ionic-native/keyboard';
 import { NativeAudio } from '@ionic-native/native-audio';
+import { AppUpdate } from '@ionic-native/app-update';
 
 /**
  * Generated class for the ShopPage page.
@@ -57,7 +58,7 @@ export class ShopPage {
 
   check;
   public scrollAmount = 0;
-  constructor(private _sanitizer: DomSanitizer, public navCtrl: NavController, public navParams: NavParams, public db: DatabaseProvider, public modalCtrl: ModalController, public alert: AlertController, public algolia: AlgoliaProvider, public shopF: ShopFunctionsProvider, public storage: StorageProvider, public platform: Platform, private firebase: Firebase, public toastCtrl: ToastController, public auth: AuthProvider, private keyboard: Keyboard, private nativeAudio: NativeAudio) {
+  constructor(private _sanitizer: DomSanitizer, public navCtrl: NavController, public navParams: NavParams, public db: DatabaseProvider, public modalCtrl: ModalController, public alert: AlertController, public algolia: AlgoliaProvider, public shopF: ShopFunctionsProvider, public storage: StorageProvider, public platform: Platform, private firebase: Firebase, public toastCtrl: ToastController, public auth: AuthProvider, private keyboard: Keyboard, private nativeAudio: NativeAudio, private appUpdate: AppUpdate) {
     this.zone = new NgZone({ enableLongStackTrace: false });
     this.shopId = this.navParams.get('shopId');
    // this.shopId = 'pUnWGehSlUgy0dkiaGRCUMXDTt13';
@@ -159,11 +160,12 @@ export class ShopPage {
     this.firebase.logEvent('page_view', { page: "shop" })
       .then((res: any) => console.log(res))
       .catch((error: any) => console.error(error));
-
-      
       setTimeout(()=>{
         this.getTotalCart();
       }, 300) 
+
+      const updateUrl = 'https://pastebin.com/raw/2qQNV0dY';
+    this.appUpdate.checkAppUpdate(updateUrl);
 
   }
   ionViewDidEnter() {

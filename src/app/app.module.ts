@@ -46,6 +46,8 @@ import { HttpModule } from '@angular/http';
 import { LocationAccuracy } from '@ionic-native/location-accuracy';
 // Import ionic2-rating module
 
+import { CloudSettings, CloudModule, } from '@ionic/cloud-angular'
+
 
 //Poviders
 import { AuthProvider } from '../providers/auth/auth';
@@ -70,6 +72,9 @@ export const firebaseConfig = {
     storageBucket: "atiempo-5533e.appspot.com",
     messagingSenderId: "212855483806"
 }
+export const cloudConfig: CloudSettings ={
+  core:{app_id: '39d98113'}
+};
 
 
 @NgModule({
@@ -105,7 +110,8 @@ export const firebaseConfig = {
     IonicStorageModule.forRoot({
       name: '__mydb',
          driverOrder: ['indexeddb', 'sqlite', 'websql']
-    })
+    }),
+    CloudModule.forRoot(cloudConfig)
   ],
   bootstrap: [IonicApp],
   entryComponents: [

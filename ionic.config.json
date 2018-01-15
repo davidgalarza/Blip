@@ -1,6 +1,6 @@
 {
   "name": "Blip",
-  "app_id": "",
+  "app_id": "39d98113",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}

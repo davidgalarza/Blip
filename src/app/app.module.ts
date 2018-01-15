@@ -38,6 +38,7 @@ import { GoogleMaps } from '@ionic-native/google-maps';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { Geocoder} from '@ionic-native/google-maps';
 import { NativeGeocoder } from '@ionic-native/native-geocoder';
+import { AppUpdate } from '@ionic-native/app-update';
 import { NativeAudio } from '@ionic-native/native-audio';
 import { HTTP } from '@ionic-native/http';
 import { HttpModule } from '@angular/http';
@@ -124,6 +125,7 @@ export const firebaseConfig = {
     SocialSharing,
     GoogleMaps,
     NativeGeocoder,
+    AppUpdate,
     NativeAudio,
     Geocoder,
     DatabaseProvider,

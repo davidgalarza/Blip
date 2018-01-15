@@ -16,6 +16,8 @@ import { AddrefPage } from '../pages/addref/addref';
 import { CartmPage } from '../pages/cartm/cartm';
 import { CheckoutPage } from '../pages/checkout/checkout';
 //declare var handleBranch;
+import { AppUpdate } from '@ionic-native/app-update';
+
 
 @Component({
   templateUrl: 'app.html'
@@ -29,7 +31,7 @@ export class MyApp {
   pages: Array<{title: string, component: any, icon: any}>;
   userName: string = "";
   rewards: number = 0;
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private auth: AuthProvider, public db: DatabaseProvider) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private auth: AuthProvider, public db: DatabaseProvider, private appUpdate: AppUpdate) {
     this.initializeApp();
     this.zone = new NgZone({});
     // used for an example of ngFor and navigation
@@ -89,11 +91,15 @@ export class MyApp {
     // Listen to the auth state and toogling the root page.
     const unsubscribe = this.auth.getAuth().onAuthStateChanged((user) => {
       this.zone.run( () => {
+        const updateUrl = 'https://pastebin.com/raw/2qQNV0dY';
+
         if (!user) {
           this.rootPage = WelcomePage;
+          this.appUpdate.checkAppUpdate(updateUrl);
           unsubscribe();
         } else { 
           this.rootPage = WherePage;
+          this.appUpdate.checkAppUpdate(updateUrl);
           unsubscribe();
         }
       });

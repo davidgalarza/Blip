@@ -173,7 +173,7 @@ export class WherePage {
             this.setLocation(key);
           }
         }, {
-          text: 'Eleminar',
+          text: 'Eliminar',
           icon: 'md-trash',
           handler: () => {
             console.log('Archive clicked');

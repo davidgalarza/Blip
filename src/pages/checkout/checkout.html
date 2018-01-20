@@ -103,7 +103,7 @@
         <p style="text-align: center;" class="buttonT">Enviar pedido</p>
       </div>
       <div col-3 >
-        <p style="text-align: right;" class="buttonT"><span *ngIf="!tachText">${{(totalT + deliveryPrice + tip).toFixed(2)}}</span><span *ngIf="tachText">${{(totalT  + tip).toFixed(2)}}</span></p>
+        <p style="text-align: right;" class="buttonT"><span *ngIf="!tachText">${{(total + deliveryPrice + tip).toFixed(2)}}</span><span *ngIf="tachText">${{(totalT  + tip).toFixed(2)}}</span></p>
       </div>
 
     </div>

@@ -101,7 +101,7 @@ export class ReferPage {
         contentIndexingMode: 'private',
         contentMetadata: {
           friend: friend,
-          gift: 6
+          gift: 5
         }
       }
       const Branch = window['Branch'];
@@ -125,7 +125,7 @@ export class ReferPage {
         stage: 'user',
         tags: ['one', 'two', 'three']
       }
-      var message = '¡Te regalo $6.00 USD para tu primer pedido en Blip! Descarga la app y pide ya';
+      var message = '¡Te regalo $5.00 USD para tu primer pedido en Blip! Descarga la app y pide ya';
       var properties = {
         campaign: 'referrals',
         date: Date.now(),
@@ -152,14 +152,14 @@ export class ReferPage {
   shareViaFacebook() {
     this.creaateReferralLink(this.name, 'facebook').then(url => {
       let link: any = url;
-      this.socialSharing.shareViaFacebook('¡Te regalo $6.00 USD para tu primer pedido en Blip! Descarga la app y pide ya', '', link);
+      this.socialSharing.shareViaFacebook('¡Te regalo $5.00 USD para tu primer pedido en Blip! Descarga la app y pide ya', '', link);
     });
 
   }
   shareViaWhatsApp() {
     this.creaateReferralLink(this.name, 'whatsapp').then(url => {
       let link: any = url;
-      this.socialSharing.shareViaWhatsApp('¡Te regalo $6.00 USD para tu primer pedido en Blip! Descarga la app y pide ya', '', link);
+      this.socialSharing.shareViaWhatsApp('¡Te regalo $5.00 USD para tu primer pedido en Blip! Descarga la app y pide ya', '', link);
     });
 
 
@@ -167,7 +167,7 @@ export class ReferPage {
   shareSheet() {
     this.creaateReferralLink(this.name, 'other').then(url => {
       let link: any = url;
-      this.socialSharing.share('¡Te regalo $6.00 USD para tu primer pedido en Blip! Descarga la app y pide ya', '', '', link);
+      this.socialSharing.share('¡Te regalo $5.00 USD para tu primer pedido en Blip! Descarga la app y pide ya', '', '', link);
     });
   }
 

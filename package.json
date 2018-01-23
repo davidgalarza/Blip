@@ -41,7 +41,7 @@
     "@types/google-maps": "^3.2.0",
     "algoliasearch": "^3.24.3",
     "angular2-moment": "^1.7.0",
-    "angularfire2": "^4.0.0-rc.1",
+    "angularfire2": "4.0.0-rc.1",
     "autoprefixer": "^7.2.5",
     "firebase": "^4.3.0",
     "geofire": "^4.1.2",

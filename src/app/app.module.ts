@@ -47,6 +47,7 @@ import { LocationAccuracy } from '@ionic-native/location-accuracy';
 // Import ionic2-rating module
 
 import { CloudSettings, CloudModule, } from '@ionic/cloud-angular'
+import { Mixpanel, MixpanelPeople } from '@ionic-native/mixpanel'
 
 
 //Poviders
@@ -141,7 +142,9 @@ export const cloudConfig: CloudSettings ={
     GeofireProvider,
     AlgoliaProvider,
     Scroll,
-    LocationAccuracy
+    LocationAccuracy,
+    Mixpanel,
+    MixpanelPeople
   ]
 })
 export class AppModule {}

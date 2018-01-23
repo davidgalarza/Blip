@@ -6,7 +6,7 @@ import { WherePage } from '../../pages/where/where';
 import { HTTP } from '@ionic-native/http';
 import { Firebase } from '@ionic-native/firebase';
 import { HomePage } from '../../pages/home/home';
-
+import { Mixpanel, MixpanelPeople } from '@ionic-native/mixpanel';
 /**
  * WELCOME-PAGE
  * This page triger the AccountKit to signin the user
@@ -22,7 +22,7 @@ export class WelcomePage {
   name: string = "";
   message: string;
   gift:number; 
-  constructor(private platform: Platform,public navCtrl: NavController, public navParams: NavParams, public auth: AuthProvider, private http: HTTP, public db: DatabaseProvider, public load: LoadingController,  private firebase: Firebase,  public toastCtrl: ToastController, public menu: MenuController) {
+  constructor(private platform: Platform,public navCtrl: NavController, public navParams: NavParams, public auth: AuthProvider, private http: HTTP, public db: DatabaseProvider, public load: LoadingController,  private firebase: Firebase,  public toastCtrl: ToastController, public menu: MenuController, private mixpanel: Mixpanel, private mixpanelPeople: MixpanelPeople) {
 
         this.menu.enable(false);
 
@@ -108,6 +108,7 @@ export class WelcomePage {
                 }else{
                   this.navCtrl.setRoot(WherePage);
                   this.navCtrl.popToRoot();
+                  this.mixpanel.track('Session');
                 } 
               });
             });

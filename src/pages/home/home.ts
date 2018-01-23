@@ -12,6 +12,7 @@ import { LatLng, Geocoder } from '@ionic-native/google-maps';
 import { ReferPage } from '../../pages/refer/refer';
 import { WherePage } from '../where/where';
 import { AppUpdate } from '@ionic-native/app-update';
+import { Mixpanel, MixpanelPeople } from '@ionic-native/mixpanel';
 
 @Component({
   selector: 'page-home',
@@ -20,9 +21,13 @@ import { AppUpdate } from '@ionic-native/app-update';
 export class HomePage {
   grid: Array<any> =[];
   address: string = "";
-  constructor(public navCtrl: NavController, private firebase: Firebase, public database: DatabaseProvider, public auth:AuthProvider,public nativeGeocoder: NativeGeocoder, public geocoder: Geocoder, public storage: StorageProvider, public menu: MenuController, public platform: Platform, private load: LoadingController, private appUpdate: AppUpdate) {
+  constructor(public navCtrl: NavController, private firebase: Firebase, public database: DatabaseProvider, public auth:AuthProvider,public nativeGeocoder: NativeGeocoder, public geocoder: Geocoder, public storage: StorageProvider, public menu: MenuController, public platform: Platform, private load: LoadingController, private appUpdate: AppUpdate, private mixpanel: Mixpanel, private mixpanelPeople: MixpanelPeople) {
     this.menu.enable(true);
-
+    this.mixpanel.registerSuperProperties({
+      textoT: "Tu vida es mas facil con Blip"
+    }).then(ss=>{
+      console.log(ss);
+    });
     console.log("Listo=> ");
     this.firebase.getToken().then(token=>{
       console.log(token);

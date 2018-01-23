@@ -17,6 +17,7 @@ import { CartmPage } from '../pages/cartm/cartm';
 import { CheckoutPage } from '../pages/checkout/checkout';
 //declare var handleBranch;
 import { AppUpdate } from '@ionic-native/app-update';
+import { Mixpanel, MixpanelPeople } from '@ionic-native/mixpanel';
 
 
 @Component({
@@ -31,7 +32,7 @@ export class MyApp {
   pages: Array<{title: string, component: any, icon: any}>;
   userName: string = "";
   rewards: number = 0;
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private auth: AuthProvider, public db: DatabaseProvider, private appUpdate: AppUpdate) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private auth: AuthProvider, public db: DatabaseProvider, private appUpdate: AppUpdate, private mixpanel: Mixpanel, private mixpanelPeople: MixpanelPeople) {
     this.initializeApp();
     this.zone = new NgZone({});
     // used for an example of ngFor and navigation
@@ -102,6 +103,15 @@ export class MyApp {
           this.appUpdate.checkAppUpdate(updateUrl);
           unsubscribe();
         }
+
+        this.mixpanel.init("2a24d2389b6adfe4bb3a31ad27bf0a43")
+        .then((ss)=>{
+          console.log("Inicio: ", ss)
+          
+        })
+        .catch((ss)=>{
+          console.log("ERROR: ", ss)
+        });
       });
      /*this.zone.run( () => {
         if (!user) {

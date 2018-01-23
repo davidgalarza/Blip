@@ -28,6 +28,7 @@
     "@ionic-native/http": "^4.1.0",
     "@ionic-native/keyboard": "4.3.3",
     "@ionic-native/location-accuracy": "^4.5.2",
+    "@ionic-native/mixpanel": "^4.5.2",
     "@ionic-native/native-audio": "^4.5.2",
     "@ionic-native/native-geocoder": "^4.2.1",
     "@ionic-native/social-sharing": "^4.4.2",

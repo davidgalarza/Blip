@@ -25,7 +25,7 @@
     "@ionic-native/core": "3.12.1",
     "@ionic-native/firebase": "^4.3.2",
     "@ionic-native/geolocation": "^4.1.0",
-    "@ionic-native/google-maps": "^4.1.0",
+    "@ionic-native/google-maps": "4.1.0",
     "@ionic-native/http": "^4.1.0",
     "@ionic-native/keyboard": "4.3.3",
     "@ionic-native/location-accuracy": "^4.5.2",
